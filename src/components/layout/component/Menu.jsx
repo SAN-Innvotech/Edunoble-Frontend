@@ -81,12 +81,12 @@ export default function Menu({ allClasses, headerPosition }) {
             <li>
               <Link
                 data-barba
-                to="/courses-list-3"
+                to="/papers"
                 className={
-                  pathname == "/courses-list-3" ? "activeMenu" : "inActiveMenuTwo"
+                  pathname == "/papers" ? "activeMenu" : "inActiveMenuTwo"
                 }
               >
-                Courses
+                Papers
               </Link>
             </li>
             {/* <li className="menu-item-has-children -has-mega-menu">

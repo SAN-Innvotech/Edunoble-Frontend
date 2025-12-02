@@ -10,7 +10,7 @@ export default function FooterOne() {
   return (
     <footer className="footer -type-1 bg-dark-1 -green-links">
       <div className="container">
-        <div className="footer-header">
+        {/* <div className="footer-header">
           <div className="row y-gap-20 justify-between items-center">
             <div className="col-auto">
               <div className="footer-header__logo">
@@ -28,9 +28,9 @@ export default function FooterOne() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
-        <div className="footer-columns">
+        {/* <div className="footer-columns">
           <div className="row y-gap-30">
             <FooterLinks
               allClasses={"text-17 fw-500 text-white uppercase mb-25"}
@@ -51,7 +51,7 @@ export default function FooterOne() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         <div className="py-30 border-top-light-15">
           <div className="row justify-between items-center y-gap-20">
@@ -61,7 +61,7 @@ export default function FooterOne() {
               </div>
             </div>
 
-            <div className="col-auto">
+            {/* <div className="col-auto">
               <div className="d-flex x-gap-20 y-gap-20 items-center flex-wrap">
                 <div>
                   <div className="d-flex x-gap-15 text-white">
@@ -79,7 +79,7 @@ export default function FooterOne() {
                   </Link>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

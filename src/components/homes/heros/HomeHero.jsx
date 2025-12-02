@@ -108,7 +108,7 @@ const HomeHero = () => {
                   <div className="col-12 col-sm-auto">
                     <Link
                       data-barba
-                      to="/courses-list-3"
+                      to="/papers"
                       className="button -md -outline-green-1 text-green-1"
                     >
                       View Sample Papers

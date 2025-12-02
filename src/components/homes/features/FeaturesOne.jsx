@@ -47,7 +47,7 @@ export default function LearnNewSkill() {
 
               <div className="d-inline-block mt-30">
                 <Link
-                  to="/courses-list-3"
+                  to="/papers"
                   className="button -md -purple-1 text-white"
                 >
                   Browse Sample Papers

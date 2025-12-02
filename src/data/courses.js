@@ -10,8 +10,8 @@ export const samplePapersData = [
     board: "CBSE",
     examType: "Sample",
     tags: ["Class 10", "Maths", "CBSE", "2024"],
-    fileUrl: "#",
-    driveFileId: "sample-drive-id-1",
+    fileUrl: "https://docs.google.com/document/d/1cXxwzWvCyIvwoQmbJpJiM_jrqo81bYHAHm-ljQA-yzw/edit?usp=sharing",
+    driveFileId: "1cXxwzWvCyIvwoQmbJpJiM_jrqo81bYHAHm-ljQA-yzw",
   },
   {
     id: 2,
@@ -1156,4 +1156,14 @@ export const sortingOptions = [
   "Price (dsc)",
   "Duration (asc)",
   "Duration (dsc)",
+];
+
+export const samplePaperSortingOptions = [
+  "Default",
+  "Year (Newest)",
+  "Year (Oldest)",
+  "Class (Asc)",
+  "Class (Desc)",
+  "Subject (A-Z)",
+  "Subject (Z-A)",
 ];

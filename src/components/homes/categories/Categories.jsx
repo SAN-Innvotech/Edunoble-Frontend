@@ -68,7 +68,7 @@ const CategoriesHomeOne = () => {
                 {topCategories.map((item, i) => (
                   <SwiperSlide key={i}>
                     <Link
-                      to={`/courses-list-3`}
+                      to={`/papers`}
                       data-aos="fade-left"
                       data-aos-duration={(i + 1) * 350}
                       className="featureCard -type-1 -featureCard-hover linkCustomTwo"
