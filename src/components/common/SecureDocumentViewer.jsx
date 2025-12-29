@@ -309,13 +309,13 @@ export default function SecureDocumentViewer({ fileUrl, onClose, title }) {
             bottom: 0,
             pointerEvents: "none",
             zIndex: 1000,
-            background: "repeating-linear-gradient(45deg, transparent, transparent 100px, rgba(255, 0, 0, 0.03) 100px, rgba(255, 0, 0, 0.03) 200px)",
+            background: "repeating-linear-gradient(45deg, transparent, transparent 200px, rgba(255, 0, 0, 0.01) 200px, rgba(255, 0, 0, 0.01) 400px)",
             mixBlendMode: "multiply",
           }}
         />
         
         {/* User-specific watermark text overlay */}
-        <div
+        {/* <div
           style={{
             position: "absolute",
             top: "50%",
@@ -332,7 +332,7 @@ export default function SecureDocumentViewer({ fileUrl, onClose, title }) {
           }}
         >
           Edunoble - Protected
-        </div>
+        </div> */}
         
         {/* Additional watermark pattern */}
         <div
@@ -461,7 +461,8 @@ export default function SecureDocumentViewer({ fileUrl, onClose, title }) {
                 setLoading(false);
               }}
             />
-            {/* Overlay on iframe to prevent interaction and add watermark */}
+            {/* Overlay on iframe to keep watermark/security layer above while
+                still allowing scroll/zoom inside the iframe */}
             <div
               style={{
                 position: "absolute",
@@ -469,8 +470,25 @@ export default function SecureDocumentViewer({ fileUrl, onClose, title }) {
                 left: 0,
                 right: 0,
                 bottom: 0,
+                // Let pointer events through so user can scroll inside iframe
+                // (we'll separately block just the Drive control area).
                 pointerEvents: "none",
                 zIndex: 1002,
+                background: "transparent",
+              }}
+            />
+            {/* Small blocker over Google Drive's top-right toolbar area to
+                prevent clicks on the pop-out/download controls without
+                affecting scrolling in the main document area. */}
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                right: 0,
+                width: "220px",
+                height: "80px",
+                pointerEvents: "auto",
+                zIndex: 1003,
                 background: "transparent",
               }}
             />

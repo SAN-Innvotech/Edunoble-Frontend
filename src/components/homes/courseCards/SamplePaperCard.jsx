@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Chip } from "@mui/material";
 import SecureDocumentViewer from "../../common/SecureDocumentViewer";
+import { createPortal } from "react-dom";
 
 export default function SamplePaperCard({ paper }) {
   const [showViewer, setShowViewer] = useState(false);
@@ -97,13 +98,15 @@ export default function SamplePaperCard({ paper }) {
         </div>
       </div>
 
-      {showViewer && (
-        <SecureDocumentViewer
-          fileUrl={paper.fileUrl}
-          onClose={handleCloseViewer}
-          title={paper.title}
-        />
-      )}
+      {showViewer &&
+        createPortal(
+          <SecureDocumentViewer
+            fileUrl={paper.fileUrl}
+            onClose={handleCloseViewer}
+            title={paper.title}
+          />,
+          document.body
+        )}
     </>
   );
 }

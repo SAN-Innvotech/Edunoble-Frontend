@@ -19,7 +19,7 @@ export default function LearnNewSkill() {
               </h2>
               <p className="about-content__text" data-aos="fade-up">
                 Use the list below to see how our secure online sample papers
-                help Class 10, 11 and 12 students prepare with confidence.
+                help Class 8, 9, 10, 11 and 12 students prepare with confidence.
               </p>
               <div className="y-gap-20 pt-30">
                 {featureOne.map((elm, i) => (

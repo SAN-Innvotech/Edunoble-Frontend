@@ -2,16 +2,76 @@ import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
-import { topCategories } from "../../../data/topCategories";
-
 import "swiper/css/pagination";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { getApiUrl } from "@/config/api";
 
 const CategoriesHomeOne = () => {
   const [showSlider, setShowSlider] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Available icon paths (1.svg through 6.svg)
+  const availableIcons = [
+    "/assets/img/featureCards/1.svg",
+    "/assets/img/featureCards/2.svg",
+    "/assets/img/featureCards/3.svg",
+    "/assets/img/featureCards/4.svg",
+    "/assets/img/featureCards/5.svg",
+    "/assets/img/featureCards/6.svg",
+  ];
+
+  // Function to get a random icon
+  const getRandomIcon = (index) => {
+    return availableIcons[index % availableIcons.length];
+  };
+
+  // Function to extract numeric part from class (e.g., "12th" -> "12")
+  const extractClassNumber = (classStr) => {
+    if (!classStr) return "";
+    // Extract numbers from the string (e.g., "12th" -> "12", "10th" -> "10")
+    const match = classStr.match(/\d+/);
+    return match ? match[0] : classStr;
+  };
+
   useEffect(() => {
-    setShowSlider(true);
+    const fetchCategories = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(getApiUrl("papers/subjects-by-class"));
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch categories: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        if (result.isSuccess && result.data) {
+          // map to component format
+          const mappedCategories = result.data
+            .map((item, index) => ({
+              id: index + 1,
+              iconSrc: getRandomIcon(index),
+              title: `${item.class} ${item.subject}`,
+              text: `${item.paperCount} Papers`,
+              class: item.class,
+              subject: item.subject,
+            }));
+          setCategories(mappedCategories);
+        } else {
+          throw new Error(result.message || "Failed to fetch categories");
+        }
+      } catch (err) {
+        console.error("Error fetching categories:", err);
+        setCategories([]);
+      } finally {
+        setLoading(false);
+        setShowSlider(true);
+      }
+    };
+
+    fetchCategories();
   }, []);
 
   return (
@@ -34,7 +94,7 @@ const CategoriesHomeOne = () => {
           </div>
 
           <div className="overflow-hidden pt-50 js-section-slider">
-            {showSlider && (
+            {showSlider && !loading && categories.length > 0 && (
               <Swiper
                 // {...setting}
 
@@ -63,16 +123,18 @@ const CategoriesHomeOne = () => {
                     slidesPerView: 6,
                   },
                 }}
-                loop={true}
+                loop={categories.length > 1}
               >
-                {topCategories.map((item, i) => (
-                  <SwiperSlide key={i}>
-                    <Link
-                      to={`/papers`}
-                      data-aos="fade-left"
-                      data-aos-duration={(i + 1) * 350}
-                      className="featureCard -type-1 -featureCard-hover linkCustomTwo"
-                    >
+                {categories.map((item, i) => {
+                  const classNumber = extractClassNumber(item.class);
+                  return (
+                    <SwiperSlide key={item.id}>
+                      <Link
+                        to={`/papers?class=${encodeURIComponent(classNumber)}&subject=${encodeURIComponent(item.subject)}`}
+                        data-aos="fade-left"
+                        data-aos-duration={(i + 1) * 350}
+                        className="featureCard -type-1 -featureCard-hover linkCustomTwo"
+                      >
                       <div className="featureCard__content">
                         <div className="featureCard__icon">
                           <img src={item.iconSrc} alt="icon" />
@@ -85,8 +147,8 @@ const CategoriesHomeOne = () => {
                       </div>
                     </Link>
                   </SwiperSlide>
-                  // 140,90
-                ))}
+                  );
+                })}
               </Swiper>
             )}
 

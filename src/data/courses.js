@@ -24,7 +24,7 @@ export const samplePapersData = [
     board: "CBSE",
     examType: "Sample",
     tags: ["Class 10", "Science", "CBSE"],
-    fileUrl: "#",
+    fileUrl: "https://docs.google.com/document/d/1a1O3Hys4R_0jGzujvLER7ldN87vfc8X0/edit?usp=sharing&ouid=106631879844885537593&rtpof=true&sd=true",
     driveFileId: "sample-drive-id-2",
   },
   {
@@ -38,7 +38,7 @@ export const samplePapersData = [
     board: "CBSE",
     examType: "Sample",
     tags: ["Class 10", "English", "CBSE"],
-    fileUrl: "#",
+    fileUrl: "https://drive.google.com/file/d/1NOazd-KOuFNp6u_Ja1aJb_LUN-VbTqyf/view?usp=sharing",
     driveFileId: "sample-drive-id-3",
   },
   {
