@@ -3,14 +3,53 @@ import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 // import 'swiper/swiper.min.css';
-import { testimonials } from "../../data/tesimonials";
 import { counters } from "../../data/count";
+import { getApiUrl } from "@/config/api";
 // SwiperCore.use([Pagination]);
 
 export default function TestimonialsOne() {
   const [showSlider, setShowSlider] = useState(false);
+  const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    setShowSlider(true);
+    const fetchTestimonials = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch(getApiUrl("testimonials"));
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch testimonials: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        if (result.isSuccess && result.data) {
+          // Filter active testimonials, sort by order, and map to component format
+          const mappedTestimonials = result.data
+            .filter((item) => item.isActive !== false)
+            .sort((a, b) => (a.order || 0) - (b.order || 0))
+            .map((item) => ({
+              id: item._id,
+              name: item.authorName,
+              position: item.authorDetails,
+              comment: item.heading,
+              description: item.quote,
+            }));
+          setTestimonials(mappedTestimonials);
+        } else {
+          throw new Error(result.message || "Failed to fetch testimonials");
+        }
+      } catch (err) {
+        console.error("Error fetching testimonials:", err);
+        setTestimonials([]);
+      } finally {
+        setLoading(false);
+        setShowSlider(true);
+      }
+    };
+
+    fetchTestimonials();
   }, []);
   return (
     <section className="layout-pt-lg mt-80 layout-pb-lg bg-purple-1">
@@ -31,7 +70,7 @@ export default function TestimonialsOne() {
         </div>
 
         <div className="js-section-slider pt-50">
-          {showSlider && (
+          {showSlider && !loading && testimonials.length > 0 && (
             <Swiper
               className="overflow-visible"
               // {...setting}
@@ -40,7 +79,7 @@ export default function TestimonialsOne() {
                 nextEl: ".icon-arrow-right",
                 prevEl: ".icon-arrow-left",
               }}
-              loop={true}
+              loop={testimonials.length > 1}
               spaceBetween={30}
               slidesPerView={1}
               breakpoints={{
@@ -59,7 +98,7 @@ export default function TestimonialsOne() {
               }}
             >
               {testimonials.map((elm, i) => (
-                <SwiperSlide key={i} className="swiper-slide">
+                <SwiperSlide key={elm.id} className="swiper-slide">
                   <div
                     className="testimonials -type-1"
                     data-aos="fade-left"
@@ -68,13 +107,13 @@ export default function TestimonialsOne() {
                     <div className="testimonials__content">
                       <h4 className="testimonials__title">{elm.comment}</h4>
                       <p className="testimonials__text">
-                        {`“${elm.description}”`}
+                        {`"${elm.description}"`}
                       </p>
 
                       <div className="testimonials-footer">
-                        <div className="testimonials-footer__image">
+                        {/* <div className="testimonials-footer__image">
                           <img src={elm.imageSrc} alt="image" />
-                        </div>
+                        </div> */}
 
                         <div className="testimonials-footer__content">
                           <div className="testimonials-footer__title">

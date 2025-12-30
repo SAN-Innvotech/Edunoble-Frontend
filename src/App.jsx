@@ -115,14 +115,14 @@ function App() {
 
               {/* <Route path="courses-list-1" element={<CourseListPage1 />} /> */}
               {/* <Route path="courses-list-2" element={<CourseListPage2 />} /> */}
-              <Route path="courses-list-3" element={<CourseListPage3 />} />
+              <Route path="papers" element={<CourseListPage3 />} />
               {/* <Route path="courses-list-4" element={<CourseListPage4 />} /> */}
               {/* <Route path="courses-list-5" element={<CourseListPage5 />} /> */}
               {/* <Route path="courses-list-6" element={<CourseListPage6 />} /> */}
               {/* <Route path="courses-list-7" element={<CourseListPage7 />} /> */}
               {/* <Route path="courses-list-8" element={<CourseListPage8 />} /> */}
 
-              <Route path="courses/:id" element={<CourseSinglePage1 />} />
+              {/* <Route path="courses/:id" element={<CourseSinglePage1 />} /> */}
               {/* <Route
                 path="courses-single-2/:id"
                 element={<CourseSinglePage2 />}

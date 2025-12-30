@@ -19,9 +19,9 @@ export default function Header() {
           <div className="row justify-between items-center">
             <div className="col-auto">
               <div className="header-left">
-                <div className="header__logo ">
+                <div className="header__logo">
                   <Link to="/">
-                    <img src="/assets/img/general/logo.svg" alt="logo" />
+                    <img src="/assets/img/general/logo-edunoble.png" width={160} height={160} alt="logo" />
                   </Link>
                 </div>
 

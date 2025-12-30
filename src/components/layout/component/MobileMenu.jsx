@@ -63,16 +63,16 @@ export default function MobileMenu({ setActiveMobileMenu, activeMobileMenu }) {
 
         {showMenu && activeMobileMenu && (
           <div className="mobileMenu text-dark-1">
-            {/* Courses Link */}
+            {/* Papers Link */}
             <div className="submenuOne">
               <Link
-                to="/courses-list-3"
+                to="/papers"
                 className={
-                  pathname == "/courses-list-3" ? "activeMenu link" : "link inActiveMenu"
+                  pathname == "/papers" ? "activeMenu link" : "link inActiveMenu"
                 }
                 onClick={() => setActiveMobileMenu(false)}
               >
-                Courses
+                Papers
               </Link>
             </div>
 

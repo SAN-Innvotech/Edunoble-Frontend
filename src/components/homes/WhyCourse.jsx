@@ -20,7 +20,7 @@ export default function WhyCourse() {
                 data-aos="fade-up"
                 data-aos-duration={800}
               >
-                See how our simple three-step flow helps Class 10–12 students
+                See how our simple three-step flow helps Class 10-12 students
                 get exam-ready with realistic, secure online practice.
               </p>
             </div>

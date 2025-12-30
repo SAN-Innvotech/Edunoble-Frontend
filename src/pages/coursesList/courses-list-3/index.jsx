@@ -9,9 +9,9 @@ import MetaComponent from "@/components/common/MetaComponent";
 
 const metadata = {
   title:
-    "Couese-list-3 || Edunoble - Professional LMS Online Education Course ReactJS Template",
+    "Sample Papers for Class 8, 9, 10, 11 & 12 | Edunoble - Free Practice Papers",
   description:
-    "Elevate your e-learning content with Edunoble, the most impressive LMS template for online courses, education and LMS platforms.",
+    "Browse and practice with free sample papers for Class 8, 9, 10, 11, and 12 students. CBSE, ICSE, and State Board sample papers available in secure online viewing environment.",
 };
 
 export default function CourseListPage3() {
@@ -21,7 +21,7 @@ export default function CourseListPage3() {
       <Preloader />
       <Header />
       <div className="content-wrapper  js-content-wrapper overflow-hidden">
-        <PageLinks />
+        {/* <PageLinks /> */}
         <CourseListThree />
         <FooterOne />
       </div>

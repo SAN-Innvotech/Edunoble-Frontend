@@ -1,192 +1,283 @@
-import {
-  categories,
-  coursesData,
-  duration,
-  instractorNames,
-  languages,
-  levels,
-  prices,
-  rating,
-  sortingOptions,
-} from "@/data/courses";
-import React, { useState, useEffect } from "react";
-import Star from "../common/Star";
+import { samplePaperSortingOptions } from "@/data/courses";
+import React, { useState, useEffect, useCallback } from "react";
+import { useSearchParams } from "react-router-dom";
 import PaginationTwo from "../common/PaginationTwo";
-
-import { Link } from "react-router-dom";
+import SamplePaperCard from "../homes/courseCards/SamplePaperCard";
+import { getApiUrl } from "@/config/api";
 
 export default function CourseListThree() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  
+  // Function to extract numeric part from class (e.g., "12th" -> "12")
+  const extractClassNumber = (classStr) => {
+    if (!classStr) return "";
+    // Extract numbers from the string (e.g., "12th" -> "12", "10th" -> "10")
+    const match = classStr.match(/\d+/);
+    return match ? match[0] : classStr;
+  };
+  
+  // Initialize filters from URL parameters
+  const getInitialFilters = () => {
+    const classParam = searchParams.get("class");
+    const subjectParam = searchParams.get("subject");
+    return {
+      class: classParam ? [extractClassNumber(classParam)] : [],
+      subject: subjectParam ? [subjectParam] : [],
+    };
+  };
+  
+  const initialFilters = getInitialFilters();
   const [filterOpen, setFilterOpen] = useState(false);
-  const [filterCategories, setFilterCategories] = useState([]);
-  const [filterRatingRange, setFilterRatingRange] = useState([]);
-  const [filterInstractors, setFilterInstractors] = useState([]);
-  const [filterPrice, setFilterPrice] = useState("All");
-  const [filterLevels, setFilterLevels] = useState([]);
-  const [filterlanguange, setFilterlanguange] = useState([]);
-  const [filterDuration, setFilterDuration] = useState([]);
+  const [filterClass, setFilterClass] = useState(initialFilters.class);
+  const [filterSubject, setFilterSubject] = useState(initialFilters.subject);
+  const [filterBoard, setFilterBoard] = useState([]);
+  const [filterYear, setFilterYear] = useState([]);
+  const [filterExamType, setFilterExamType] = useState([]);
+
+  // Metadata from API
+  const [metadata, setMetadata] = useState({
+    classes: [],
+    subjects: [],
+    boards: [],
+    years: [],
+    examTypes: [],
+  });
+  const [metadataLoading, setMetadataLoading] = useState(true);
+  const [metadataError, setMetadataError] = useState(null);
+
+  // Papers data from API
+  const [papers, setPapers] = useState([]);
+  const [papersLoading, setPapersLoading] = useState(true);
+  const [papersError, setPapersError] = useState(null);
+  const [totalPapers, setTotalPapers] = useState(0);
 
   const [currentSortingOption, setCurrentSortingOption] = useState("Default");
 
-  const [filteredData, setFilteredData] = useState([]);
-
-  const [sortedFilteredData, setSortedFilteredData] = useState([]);
-
   const [pageNumber, setPageNumber] = useState(1);
+  const limit = 8; // Number of cards per page
 
+  // Fetch metadata from API
   useEffect(() => {
-    const refItems = coursesData.filter((elm) => {
-      if (filterPrice == "All") {
-        return true;
-      } else if (filterPrice == "Free") {
-        return !elm.paid;
-      } else if (filterPrice == "Paid") {
-        return elm.paid;
+    const fetchMetadata = async () => {
+      try {
+        setMetadataLoading(true);
+        setMetadataError(null);
+        const response = await fetch(getApiUrl("papers/metadata"));
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch metadata: ${response.status}`);
+        }
+
+        const result = await response.json();
+
+        if (result.isSuccess && result.data) {
+          setMetadata({
+            classes: result.data.classes || [],
+            subjects: result.data.subjects || [],
+            boards: result.data.boards || [],
+            years: result.data.years || [],
+            examTypes: result.data.examTypes || [],
+          });
+        } else {
+          throw new Error(result.message || "Failed to fetch metadata");
+        }
+      } catch (err) {
+        console.error("Error fetching metadata:", err);
+        setMetadataError(err.message);
+        // Fallback to empty arrays on error
+        setMetadata({
+          classes: [],
+          subjects: [],
+          boards: [],
+          years: [],
+          examTypes: [],
+        });
+      } finally {
+        setMetadataLoading(false);
       }
-    });
+    };
 
-    let filteredArrays = [];
+    fetchMetadata();
+  }, []);
 
-    if (filterInstractors.length > 0) {
-      const filtered = refItems.filter((elm) =>
-        filterInstractors.includes(elm.authorName),
-      );
-      filteredArrays = [...filteredArrays, filtered];
-    }
-    if (filterCategories.length > 0) {
-      const filtered = refItems.filter((elm) =>
-        filterCategories.includes(elm.category),
-      );
-      filteredArrays = [...filteredArrays, filtered];
-    }
-    if (filterLevels.length > 0) {
-      const filtered = refItems.filter((elm) =>
-        filterLevels.includes(elm.level),
-      );
-      filteredArrays = [...filteredArrays, filtered];
-    }
-    if (filterlanguange.length > 0) {
-      const filtered = refItems.filter((elm) =>
-        filterlanguange.includes(elm.languange),
-      );
-      filteredArrays = [...filteredArrays, filtered];
-    }
-    if (filterRatingRange.length > 0) {
-      const filtered = refItems.filter(
-        (elm) =>
-          elm.rating >= filterRatingRange[0] &&
-          elm.rating <= filterRatingRange[1],
-      );
-      filteredArrays = [...filteredArrays, filtered];
-    }
-    if (filterDuration.length > 0) {
-      const filtered = refItems.filter(
-        (elm) =>
-          elm.duration >= filterDuration[0] &&
-          elm.duration <= filterDuration[1],
-      );
-      filteredArrays = [...filteredArrays, filtered];
-    }
-
-    const commonItems = refItems.filter((item) =>
-      filteredArrays.every((array) => array.includes(item)),
-    );
-    setFilteredData(commonItems);
-    setPageNumber(1);
-  }, [
-    filterCategories,
-    filterRatingRange,
-    filterInstractors,
-    filterPrice,
-    filterLevels,
-    filterlanguange,
-    filterDuration,
-  ]);
-
+  // Update filters when URL parameters change (for navigation between categories)
+  // This handles the case when user navigates from one category to another
   useEffect(() => {
-    if (currentSortingOption == "Default") {
-      setSortedFilteredData(filteredData);
-    } else if (currentSortingOption == "Rating (asc)") {
-      setSortedFilteredData(
-        [...filteredData].sort((a, b) => a.rating - b.rating),
-      );
-    } else if (currentSortingOption == "Rating (dsc)") {
-      setSortedFilteredData(
-        [...filteredData].sort((a, b) => b.rating - a.rating),
-      );
-    } else if (currentSortingOption == "Price (asc)") {
-      setSortedFilteredData(
-        [...filteredData].sort((a, b) => a.discountedPrice - b.discountedPrice),
-      );
-    } else if (currentSortingOption == "Price (dsc)") {
-      setSortedFilteredData(
-        [...filteredData].sort((a, b) => b.discountedPrice - a.discountedPrice),
-      );
-    } else if (currentSortingOption == "Duration (asc)") {
-      setSortedFilteredData(
-        [...filteredData].sort((a, b) => a.duration - b.duration),
-      );
-    } else if (currentSortingOption == "Duration (dsc)") {
-      setSortedFilteredData(
-        [...filteredData].sort((a, b) => b.duration - a.duration),
-      );
-    }
-  }, [currentSortingOption, filteredData]);
+    const classParam = searchParams.get("class");
+    const subjectParam = searchParams.get("subject");
+    const currentClass = filterClass.length > 0 ? filterClass[0] : null;
+    const currentSubject = filterSubject.length > 0 ? filterSubject[0] : null;
 
-  const handleFilterCategories = (item) => {
-    if (filterCategories.includes(item)) {
-      const filtered = filterCategories.filter((elm) => elm != item);
-      setFilterCategories([...filtered]);
-    } else {
-      setFilterCategories((pre) => [...pre, item]);
+    // Update filters only if URL params differ from current filters
+    if (classParam) {
+      const normalizedClass = extractClassNumber(classParam);
+      if (normalizedClass !== currentClass) {
+        setFilterClass([normalizedClass]);
+      }
+    } else if (currentClass) {
+      // Clear filter if URL param was removed
+      setFilterClass([]);
     }
-  };
-  const handleFilterRatingRange = (item) => {
-    setFilterRatingRange(item);
-  };
-  const handleFilterInstractors = (item) => {
-    if (filterInstractors.includes(item)) {
-      const filtered = filterInstractors.filter((elm) => elm != item);
-      setFilterInstractors([...filtered]);
-    } else {
-      setFilterInstractors((pre) => [...pre, item]);
+    
+    if (subjectParam !== currentSubject) {
+      setFilterSubject(subjectParam ? [subjectParam] : []);
     }
-  };
-  const handleFilterPrice = (item) => {
-    setFilterPrice(item);
-  };
-  const handleFilterLevels = (item) => {
-    if (filterLevels.includes(item)) {
-      const filtered = filterLevels.filter((elm) => elm != item);
-      setFilterLevels([...filtered]);
-    } else {
-      setFilterLevels((pre) => [...pre, item]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+
+  // Map UI sort options to API sortBy values
+  const getSortByValue = useCallback((sortOption) => {
+    const sortMap = {
+      "Default": "default",
+      "Year (Newest)": "year-newest",
+      "Year (Oldest)": "year-oldest",
+      "Class (Asc)": "class-asc",
+      "Class (Desc)": "class-desc",
+      "Subject (A-Z)": "subject-asc",
+      "Subject (Z-A)": "subject-desc",
+    };
+    return sortMap[sortOption] || "default";
+  }, []);
+
+  // Fetch papers from API
+  const fetchPapers = useCallback(async () => {
+    try {
+      setPapersLoading(true);
+      setPapersError(null);
+
+      // Build query parameters
+      const params = new URLSearchParams();
+      
+      // Add filter parameters (only if filters are selected)
+      if (filterClass.length > 0) {
+        params.append("class", filterClass.join(","));
+      }
+      if (filterSubject.length > 0) {
+        params.append("subject", filterSubject.join(","));
+      }
+      if (filterBoard.length > 0) {
+        params.append("board", filterBoard.join(","));
+      }
+      if (filterYear.length > 0) {
+        // Convert year strings to integers for API
+        const yearInts = filterYear.map(y => parseInt(y));
+        params.append("year", yearInts.join(","));
+      }
+      if (filterExamType.length > 0) {
+        params.append("examType", filterExamType.join(","));
+      }
+
+      // Add pagination
+      const offset = (pageNumber - 1) * limit;
+      params.append("limit", limit.toString());
+      params.append("offset", offset.toString());
+
+      // Add sorting
+      params.append("sortBy", getSortByValue(currentSortingOption));
+
+      const response = await fetch(`${getApiUrl("papers")}?${params.toString()}`);
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch papers: ${response.status}`);
+      }
+
+      const result = await response.json();
+
+      if (result.isSuccess && result.data) {
+        setPapers(result.data.items || []);
+        setTotalPapers(result.data.pagination?.total || 0);
+      } else {
+        throw new Error(result.message || "Failed to fetch papers");
+      }
+    } catch (err) {
+      console.error("Error fetching papers:", err);
+      setPapersError(err.message);
+      setPapers([]);
+      setTotalPapers(0);
+    } finally {
+      setPapersLoading(false);
     }
-  };
-  const handleFilterlanguange = (item) => {
-    if (filterlanguange.includes(item)) {
-      const filtered = filterlanguange.filter((elm) => elm != item);
-      setFilterlanguange([...filtered]);
+  }, [filterClass, filterSubject, filterBoard, filterYear, filterExamType, pageNumber, currentSortingOption, getSortByValue, limit]);
+
+  // Fetch papers when filters, pagination, or sorting changes
+  useEffect(() => {
+    fetchPapers();
+  }, [fetchPapers]);
+
+  const handleFilterClass = (item) => {
+    // Single select: if already selected, deselect; otherwise, replace selection
+    if (filterClass.length > 0 && filterClass[0] === item) {
+      setFilterClass([]);
     } else {
-      setFilterlanguange((pre) => [...pre, item]);
+      setFilterClass([item]);
     }
+    setPageNumber(1); // Reset to first page when filter changes
   };
-  const handleFilterDuration = (item) => {
-    setFilterDuration(item);
+  const handleFilterSubject = (item) => {
+    // Single select: if already selected, deselect; otherwise, replace selection
+    if (filterSubject.length > 0 && filterSubject[0] === item) {
+      setFilterSubject([]);
+    } else {
+      setFilterSubject([item]);
+    }
+    setPageNumber(1);
   };
+  const handleFilterBoard = (item) => {
+    // Single select: if already selected, deselect; otherwise, replace selection
+    if (filterBoard.length > 0 && filterBoard[0] === item) {
+      setFilterBoard([]);
+    } else {
+      setFilterBoard([item]);
+    }
+    setPageNumber(1);
+  };
+  const handleFilterYear = (item) => {
+    // Single select: if already selected, deselect; otherwise, replace selection
+    if (filterYear.length > 0 && filterYear[0] === item) {
+      setFilterYear([]);
+    } else {
+      setFilterYear([item]);
+    }
+    setPageNumber(1);
+  };
+  const handleFilterExamType = (item) => {
+    // Single select: if already selected, deselect; otherwise, replace selection
+    if (filterExamType.length > 0 && filterExamType[0] === item) {
+      setFilterExamType([]);
+    } else {
+      setFilterExamType([item]);
+    }
+    setPageNumber(1);
+  };
+
+  // Calculate total number of active filters
+  const getActiveFilterCount = () => {
+    return (
+      filterClass.length +
+      filterSubject.length +
+      filterBoard.length +
+      filterYear.length +
+      filterExamType.length
+    );
+  };
+
+  const activeFilterCount = getActiveFilterCount();
+  const hasActiveFilters = activeFilterCount > 0;
+
   return (
     <>
-      <section className="page-header -type-1">
+      <section className="page-header -type-1" style={{ marginTop: "60px" }}>
         <div className="container">
           <div className="page-header__content">
             <div className="row">
               <div className="col-auto">
                 <div>
-                  <h1 className="page-header__title">User Interface Courses</h1>
+                  <h1 className="page-header__title">Sample Papers</h1>
                 </div>
 
                 <div>
                   <p className="page-header__text">
-                    Write an introductory description of the category.
+                    Explore sample papers curated for Class 8th, 9th, 10th, 11th and 12th.
                   </p>
                 </div>
               </div>
@@ -206,9 +297,9 @@ export default function CourseListThree() {
                   <div className="text-14 lh-12">
                     Showing{" "}
                     <span className="text-dark-1 fw-500">
-                      {filteredData.length}
+                      {papersLoading ? "..." : totalPapers}
                     </span>{" "}
-                    total results
+                    sample papers
                   </div>
                 </div>
 
@@ -248,13 +339,13 @@ export default function CourseListThree() {
                             className="toggle-element -dropdown -dark-bg-dark-2 -dark-border-white-10 js-click-dropdown js-category-toggle"
                           >
                             <div className="text-14 y-gap-15 js-dropdown-list">
-                              {sortingOptions.map((elm, i) => (
+                              {samplePaperSortingOptions.map((elm, i) => (
                                 <div
                                   key={i}
                                   onClick={() => {
-                                    setCurrentSortingOption((pre) =>
-                                      pre == elm ? "Default" : elm,
-                                    );
+                                    const newSort = currentSortingOption == elm ? "Default" : elm;
+                                    setCurrentSortingOption(newSort);
+                                    setPageNumber(1); // Reset to first page when sort changes
                                     document
                                       .getElementById("dd61button")
                                       .classList.toggle("-is-dd-active");
@@ -285,9 +376,28 @@ export default function CourseListThree() {
                         className="accordion__button w-unset"
                         onClick={() => setFilterOpen((pre) => !pre)}
                       >
-                        <button className="button h-50 px-30 -light-7 text-purple-1">
+                        <button 
+                          className={`button h-50 px-30 relative ${hasActiveFilters ? 'bg-purple-1 text-white' : '-light-7 text-purple-1'}`}
+                        >
                           <i className="icon-filter mr-10"></i>
                           Filter
+                          {hasActiveFilters && (
+                            <span 
+                              className="absolute d-flex items-center justify-center bg-red-1 text-white rounded-full ml-3"
+                              style={{
+                                top: '4px',
+                                right: '4px',
+                                minWidth: '18px',
+                                height: '18px',
+                                fontSize: '10px',
+                                fontWeight: '600',
+                                padding: '0 5px',
+                                lineHeight: '1',
+                              }}
+                            >
+                              {activeFilterCount}
+                            </span>
+                          )}
                         </button>
                       </div>
                     </div>
@@ -301,411 +411,72 @@ export default function CourseListThree() {
               >
                 <div className="sidebar -courses px-30 py-30 rounded-8 bg-light-3 mb-50">
                   <div className="row x-gap-60 y-gap-40">
+                    {/* Class Filter */}
                     <div className="col-xl-3 col-lg-4 col-sm-6">
                       <div className="sidebar__item">
-                        <h5 className="sidebar__title">Category</h5>
-                        <div className="sidebar-checkbox">
-                          <div
-                            className="sidebar-checkbox__item"
-                            onClick={() => setFilterCategories([])}
-                          >
-                            <div className="form-checkbox">
-                              <input
-                                type="checkbox"
-                                readOnly
-                                checked={filterCategories.length ? false : true}
-                              />
-                              <div className="form-checkbox__mark">
-                                <div className="form-checkbox__icon icon-check"></div>
-                              </div>
-                            </div>
-
-                            <div className="sidebar-checkbox__title">All</div>
-                            <div className="sidebar-checkbox__count"></div>
-                          </div>
-                          {categories.map((item, index) => (
-                            <div
-                              className="sidebar-checkbox__item cursor"
-                              key={index}
-                              onClick={() => handleFilterCategories(item.title)}
-                            >
-                              <div className="form-checkbox">
-                                <input
-                                  type="checkbox"
-                                  readOnly
-                                  checked={
-                                    filterCategories.includes(item.title)
-                                      ? true
-                                      : false
-                                  }
-                                />
-                                <div className="form-checkbox__mark">
-                                  <div className="form-checkbox__icon icon-check"></div>
-                                </div>
-                              </div>
-
-                              <div className="sidebar-checkbox__title">
-                                {item.title}
-                              </div>
-                              <div className="sidebar-checkbox__count">
-                                (
-                                {
-                                  coursesData.filter(
-                                    (itm) => itm.category == item.title,
-                                  ).length
-                                }
-                                )
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="sidebar__more mt-15">
-                          <a
-                            href="#"
-                            className="text-14 fw-500 underline text-purple-1"
-                          >
-                            Show more
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-xl-3 col-lg-4 col-sm-6">
-                      <div className="sidebar__item">
-                        <h5 className="sidebar__title">Ratings</h5>
-                        <div className="sidebar-checkbox">
-                          <div
-                            className="sidebar-checkbox__item"
-                            onClick={() => setFilterRatingRange([])}
-                          >
-                            <div className="form-radio mr-10">
-                              <div className="radio">
-                                <input
-                                  type="radio"
-                                  readOnly
-                                  checked={
-                                    filterRatingRange.length < 1
-                                      ? "checked"
-                                      : ""
-                                  }
-                                />
-                                <div className="radio__mark">
-                                  <div className="radio__icon"></div>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="sidebar-checkbox__title d-flex items-center">
-                              <div className="d-flex x-gap-5 pr-10"></div>
-                              All
-                            </div>
-                            <div className="sidebar-checkbox__count"></div>
-                          </div>
-                          {rating.map((item, index) => (
-                            <div
-                              className="sidebar-checkbox__item cursor"
-                              key={index}
-                              onClick={() =>
-                                handleFilterRatingRange(item.range)
-                              }
-                            >
-                              <div className="form-radio mr-10">
-                                <div className="radio">
-                                  <input
-                                    type="radio"
-                                    readOnly
-                                    checked={
-                                      filterRatingRange.join(" ").trim() ==
-                                      item.range.join(" ").trim()
-                                        ? "checked"
-                                        : ""
-                                    }
-                                  />
-                                  <div className="radio__mark">
-                                    <div className="radio__icon"></div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="sidebar-checkbox__title d-flex items-center">
-                                <div className="d-flex x-gap-5 pr-10">
-                                  <Star star={item.star} textSize={"text-11"} />
-                                </div>
-                                {item.text}
-                              </div>
-                              <div className="sidebar-checkbox__count">
-                                (
-                                {
-                                  coursesData.filter(
-                                    (itm) =>
-                                      itm.rating >= item.range[0] &&
-                                      itm.rating <= item.range[1],
-                                  ).length
-                                }
-                                )
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-xl-3 col-lg-4 col-sm-6">
-                      <div className="sidebar__item">
-                        <h5 className="sidebar__title">Instructors</h5>
-                        <div className="sidebar-checkbox">
-                          <div
-                            className="sidebar-checkbox__item"
-                            onClick={() => setFilterInstractors([])}
-                          >
-                            <div className="form-checkbox">
-                              <input
-                                type="checkbox"
-                                readOnly
-                                checked={
-                                  filterInstractors.length ? false : true
-                                }
-                              />
-                              <div className="form-checkbox__mark">
-                                <div className="form-checkbox__icon icon-check"></div>
-                              </div>
-                            </div>
-
-                            <div className="sidebar-checkbox__title">All</div>
-                            <div className="sidebar-checkbox__count"></div>
-                          </div>
-                          {instractorNames.map((item, index) => (
-                            <div
-                              className="sidebar-checkbox__item cursor"
-                              key={index}
-                              onClick={() =>
-                                handleFilterInstractors(item.title)
-                              }
-                            >
-                              <div className="form-checkbox">
-                                <input
-                                  type="checkbox"
-                                  readOnly
-                                  checked={
-                                    filterInstractors.includes(item.title)
-                                      ? true
-                                      : false
-                                  }
-                                />
-                                <div className="form-checkbox__mark">
-                                  <div className="form-checkbox__icon icon-check"></div>
-                                </div>
-                              </div>
-
-                              <div className="sidebar-checkbox__title">
-                                {item.title}
-                              </div>
-                              <div className="sidebar-checkbox__count">
-                                (
-                                {
-                                  coursesData.filter(
-                                    (itm) => itm.authorName == item.title,
-                                  ).length
-                                }
-                                )
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="sidebar__more mt-15">
-                          <a
-                            href="#"
-                            className="text-14 fw-500 underline text-purple-1"
-                          >
-                            Show more
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-xl-3 col-lg-4 col-sm-6">
-                      <div className="sidebar__item">
-                        <h5 className="sidebar__title">Price</h5>
-                        <div className="sidebar-checkbox">
-                          {prices.map((item, index) => (
-                            <div
-                              className="sidebar-checkbox__item cursor"
-                              key={index}
-                              onClick={() => handleFilterPrice(item.title)}
-                            >
-                              <div className="form-radio mr-10">
-                                <div className="radio">
-                                  <input
-                                    type="radio"
-                                    readOnly
-                                    checked={
-                                      filterPrice == item.title ? "checked" : ""
-                                    }
-                                  />
-                                  <div className="radio__mark">
-                                    <div className="radio__icon"></div>
-                                  </div>
-                                </div>
-                              </div>
-
-                              <div className="sidebar-checkbox__title">
-                                {item.title}
-                              </div>
-                              <div className="sidebar-checkbox__count">
-                                (
-                                {item.title == "Free" &&
-                                  coursesData.filter((itm) => !itm.paid).length}
-                                {item.title == "Paid" &&
-                                  coursesData.filter((itm) => itm.paid).length}
-                                {item.title == "All" && coursesData.length})
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-xl-3 col-lg-4 col-sm-6">
-                      <div className="sidebar__item">
-                        <h5 className="sidebar__title">Level</h5>
+                        <h5 className="sidebar__title">Class</h5>
                         <div className="sidebar-checkbox">
                           <div
                             className="sidebar-checkbox__item cursor"
-                            onClick={() => setFilterLevels([])}
+                            onClick={() => setFilterClass([])}
                           >
                             <div className="form-checkbox">
                               <input
                                 type="checkbox"
                                 readOnly
-                                checked={filterLevels.length < 1 ? true : false}
+                                checked={filterClass.length ? false : true}
                               />
                               <div className="form-checkbox__mark">
                                 <div className="form-checkbox__icon icon-check"></div>
                               </div>
                             </div>
-
                             <div className="sidebar-checkbox__title">All</div>
                             <div className="sidebar-checkbox__count"></div>
                           </div>
-                          {levels.map((item, index) => (
-                            <div
-                              className="sidebar-checkbox__item cursor"
-                              key={index}
-                              onClick={() => handleFilterLevels(item.title)}
-                            >
-                              <div className="form-checkbox">
-                                <input
-                                  type="checkbox"
-                                  readOnly
-                                  checked={
-                                    filterLevels.includes(item.title)
-                                      ? true
-                                      : false
-                                  }
-                                />
-                                <div className="form-checkbox__mark">
-                                  <div className="form-checkbox__icon icon-check"></div>
+                          {metadata.classes.map((cls, index) => (
+                              <div
+                                className="sidebar-checkbox__item cursor"
+                                key={index}
+                                onClick={() => handleFilterClass(cls.name)}
+                              >
+                                <div className="form-checkbox">
+                                  <input
+                                    type="checkbox"
+                                    readOnly
+                                    checked={
+                                      filterClass.includes(cls.name) ? true : false
+                                    }
+                                  />
+                                  <div className="form-checkbox__mark">
+                                    <div className="form-checkbox__icon icon-check"></div>
+                                  </div>
+                                </div>
+                                <div className="sidebar-checkbox__title">
+                                  Class {cls.name}
+                                </div>
+                                <div className="sidebar-checkbox__count">
+                                  ({cls.count})
                                 </div>
                               </div>
-
-                              <div className="sidebar-checkbox__title">
-                                {item.title}
-                              </div>
-                              <div className="sidebar-checkbox__count">
-                                (
-                                {
-                                  coursesData.filter(
-                                    (itm) => itm.level == item.title,
-                                  ).length
-                                }
-                                )
-                              </div>
-                            </div>
-                          ))}
+                            ))}
                         </div>
                       </div>
                     </div>
 
+                    {/* Subject Filter */}
                     <div className="col-xl-3 col-lg-4 col-sm-6">
                       <div className="sidebar__item">
-                        <h5 className="sidebar__title">Languange</h5>
-                        <div className="sidebar-checkbox">
-                          <div
-                            className="sidebar-checkbox__item"
-                            onClick={() => setFilterlanguange([])}
-                          >
-                            <div className="form-checkbox">
-                              <input
-                                type="checkbox"
-                                readOnly
-                                checked={filterlanguange.length ? false : true}
-                              />
-                              <div className="form-checkbox__mark">
-                                <div className="form-checkbox__icon icon-check"></div>
-                              </div>
-                            </div>
-
-                            <div className="sidebar-checkbox__title">All</div>
-                            <div className="sidebar-checkbox__count"></div>
-                          </div>
-                          {languages.map((item, index) => (
-                            <div
-                              className="sidebar-checkbox__item cursor"
-                              key={index}
-                              onClick={() => handleFilterlanguange(item.title)}
-                            >
-                              <div className="form-checkbox">
-                                <input
-                                  type="checkbox"
-                                  readOnly
-                                  checked={
-                                    filterlanguange.includes(item.title)
-                                      ? true
-                                      : false
-                                  }
-                                />
-                                <div className="form-checkbox__mark">
-                                  <div className="form-checkbox__icon icon-check"></div>
-                                </div>
-                              </div>
-
-                              <div className="sidebar-checkbox__title">
-                                {item.title}
-                              </div>
-                              <div className="sidebar-checkbox__count">
-                                (
-                                {
-                                  coursesData.filter(
-                                    (itm) => itm.languange == item.title,
-                                  ).length
-                                }
-                                )
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                        <div className="sidebar__more mt-15">
-                          <a
-                            href="#"
-                            className="text-14 fw-500 underline text-purple-1"
-                          >
-                            Show more
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="col-xl-3 col-lg-4 col-sm-6">
-                      <div className="sidebar__item">
-                        <h5 className="sidebar__title">Duration</h5>
+                        <h5 className="sidebar__title">Subject</h5>
                         <div className="sidebar-checkbox">
                           <div
                             className="sidebar-checkbox__item cursor"
-                            onClick={() => setFilterDuration([])}
+                            onClick={() => setFilterSubject([])}
                           >
                             <div className="form-checkbox">
                               <input
                                 type="checkbox"
                                 readOnly
-                                checked={filterDuration.length ? false : true}
+                                checked={filterSubject.length ? false : true}
                               />
                               <div className="form-checkbox__mark">
                                 <div className="form-checkbox__icon icon-check"></div>
@@ -714,43 +485,195 @@ export default function CourseListThree() {
                             <div className="sidebar-checkbox__title">All</div>
                             <div className="sidebar-checkbox__count"></div>
                           </div>
-                          {duration.map((item, index) => (
-                            <div
-                              className="sidebar-checkbox__item cursor"
-                              key={index}
-                              onClick={() => handleFilterDuration(item.range)}
-                            >
-                              <div className="form-checkbox">
-                                <input
-                                  type="checkbox"
-                                  readOnly
-                                  checked={
-                                    filterDuration.toString() ==
-                                    item.range.toString()
-                                      ? true
-                                      : false
-                                  }
-                                />
-                                <div className="form-checkbox__mark">
-                                  <div className="form-checkbox__icon icon-check"></div>
+                          {metadata.subjects.map((subject, index) => (
+                              <div
+                                className="sidebar-checkbox__item cursor"
+                                key={index}
+                                onClick={() => handleFilterSubject(subject.name)}
+                              >
+                                <div className="form-checkbox">
+                                  <input
+                                    type="checkbox"
+                                    readOnly
+                                    checked={
+                                      filterSubject.includes(subject.name)
+                                        ? true
+                                        : false
+                                    }
+                                  />
+                                  <div className="form-checkbox__mark">
+                                    <div className="form-checkbox__icon icon-check"></div>
+                                  </div>
+                                </div>
+                                <div className="sidebar-checkbox__title">
+                                  {subject.name}
+                                </div>
+                                <div className="sidebar-checkbox__count">
+                                  ({subject.count})
                                 </div>
                               </div>
-                              <div className="sidebar-checkbox__title">
-                                {item.title}
-                              </div>
-                              <div className="sidebar-checkbox__count">
-                                (
-                                {
-                                  coursesData.filter(
-                                    (itm) =>
-                                      itm.duration >= item.range[0] &&
-                                      itm.duration <= item.range[1],
-                                  ).length
-                                }
-                                )
+                            ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Board Filter */}
+                    <div className="col-xl-3 col-lg-4 col-sm-6">
+                      <div className="sidebar__item">
+                        <h5 className="sidebar__title">Board</h5>
+                        <div className="sidebar-checkbox">
+                          <div
+                            className="sidebar-checkbox__item cursor"
+                            onClick={() => setFilterBoard([])}
+                          >
+                            <div className="form-checkbox">
+                              <input
+                                type="checkbox"
+                                readOnly
+                                checked={filterBoard.length ? false : true}
+                              />
+                              <div className="form-checkbox__mark">
+                                <div className="form-checkbox__icon icon-check"></div>
                               </div>
                             </div>
-                          ))}
+                            <div className="sidebar-checkbox__title">All</div>
+                            <div className="sidebar-checkbox__count"></div>
+                          </div>
+                          {metadata.boards.map((board, index) => (
+                              <div
+                                className="sidebar-checkbox__item cursor"
+                                key={index}
+                                onClick={() => handleFilterBoard(board.name)}
+                              >
+                                <div className="form-checkbox">
+                                  <input
+                                    type="checkbox"
+                                    readOnly
+                                    checked={
+                                      filterBoard.includes(board.name) ? true : false
+                                    }
+                                  />
+                                  <div className="form-checkbox__mark">
+                                    <div className="form-checkbox__icon icon-check"></div>
+                                  </div>
+                                </div>
+                                <div className="sidebar-checkbox__title">
+                                  {board.name}
+                                </div>
+                                <div className="sidebar-checkbox__count">
+                                  ({board.count})
+                                </div>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Year Filter */}
+                    <div className="col-xl-3 col-lg-4 col-sm-6">
+                      <div className="sidebar__item">
+                        <h5 className="sidebar__title">Year</h5>
+                        <div className="sidebar-checkbox">
+                          <div
+                            className="sidebar-checkbox__item cursor"
+                            onClick={() => setFilterYear([])}
+                          >
+                            <div className="form-checkbox">
+                              <input
+                                type="checkbox"
+                                readOnly
+                                checked={filterYear.length ? false : true}
+                              />
+                              <div className="form-checkbox__mark">
+                                <div className="form-checkbox__icon icon-check"></div>
+                              </div>
+                            </div>
+                            <div className="sidebar-checkbox__title">All</div>
+                            <div className="sidebar-checkbox__count"></div>
+                          </div>
+                          {metadata.years.map((year, index) => {
+                            const yearStr = year.name.toString();
+                            return (
+                              <div
+                                className="sidebar-checkbox__item cursor"
+                                key={index}
+                                onClick={() => handleFilterYear(yearStr)}
+                              >
+                                <div className="form-checkbox">
+                                  <input
+                                    type="checkbox"
+                                    readOnly
+                                    checked={
+                                      filterYear.includes(yearStr) ? true : false
+                                    }
+                                  />
+                                  <div className="form-checkbox__mark">
+                                    <div className="form-checkbox__icon icon-check"></div>
+                                  </div>
+                                </div>
+                                <div className="sidebar-checkbox__title">
+                                  {yearStr}
+                                </div>
+                                <div className="sidebar-checkbox__count">
+                                  ({year.count})
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Exam Type Filter */}
+                    <div className="col-xl-3 col-lg-4 col-sm-6">
+                      <div className="sidebar__item">
+                        <h5 className="sidebar__title">Exam Type</h5>
+                        <div className="sidebar-checkbox">
+                          <div
+                            className="sidebar-checkbox__item cursor"
+                            onClick={() => setFilterExamType([])}
+                          >
+                            <div className="form-checkbox">
+                              <input
+                                type="checkbox"
+                                readOnly
+                                checked={filterExamType.length ? false : true}
+                              />
+                              <div className="form-checkbox__mark">
+                                <div className="form-checkbox__icon icon-check"></div>
+                              </div>
+                            </div>
+                            <div className="sidebar-checkbox__title">All</div>
+                            <div className="sidebar-checkbox__count"></div>
+                          </div>
+                          {metadata.examTypes.map((examType, index) => (
+                              <div
+                                className="sidebar-checkbox__item cursor"
+                                key={index}
+                                onClick={() => handleFilterExamType(examType.name)}
+                              >
+                                <div className="form-checkbox">
+                                  <input
+                                    type="checkbox"
+                                    readOnly
+                                    checked={
+                                      filterExamType.includes(examType.name)
+                                        ? true
+                                        : false
+                                    }
+                                  />
+                                  <div className="form-checkbox__mark">
+                                    <div className="form-checkbox__icon icon-check"></div>
+                                  </div>
+                                </div>
+                                <div className="sidebar-checkbox__title">
+                                  {examType.name}
+                                </div>
+                                <div className="sidebar-checkbox__count">
+                                  ({examType.count})
+                                </div>
+                              </div>
+                            ))}
                         </div>
                       </div>
                     </div>
@@ -760,131 +683,48 @@ export default function CourseListThree() {
             </div>
           </div>
 
-          <div className="row y-gap-30">
-            {sortedFilteredData
-              .slice((pageNumber - 1) * 12, pageNumber * 12)
-              .map((elm, i) => (
-                <div key={i} className="col-xl-3 col-lg-4 col-md-6">
-                  <div className="coursesCard -type-1 ">
-                    <div className="relative">
-                      <div className="coursesCard__image overflow-hidden rounded-8">
-                        <img className="w-1/1" src={elm.imageSrc} alt="image" />
-                        <div className="coursesCard__image_overlay rounded-8"></div>
-                      </div>
-                      <div className="d-flex justify-between py-10 px-10 absolute-full-center z-3">
-                        {elm.popular && (
-                          <>
-                            <div>
-                              <div className="px-15 rounded-200 bg-purple-1">
-                                <span className="text-11 lh-1 uppercase fw-500 text-white">
-                                  Popular
-                                </span>
-                              </div>
-                            </div>
-
-                            <div>
-                              <div className="px-15 rounded-200 bg-green-1">
-                                <span className="text-11 lh-1 uppercase fw-500 text-dark-1">
-                                  Best sellers
-                                </span>
-                              </div>
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="h-100 pt-15">
-                      <div className="d-flex items-center">
-                        <div className="text-14 lh-1 text-yellow-1 mr-10">
-                          {elm.rating}
-                        </div>
-                        <div className="d-flex x-gap-5 items-center">
-                          <Star star={elm.rating} />
-                        </div>
-                        <div className="text-13 lh-1 ml-10">
-                          ({elm.ratingCount})
-                        </div>
-                      </div>
-
-                      <div className="text-17 lh-15 fw-500 text-dark-1 mt-10">
-                        <Link className="linkCustom" to={`/courses/${elm.id}`}>
-                          {elm.title}{" "}
-                        </Link>
-                      </div>
-
-                      <div className="d-flex x-gap-10 items-center pt-10">
-                        <div className="d-flex items-center">
-                          <div className="mr-8">
-                            <img
-                              src="/assets/img/coursesCards/icons/1.svg"
-                              alt="icon"
-                            />
-                          </div>
-                          <div className="text-14 lh-1">
-                            {elm.lessonCount} lesson
-                          </div>
-                        </div>
-
-                        <div className="d-flex items-center">
-                          <div className="mr-8">
-                            <img
-                              src="/assets/img/coursesCards/icons/2.svg"
-                              alt="icon"
-                            />
-                          </div>
-                          <div className="text-14 lh-1">{`${Math.floor(
-                            elm.duration / 60,
-                          )}h ${Math.floor(elm.duration % 60)}m`}</div>
-                        </div>
-
-                        <div className="d-flex items-center">
-                          <div className="mr-8">
-                            <img
-                              src="/assets/img/coursesCards/icons/3.svg"
-                              alt="icon"
-                            />
-                          </div>
-                          <div className="text-14 lh-1">{elm.level}</div>
-                        </div>
-                      </div>
-
-                      <div className="coursesCard-footer">
-                        <div className="coursesCard-footer__author">
-                          <img src={elm.authorImageSrc} alt="image" />
-                          <div>{elm.authorName}</div>
-                        </div>
-
-                        <div className="coursesCard-footer__price">
-                          {elm.paid ? (
-                            <>
-                              <div>${elm.originalPrice}</div>
-                              <div>${elm.discountedPrice}</div>
-                            </>
-                          ) : (
-                            <>
-                              <div></div>
-                              <div>Free</div>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-          </div>
-
-          <div className="row justify-center pt-90 lg:pt-50">
-            <div className="col-auto">
-              <PaginationTwo
-                pageNumber={pageNumber}
-                setPageNumber={setPageNumber}
-                data={sortedFilteredData}
-                pageCapacity={12}
-              />
+          {papersLoading && (
+            <div className="row y-gap-30">
+              <div className="col-12 text-center py-50">
+                <div className="text-16 text-dark-1">Loading papers...</div>
+              </div>
             </div>
-          </div>
+          )}
+
+          {papersError && (
+            <div className="row y-gap-30">
+              <div className="col-12 text-center py-50">
+                <div className="text-16 text-red-1">Error: {papersError}</div>
+              </div>
+            </div>
+          )}
+
+          {!papersLoading && !papersError && (
+            <>
+              <div className="row y-gap-30">
+                {papers.length > 0 ? (
+                  papers.map((paper, i) => (
+                    <SamplePaperCard key={paper._id || i} paper={paper} />
+                  ))
+                ) : (
+                  <div className="col-12 text-center py-50">
+                    <div className="text-16 text-dark-1">No papers found</div>
+                  </div>
+                )}
+              </div>
+
+              <div className="row justify-center pt-90 lg:pt-50">
+                <div className="col-auto">
+                  <PaginationTwo
+                    pageNumber={pageNumber}
+                    setPageNumber={setPageNumber}
+                    data={Array(totalPapers).fill(null)} // Create array with total count for pagination
+                    pageCapacity={limit}
+                  />
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </section>
     </>

@@ -23,10 +23,10 @@ const masthead_info = [
 
 const hero_content = {
   title: "Practice Sample Papers for",
-  text_underline: "Class 10, 11 & 12",
+  text_underline: "Class 8, 9, 10, 11 & 12",
   info_hero: (
     <>
-      Access high‑quality sample papers for Class 10, 11 and 12 in a secure
+      Access high‑quality sample papers for Class 8, 9, 10, 11 and 12 in a secure
       <br /> online environment. No downloads, just focused exam practice.
     </>
   ),
@@ -89,7 +89,7 @@ const HomeHero = () => {
               >
                 <h1 className="masthead__title">
                   {title}{" "}
-                  <span className="text-green-1 underline">
+                  <span className="text-green-1">
                     {text_underline}
                   </span>
                 </h1>
@@ -108,7 +108,7 @@ const HomeHero = () => {
                   <div className="col-12 col-sm-auto">
                     <Link
                       data-barba
-                      to="/courses-list-3"
+                      to="/papers"
                       className="button -md -outline-green-1 text-green-1"
                     >
                       View Sample Papers
