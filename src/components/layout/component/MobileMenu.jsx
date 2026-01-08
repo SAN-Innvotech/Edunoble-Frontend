@@ -63,6 +63,19 @@ export default function MobileMenu({ setActiveMobileMenu, activeMobileMenu }) {
 
         {showMenu && activeMobileMenu && (
           <div className="mobileMenu text-dark-1">
+            {/* Home Link */}
+            <div className="submenuOne">
+              <Link
+                to="/"
+                className={
+                  pathname == "/" ? "activeMenu link" : "link inActiveMenu"
+                }
+                onClick={() => setActiveMobileMenu(false)}
+              >
+                Home
+              </Link>
+            </div>
+
             {/* Papers Link */}
             <div className="submenuOne">
               <Link
