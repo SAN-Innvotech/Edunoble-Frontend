@@ -2,13 +2,34 @@ import React, { useState } from "react";
 import { Chip } from "@mui/material";
 import SecureDocumentViewer from "../../common/SecureDocumentViewer";
 import { createPortal } from "react-dom";
+import { getApiUrl } from "@/config/api";
 
 export default function SamplePaperCard({ paper }) {
   const [showViewer, setShowViewer] = useState(false);
 
+  // Increment view count in the background
+  const incrementViewCount = async () => {
+    if (!paper._id) return;
+    
+    try {
+      await fetch(getApiUrl(`papers/${paper._id}/view`), {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      // Silently handle success - no need to show anything to user
+    } catch (error) {
+      // Silently handle error - don't interrupt user experience
+      console.error("Error incrementing view count:", error);
+    }
+  };
+
   const handleViewPaper = (e) => {
     e.preventDefault();
     setShowViewer(true);
+    // Call API in background (non-blocking)
+    incrementViewCount();
   };
 
   const handleCloseViewer = () => {
@@ -88,6 +109,14 @@ export default function SamplePaperCard({ paper }) {
                     border: "1px solid #6366f1",
                     background: "transparent",
                     cursor: "pointer",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.target.style.background = "#6366f1";
+                    e.target.style.color = "white";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.target.style.background = "transparent";
+                    e.target.style.color = "#6366f1";
                   }}
                 >
                   View Sample Paper
