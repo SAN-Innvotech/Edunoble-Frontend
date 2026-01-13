@@ -101,6 +101,30 @@ export default function Menu({ allClasses, headerPosition }) {
                 Papers
               </Link>
             </li>
+
+            <li>
+              <Link
+                data-barba
+                to="/about"
+                className={
+                  pathname == "/about" ? "activeMenu" : "inActiveMenuTwo"
+                }
+              >
+                About Us
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                data-barba
+                to="/vision"
+                className={
+                  pathname == "/vision" ? "activeMenu" : "inActiveMenuTwo"
+                }
+              >
+                Vision
+              </Link>
+            </li>
             {/* <li className="menu-item-has-children -has-mega-menu">
               <Link
                 data-barba
