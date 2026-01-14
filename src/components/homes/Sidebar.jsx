@@ -106,6 +106,12 @@ export default function Sidebar() {
                     <div className="accordion__content__inner px-30 pt-15 pb-10">
                       <div className="sidebar__links y-gap-5">
                         <div>
+                          <Link to="/about">About</Link>
+                        </div>
+                        <div>
+                          <Link to="/vision">Vision</Link>
+                        </div>
+                        <div>
                           <Link to="/about-1">About v1</Link>
                         </div>
                         <div>
