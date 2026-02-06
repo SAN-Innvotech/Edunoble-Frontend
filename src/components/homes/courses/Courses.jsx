@@ -3,7 +3,7 @@ import SamplePaperCard from "../courseCards/SamplePaperCard";
 import { samplePapersData } from "../../../data/courses";
 import { getApiUrl } from "@/config/api";
 
-export default function Courses() {
+export default function Courses({ heading, description }) {
   const [selectedClass, setSelectedClass] = useState("All Classes");
   const [classes, setClasses] = useState([]);
   const [classesLoading, setClassesLoading] = useState(true);
@@ -88,12 +88,11 @@ export default function Courses() {
         <div className="col-auto">
           <div className="sectionTitle ">
             <h2 className="sectionTitle__title sm:text-24">
-              Featured Sample Papers
+              {heading || "Featured Sample Papers"}
             </h2>
 
             <p className="sectionTitle__text ">
-              Practice with curated sample papers for Class 8, 9, 10, 11 and 12 across
-              major subjects and boards.
+              {description || "Practice with curated sample papers for Class 8, 9, 10, 11 and 12 across major subjects and boards."}
             </p>
           </div>
         </div>

@@ -21,7 +21,7 @@ export default function Header() {
               <div className="header-left">
                 <div className="header__logo">
                   <Link to="/">
-                    <img src="/assets/img/general/logo-edunoble.png" width={160} height={160} alt="logo" />
+                    <img src="/assets/img/general/Logo.png" width={50} alt="logo" />
                   </Link>
                 </div>
 

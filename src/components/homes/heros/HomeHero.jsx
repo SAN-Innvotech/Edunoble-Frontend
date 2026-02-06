@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ShapeRendering } from "../../../svg/index";
 import React, { useEffect } from "react";
 
-const masthead_info = [
+const defaultMastheadInfo = [
   {
     id: 1,
     icon: "/assets/img/masthead/icons/1.svg",
@@ -21,7 +21,7 @@ const masthead_info = [
   },
 ];
 
-const hero_content = {
+const defaultHeroContent = {
   title: "Practice Sample Papers for",
   text_underline: "Class 8, 9, 10, 11 & 12",
   info_hero: (
@@ -38,9 +38,50 @@ const hero_content = {
     "icon-star text-yellow-1 text-11",
   ],
 };
-const { title, text_underline, info_hero, starts } = hero_content;
 
-const HomeHero = () => {
+const HomeHero = ({ heroData }) => {
+  // Build masthead_info from API data or use defaults
+  const masthead_info = heroData?.features ? [
+    {
+      id: 1,
+      icon: "/assets/img/masthead/icons/1.svg",
+      text: heroData.features.feature1 || defaultMastheadInfo[0].text,
+    },
+    {
+      id: 2,
+      icon: "/assets/img/masthead/icons/2.svg",
+      text: heroData.features.feature2 || defaultMastheadInfo[1].text,
+    },
+    {
+      id: 3,
+      icon: "/assets/img/masthead/icons/3.svg",
+      text: heroData.features.feature3 || defaultMastheadInfo[2].text,
+    },
+  ] : defaultMastheadInfo;
+
+  // Build hero content from API data or use defaults
+  const hero_content = heroData ? {
+    title: heroData.headline || defaultHeroContent.title,
+    text_underline: heroData.subheading || defaultHeroContent.text_underline,
+    info_hero: heroData.description ? (
+      <>
+        {heroData.description.split('\n').map((line, i, arr) => (
+          <React.Fragment key={i}>
+            {line}
+            {i < arr.length - 1 && <br />}
+          </React.Fragment>
+        ))}
+      </>
+    ) : defaultHeroContent.info_hero,
+    starts: defaultHeroContent.starts,
+    samplePaperCount: heroData.samplePaperCount || "1000+",
+    studentReview: heroData.studentReview,
+    pictureUrl1: heroData.pictureUrl1,
+    pictureUrl2: heroData.pictureUrl2,
+    pictureUrl3: heroData.pictureUrl3,
+  } : defaultHeroContent;
+
+  const { title, text_underline, info_hero, starts, samplePaperCount, studentReview, pictureUrl1, pictureUrl2, pictureUrl3 } = hero_content;
   useEffect(() => {
     const parallaxIt = () => {
       const target = document.querySelectorAll(".js-mouse-move-container");
@@ -148,7 +189,7 @@ const HomeHero = () => {
                     className="js-mouse-move"
                     data-move="40"
                     style={{ objectFit: "cover" }}
-                    src={"/assets/img/masthead/1.png"}
+                    src={pictureUrl1 || "/assets/img/masthead/1.png"}
                     alt="image"
                   />
                   <div
@@ -160,7 +201,7 @@ const HomeHero = () => {
                     </div>
                     <div className="ml-20">
                       <div className="text-orange-1 text-16 fw-500 lh-1">
-                        1000+
+                        {samplePaperCount || "1000+"}
                       </div>
                       <div className="mt-3">Sample Papers</div>
                     </div>
@@ -171,7 +212,7 @@ const HomeHero = () => {
                   <img
                     className="js-mouse-move"
                     data-move="70"
-                    src={"/assets/img/masthead/2.png"}
+                    src={pictureUrl2 || "/assets/img/masthead/2.png"}
                     style={{ objectFit: "cover" }}
                     alt="image"
                   />
@@ -179,12 +220,12 @@ const HomeHero = () => {
                     data-move="60"
                     className="lg:d-none img-el -w-260 px-20 py-20 d-flex items-center bg-white rounded-8 js-mouse-move"
                   >
-                    <img src={"/assets/img/masthead/4.png"} alt="icon" />
+                    <img src={studentReview?.imageUrl || "/assets/img/masthead/4.png"} alt="student review" style={{ width: "50px", height: "50px", borderRadius: "50%", objectFit: "cover" }} />
                     <div className="ml-20">
                       <div className="text-dark-1 text-16 fw-500 lh-1">
-                        Ali Tufan
+                        {studentReview?.name || "Ali Tufan"}
                       </div>
-                      <div className="mt-3">Class 12th Student</div>
+                      <div className="mt-3">{studentReview?.class || "Class 12th Student"}</div>
                       <div className="d-flex x-gap-5 mt-3">
                         {starts.map((start, index) => (
                           <div key={index}>
@@ -200,7 +241,7 @@ const HomeHero = () => {
                   <img
                     className="js-mouse-move"
                     data-move="40"
-                    src={"/assets/img/masthead/3.png"}
+                    src={pictureUrl3 || "/assets/img/masthead/3.png"}
                     style={{ objectFit: "cover" }}
                     alt="image"
                   />
