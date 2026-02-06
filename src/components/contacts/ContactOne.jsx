@@ -94,13 +94,7 @@ export default function ContactOne() {
                     </div>
                     <div className="ml-20">
                       {elm.address
-                        ? `${elm.address
-                            .split(" ")
-                            .slice(0, 4)
-                            .join(" ")} \n ${elm.address
-                            .split(" ")
-                            .slice(4, -1)
-                            .join(" ")}`
+                        ? `${elm.address}`
                         : elm.email || elm.phoneNumber}
                     </div>
                   </div>

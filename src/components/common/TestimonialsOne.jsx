@@ -3,14 +3,15 @@ import { Navigation, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 // import 'swiper/swiper.min.css';
-import { counters } from "../../data/count";
+import { counters as defaultCounters } from "../../data/count";
 import { getApiUrl } from "@/config/api";
 // SwiperCore.use([Pagination]);
 
-export default function TestimonialsOne() {
+export default function TestimonialsOne({ heading, description, statistics }) {
   const [showSlider, setShowSlider] = useState(false);
   const [testimonials, setTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
+  const displayCounters = statistics || defaultCounters;
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -56,16 +57,15 @@ export default function TestimonialsOne() {
       <div className="container ">
         <div className="row justify-center text-center">
           <div className="col-auto">
-            <div className="sectionTitle ">
-              <h2 className="sectionTitle__title text-green-1">
-                What Students & Teachers Say
-              </h2>
+              <div className="sectionTitle ">
+                <h2 className="sectionTitle__title text-green-1">
+                  {heading || "What Students & Teachers Say"}
+                </h2>
 
-              <p className="sectionTitle__text text-white">
-                Hear how Edunoble sample papers are helping Classes 10, 11 and 12
-                prepare smarter for board exams.
-              </p>
-            </div>
+                <p className="sectionTitle__text text-white">
+                  {description || "Hear how Edunoble sample papers are helping Classes 10, 11 and 12 prepare smarter for board exams."}
+                </p>
+              </div>
           </div>
         </div>
 
@@ -146,16 +146,18 @@ export default function TestimonialsOne() {
         </div>
 
         <div className="row y-gap-30  counter__row">
-          {counters.map((elm, i) => (
+          {displayCounters
+            .sort((a, b) => (a.order || 0) - (b.order || 0))
+            .map((elm, i) => (
             <div
-              key={i}
+              key={elm._id || elm.id || i}
               className="col-lg-3 col-sm-6"
               data-aos="fade-left"
               data-aos-duration={(i + 1) * 350}
             >
               <div className="counter -type-1">
                 <div className="counter__number">{elm.number}</div>
-                <div className="counter__title">{elm.title}</div>
+                <div className="counter__title">{elm.label || elm.title}</div>
               </div>
             </div>
           ))}

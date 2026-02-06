@@ -4,7 +4,13 @@ import { Link } from "react-router-dom";
 import { featureOne } from "../../../data/features";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-export default function LearnNewSkill() {
+export default function LearnNewSkill({ featuresData }) {
+  const featureList = featuresData?.featureList || featureOne;
+  const heading = featuresData?.heading || "Practice smarter for board exams with Edunoble.";
+  const description = featuresData?.description || "Use the list below to see how our secure online sample papers help Class 8, 9, 10, 11 and 12 students prepare with confidence.";
+  const ctaButtonText = featuresData?.ctaButtonText || "Browse Sample Papers";
+  const imageUrl = featuresData?.imageUrl;
+
   return (
     <section className="layout-pt-lg layout-pb-lg bg-beige-1">
       <div className="container">
@@ -15,16 +21,21 @@ export default function LearnNewSkill() {
                 className="about-content__title customSized"
                 data-aos="fade-up"
               >
-                <span>Practice</span> smarter for board exams with Edunoble.
+                {heading.split(" ").map((word, i) => 
+                  word.toLowerCase() === "practice" ? (
+                    <span key={i}>{word} </span>
+                  ) : (
+                    <React.Fragment key={i}>{word}{i < heading.split(" ").length - 1 ? " " : ""}</React.Fragment>
+                  )
+                )}
               </h2>
               <p className="about-content__text" data-aos="fade-up">
-                Use the list below to see how our secure online sample papers
-                help Class 8, 9, 10, 11 and 12 students prepare with confidence.
+                {description}
               </p>
               <div className="y-gap-20 pt-30">
-                {featureOne.map((elm, i) => (
+                {featureList.map((elm, i) => (
                   <div
-                    key={i}
+                    key={elm._id || i}
                     className="d-flex items-center"
                     data-aos="fade-up"
                   >
@@ -40,7 +51,7 @@ export default function LearnNewSkill() {
                         <FontAwesomeIcon icon={faCheck} />
                       </span>
                     </div>
-                    <div className="about-content-list__title">{elm.title}</div>
+                    <div className="about-content-list__title">{elm.text || elm.title}</div>
                   </div>
                 ))}
               </div>
@@ -50,7 +61,7 @@ export default function LearnNewSkill() {
                   to="/papers"
                   className="button -md -purple-1 text-white"
                 >
-                  Browse Sample Papers
+                  {ctaButtonText}
                 </Link>
               </div>
             </div>
@@ -63,7 +74,7 @@ export default function LearnNewSkill() {
             <div className="about-image">
               <img
                 style={{ height: "100%", width: "100%" }}
-                src="/assets/img/about/1.png"
+                src={imageUrl || "/assets/img/about/1.png"}
                 alt="image"
               />
             </div>

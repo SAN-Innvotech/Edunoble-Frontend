@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getApiUrl } from "@/config/api";
 
-const CategoriesHomeOne = () => {
+const CategoriesHomeOne = ({ heading, description }) => {
   const [showSlider, setShowSlider] = useState(false);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -82,12 +82,11 @@ const CategoriesHomeOne = () => {
             <div className="col-auto">
               <div className="sectionTitle ">
                 <h2 className="sectionTitle__title ">
-                  Most Viewed Subjects
+                  {heading || "Most Viewed Subjects"}
                 </h2>
 
                 <p className="sectionTitle__text ">
-                  Explore sample papers by subject and class for CBSE, ICSE and
-                  State Boards.
+                  {description || "Explore sample papers by subject and class for CBSE, ICSE and State Boards."}
                 </p>
               </div>
             </div>

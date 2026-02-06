@@ -1,6 +1,8 @@
 // import HomeOne from "@/components/homes/home";
 import Header from "@/components/layout/headers/Header";
 // import MobileMenu from "@/components/layout/component/MobileMenu";
+import React from "react";
+import { useHomepageData } from "@/hooks/useHomepageData";
 
 import HomeHero from "@/components/homes/heros/HomeHero";
 
@@ -27,6 +29,61 @@ const metadata = {
 };
 
 export default function HomePage1() {
+  const { homepageData, loading, error } = useHomepageData();
+
+  // Show error state if API fails
+  if (error) {
+    return (
+      <>
+        <Preloader />
+        <MetaComponent meta={metadata} />
+        <Header />
+        <div className="content-wrapper js-content-wrapper overflow-hidden">
+          <section className="layout-pt-lg layout-pb-lg">
+            <div className="container">
+              <div className="row justify-center">
+                <div className="col-12 text-center py-100">
+                  <div className="text-24 fw-700 text-dark-1 mb-20">
+                    Unable to Load Homepage
+                  </div>
+                  <div className="text-16 text-red-1 mb-30">
+                    {error}
+                  </div>
+                  <div className="text-14 text-light-1">
+                    Please refresh the page or try again later. If the problem persists, please contact support.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <FooterOne />
+        </div>
+      </>
+    );
+  }
+
+  // Don't render content until data is loaded
+  if (loading || !homepageData) {
+    return (
+      <>
+        <Preloader />
+        <MetaComponent meta={metadata} />
+        <Header />
+        <div className="content-wrapper js-content-wrapper overflow-hidden">
+          <section className="layout-pt-lg layout-pb-lg">
+            <div className="container">
+              <div className="row justify-center">
+                <div className="col-12 text-center py-100">
+                  <div className="text-16 text-dark-1">Loading homepage...</div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </>
+    );
+  }
+
   return (
     <>
       <Preloader />
@@ -34,13 +91,23 @@ export default function HomePage1() {
       <Header />
 
       <div className="content-wrapper js-content-wrapper overflow-hidden">
-        <HomeHero />
+        <HomeHero heroData={homepageData.hero} />
         {/* <Brands /> */}
-        <Categories />
-        <Courses />
-        <TestimonialsOne />
-        <FeaturesOne />
-        <WhyCourse />
+        <Categories 
+          heading={homepageData.mostViewedPapers?.heading}
+          description={homepageData.mostViewedPapers?.description}
+        />
+        <Courses 
+          heading={homepageData.featuredPapers?.heading}
+          description={homepageData.featuredPapers?.description}
+        />
+        <TestimonialsOne 
+          heading={homepageData.studentsSay?.heading}
+          description={homepageData.studentsSay?.description}
+          statistics={homepageData.statistics}
+        />
+        <FeaturesOne featuresData={homepageData.features} />
+        <WhyCourse processData={homepageData.process} />
         {/* <Instructors /> */}
         {/* <GetApp /> */}
         {/* <Blog /> */}
