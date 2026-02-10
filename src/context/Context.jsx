@@ -13,6 +13,7 @@ export default function Context({ children }) {
 
   const [cartCourses, setCartCourses] = useState([]);
   const [cartEvents, setCartEvents] = useState([]);
+  const [appLogo, setAppLogo] = useState("/assets/img/general/Logo.png");
   const addCourseToCart = (id) => {
     if (!cartCourses.filter((elm) => elm.id == id)[0]) {
       const item = {
@@ -71,6 +72,9 @@ export default function Context({ children }) {
     setCartEvents,
     addEventToCart,
     isAddedToCartEvents,
+
+    appLogo,
+    setAppLogo,
   };
   return (
     <dataContext.Provider value={contextElement}>

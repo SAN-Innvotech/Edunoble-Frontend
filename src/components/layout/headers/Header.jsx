@@ -8,9 +8,11 @@ import { Link } from "react-router-dom";
 
 import { useState } from "react";
 import MobileMenu from "../component/MobileMenu";
+import { useContextElement } from "@/context/Context";
 
 export default function Header() {
   const [activeMobileMenu, setActiveMobileMenu] = useState(false);
+  const { appLogo } = useContextElement();
 
   return (
     <>
@@ -21,7 +23,7 @@ export default function Header() {
               <div className="header-left">
                 <div className="header__logo">
                   <Link to="/">
-                    <img src="/assets/img/general/Logo.png" width={50} alt="logo" />
+                    <img src={appLogo} width={50} alt="logo" />
                   </Link>
                 </div>
 
