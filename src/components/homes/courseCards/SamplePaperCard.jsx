@@ -6,11 +6,20 @@ import { getApiUrl } from "@/config/api";
 
 export default function SamplePaperCard({ paper }) {
   const [showViewer, setShowViewer] = useState(false);
+  const [showLeadModal, setShowLeadModal] = useState(false);
+  const [leadForm, setLeadForm] = useState({
+    name: "",
+    number: "",
+    grade: paper?.class || "",
+    subject: paper?.subject || "",
+  });
+  const [leadLoading, setLeadLoading] = useState(false);
+  const [leadError, setLeadError] = useState(null);
 
   // Increment view count in the background
   const incrementViewCount = async () => {
     if (!paper._id) return;
-    
+
     try {
       await fetch(getApiUrl(`papers/${paper._id}/view`), {
         method: "PATCH",
@@ -27,8 +36,65 @@ export default function SamplePaperCard({ paper }) {
 
   const handleViewPaper = (e) => {
     e.preventDefault();
+    try {
+      const isSaved = localStorage.getItem("isLeadSaved") === "true";
+      if (isSaved) {
+        setShowViewer(true);
+        // Call API in background (non-blocking)
+        incrementViewCount();
+      } else {
+        setShowLeadModal(true);
+      }
+    } catch (err) {
+      // If any error reading localStorage, fallback to showing modal
+      setShowLeadModal(true);
+    }
+  };
+
+  const submitLead = async (e) => {
+    e && e.preventDefault();
+    setLeadLoading(true);
+    setLeadError(null);
+    try {
+      const body = {
+        name: leadForm.name,
+        number: leadForm.number,
+        grade: leadForm.grade,
+        subject: leadForm.subject,
+      };
+
+      const res = await fetch(getApiUrl("leads"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+      if (!res.ok) {
+        const errText = await res.text();
+        throw new Error(errText || `Failed to submit lead: ${res.status}`);
+      }
+
+      // Mark as saved and proceed to viewer
+      localStorage.setItem("isLeadSaved", "true");
+      setShowLeadModal(false);
+      setShowViewer(true);
+      incrementViewCount();
+    } catch (err) {
+      console.error("Error submitting lead:", err);
+      setLeadError(err.message || "Failed to submit lead");
+    } finally {
+      setLeadLoading(false);
+    }
+  };
+
+  const handleAlreadySubmitted = () => {
+    try {
+      localStorage.setItem("isLeadSaved", "true");
+    } catch (err) {
+      console.error("Error setting lead flag:", err);
+    }
+    setShowLeadModal(false);
     setShowViewer(true);
-    // Call API in background (non-blocking)
     incrementViewCount();
   };
 
@@ -134,6 +200,135 @@ export default function SamplePaperCard({ paper }) {
             onClose={handleCloseViewer}
             title={paper.title}
           />,
+          document.body
+        )}
+
+      {showLeadModal &&
+        createPortal(
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: "rgba(0,0,0,0.6)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 2000,
+              padding: 20,
+            }}
+            onClick={() => setShowLeadModal(false)}
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              style={{
+                width: "90%",
+                maxWidth: 500,
+                background: "#fff",
+                borderRadius: 8,
+                padding: 30,
+                boxShadow: "0 8px 24px rgba(0,0,0,0.2)",
+              }}
+            >
+              <h3 className="text-24 fw-600 mb-20">
+                Quick access - submit details
+              </h3>
+              <p className="text-16 lh-1_6 text-light-1 mb-30">
+                Please share a few details to view the sample paper.
+              </p>
+
+              <form className="row y-gap-20">
+                <div className="col-12">
+                  <label className="text-16 lh-1 fw-500 text-dark-1 mb-10 mr-10">
+                    Name
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    name="name"
+                    placeholder="Name..."
+                    value={leadForm.name}
+                    onChange={(e) =>
+                      setLeadForm({ ...leadForm, name: e.target.value })
+                    }
+                  />
+                </div>
+
+                <div className="col-12">
+                  <label className="text-16 lh-1 fw-500 text-dark-1 mb-10 mr-10">
+                    Phone
+                  </label>
+                  <input
+                    required
+                    type="text"
+                    name="number"
+                    placeholder="Phone..."
+                    value={leadForm.number}
+                    onChange={(e) =>
+                      setLeadForm({ ...leadForm, number: e.target.value })
+                    }
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
+                    Grade
+                  </label>
+                  <input
+                    type="text"
+                    name="grade"
+                    placeholder="Grade..."
+                    value={leadForm.grade}
+                    onChange={(e) =>
+                      setLeadForm({ ...leadForm, grade: e.target.value })
+                    }
+                  />
+                </div>
+
+                <div className="col-md-6">
+                  <label className="text-16 lh-1 fw-500 text-dark-1 mb-10">
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    placeholder="Subject..."
+                    value={leadForm.subject}
+                    onChange={(e) =>
+                      setLeadForm({ ...leadForm, subject: e.target.value })
+                    }
+                  />
+                </div>
+
+                {leadError && (
+                  <div className="col-12 text-13 text-red-1">{leadError}</div>
+                )}
+
+                <div className="col-12 d-flex x-gap-10 pt-10">
+                  <button
+                    type="submit"
+                    className="button -md -purple-1 text-white"
+                    style={{ flex: 1 }}
+                    disabled={leadLoading}
+                    onClick={submitLead}
+                  >
+                    {leadLoading ? "Saving..." : "Submit & View"}
+                  </button>
+
+                  <button
+                    type="button"
+                    className="button -md -outline-dark text-dark-1"
+                    style={{ flex: 1 }}
+                    onClick={handleAlreadySubmitted}
+                  >
+                    Already submitted
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>,
           document.body
         )}
     </>

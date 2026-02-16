@@ -87,9 +87,14 @@ export default function VisionDynamic() {
                         <h2 className="text-40 lh-1 fw-700 text-dark-1 mb-20">
                           {item.title}
                         </h2>
-                        <p className="text-16 lh-1_6 text-light-1">
-                          {item.content}
-                        </p>
+                        <div
+                          className="text-16 lh-1_6 text-light-1"
+                          dangerouslySetInnerHTML={{ __html: item.content || '' }}
+                          style={{
+                            wordWrap: "break-word",
+                            overflowWrap: "break-word",
+                          }}
+                        />
                       </div>
                     </div>
                   </div>
@@ -119,9 +124,14 @@ export default function VisionDynamic() {
                         <h3 className="text-30 lh-1 fw-600 text-dark-1 mb-15">
                           {item.title}
                         </h3>
-                        <p className="text-16 lh-1_6 text-light-1">
-                          {item.content}
-                        </p>
+                        <div
+                          className="text-16 lh-1_6 text-light-1"
+                          dangerouslySetInnerHTML={{ __html: item.content || '' }}
+                          style={{
+                            wordWrap: "break-word",
+                            overflowWrap: "break-word",
+                          }}
+                        />
                       </div>
                     </>
                   ) : (
@@ -131,9 +141,14 @@ export default function VisionDynamic() {
                         <h3 className="text-30 lh-1 fw-600 text-dark-1 mb-15">
                           {item.title}
                         </h3>
-                        <p className="text-16 lh-1_6 text-light-1">
-                          {item.content}
-                        </p>
+                        <div
+                          className="text-16 lh-1_6 text-light-1"
+                          dangerouslySetInnerHTML={{ __html: item.content || '' }}
+                          style={{
+                            wordWrap: "break-word",
+                            overflowWrap: "break-word",
+                          }}
+                        />
                       </div>
                       {/* Image on right */}
                       <div className="col-lg-6 order-lg-2">
