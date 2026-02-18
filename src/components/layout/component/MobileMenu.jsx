@@ -85,7 +85,7 @@ export default function MobileMenu({ setActiveMobileMenu, activeMobileMenu }) {
                 }
                 onClick={() => setActiveMobileMenu(false)}
               >
-                Papers
+                Resources
               </Link>
             </div>
 

@@ -98,7 +98,7 @@ export default function Menu({ allClasses, headerPosition }) {
                   pathname == "/papers" ? "activeMenu" : "inActiveMenuTwo"
                 }
               >
-                Papers
+                Resources
               </Link>
             </li>
 
