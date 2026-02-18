@@ -152,7 +152,7 @@ const HomeHero = ({ heroData }) => {
                       to="/papers"
                       className="button -md -outline-green-1 text-green-1"
                     >
-                      View Sample Papers
+                      View Resources
                     </Link>
                   </div>
                 </div>

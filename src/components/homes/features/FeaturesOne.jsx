@@ -8,7 +8,7 @@ export default function LearnNewSkill({ featuresData }) {
   const featureList = featuresData?.featureList || featureOne;
   const heading = featuresData?.heading || "Practice smarter for board exams with Edunoble.";
   const description = featuresData?.description || "Use the list below to see how our secure online sample papers help Class 8, 9, 10, 11 and 12 students prepare with confidence.";
-  const ctaButtonText = featuresData?.ctaButtonText || "Browse Sample Papers";
+  const ctaButtonText = featuresData?.ctaButtonText || "Browse Resources";
   const imageUrl = featuresData?.imageUrl;
 
   return (
