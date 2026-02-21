@@ -9,7 +9,7 @@ import HomeHero from "@/components/homes/heros/HomeHero";
 
 import Brands from "@/components/common/Brands";
 import Categories from "@/components/homes/categories/Categories";
-import Courses from "@/components/homes/courses/Courses";
+import CoursesOffered from "@/components/homes/courses/CoursesOffered";
 import TestimonialsOne from "@/components/common/TestimonialsOne";
 import FeaturesOne from "@/components/homes/features/FeaturesOne";
 import WhyCourse from "@/components/homes/WhyCourse";
@@ -102,11 +102,11 @@ export default function HomePage1() {
       <div className="content-wrapper js-content-wrapper overflow-hidden">
         <HomeHero heroData={homepageData.hero} />
         {/* <Brands /> */}
-        <Categories 
+        {/* <Categories
           heading={homepageData.mostViewedPapers?.heading}
           description={homepageData.mostViewedPapers?.description}
-        />
-        <Courses 
+        /> */}
+        <CoursesOffered
           heading={homepageData.featuredPapers?.heading}
           description={homepageData.featuredPapers?.description}
         />

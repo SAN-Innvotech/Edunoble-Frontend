@@ -145,8 +145,9 @@ export default function TestimonialsOne({ heading, description, statistics }) {
           </div>
         </div>
 
-        <div className="row y-gap-30  counter__row">
+        <div className="row y-gap-30 counter__row justify-center">
           {displayCounters
+            .filter((elm) => !(elm.label || elm.title || "").toLowerCase().includes("classes covered"))
             .sort((a, b) => (a.order || 0) - (b.order || 0))
             .map((elm, i) => (
             <div

@@ -45,6 +45,41 @@ export default function Header() {
 
             <div className="col-auto">
               <div className="header-right d-flex items-center">
+
+                {/* Contact Info - Desktop only */}
+                <div className="d-flex items-center x-gap-10 mr-25 xl:d-none">
+                  <a
+                    href="tel:8878868600"
+                    className="d-flex items-center text-white text-13 fw-500"
+                    style={{
+                      textDecoration: "none",
+                      background: "rgba(255,255,255,0.12)",
+                      padding: "5px 12px",
+                      borderRadius: "20px",
+                      gap: "5px",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    <i className="icon icon-phone text-12" />
+                    <span>8878868600</span>
+                  </a>
+                  <a
+                    href="mailto:edunoble.learning@gmail.com"
+                    className="d-flex items-center text-white text-13 fw-500"
+                    style={{
+                      textDecoration: "none",
+                      background: "rgba(255,255,255,0.12)",
+                      padding: "5px 12px",
+                      borderRadius: "20px",
+                      gap: "5px",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    <i className="icon icon-mail text-12" />
+                    <span>edunoble.learning@gmail.com</span>
+                  </a>
+                </div>
+
                 <div className="header-right__icons text-white d-flex items-center">
                   {/* search toggle start */}
                   <SearchToggle />

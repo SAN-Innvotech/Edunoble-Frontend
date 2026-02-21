@@ -149,10 +149,19 @@ const HomeHero = ({ heroData }) => {
                   <div className="col-12 col-sm-auto">
                     <Link
                       data-barba
+                      to="/contact-1"
+                      className="button -md -green-1 text-dark-1"
+                    >
+                      Contact Us
+                    </Link>
+                  </div>
+                  <div className="col-12 col-sm-auto">
+                    <Link
+                      data-barba
                       to="/papers"
                       className="button -md -outline-green-1 text-green-1"
                     >
-                      View Resources
+                      Resources
                     </Link>
                   </div>
                 </div>
@@ -203,7 +212,7 @@ const HomeHero = ({ heroData }) => {
                       <div className="text-orange-1 text-16 fw-500 lh-1">
                         {samplePaperCount || "1000+"}
                       </div>
-                      <div className="mt-3">Sample Papers</div>
+                      {/* <div className="mt-3">Sample Papers</div> */}
                     </div>
                   </div>
                 </div>
@@ -225,14 +234,14 @@ const HomeHero = ({ heroData }) => {
                       <div className="text-dark-1 text-16 fw-500 lh-1">
                         {studentReview?.name || "Ali Tufan"}
                       </div>
-                      <div className="mt-3">{studentReview?.class || "Class 12th Student"}</div>
-                      <div className="d-flex x-gap-5 mt-3">
+                      {/* <div className="mt-3">{studentReview?.class || "Class 12th Student"}</div> */}
+                      {/* <div className="d-flex x-gap-5 mt-3">
                         {starts.map((start, index) => (
                           <div key={index}>
                             <div className={start}></div>
                           </div>
                         ))}
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>
@@ -260,9 +269,9 @@ const HomeHero = ({ heroData }) => {
                     </div>
                     <div className="">
                       <div className="text-purple-1 text-16 fw-500 lh-1">
-                        Great!
+                        Structured preparation systems
                       </div>
-                      <div className="mt-3">You’re ready to start practicing</div>
+                      {/* <div className="mt-3">You’re ready to start practicing</div> */}
                     </div>
                   </div>
                 </div>

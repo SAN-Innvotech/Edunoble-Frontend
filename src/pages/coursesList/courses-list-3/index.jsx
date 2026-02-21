@@ -1,11 +1,12 @@
 import PageLinks from "@/components/common/PageLinks";
 import Preloader from "@/components/common/Preloader";
 import CourseListThree from "@/components/courseList/CourseListThree";
-
+import StatsSection from "@/components/common/StatsSection";
 import FooterOne from "@/components/layout/footers/FooterOne";
 import Header from "@/components/layout/headers/Header";
 import React from "react";
 import MetaComponent from "@/components/common/MetaComponent";
+import { useHomepageData } from "@/hooks/useHomepageData";
 
 const metadata = {
   title:
@@ -15,6 +16,8 @@ const metadata = {
 };
 
 export default function CourseListPage3() {
+  const { homepageData } = useHomepageData();
+
   return (
     <div className="main-content  ">
       <MetaComponent meta={metadata} />
@@ -23,6 +26,7 @@ export default function CourseListPage3() {
       <div className="content-wrapper  js-content-wrapper overflow-hidden">
         {/* <PageLinks /> */}
         <CourseListThree />
+        <StatsSection statistics={homepageData?.statistics} />
         <FooterOne />
       </div>
     </div>
