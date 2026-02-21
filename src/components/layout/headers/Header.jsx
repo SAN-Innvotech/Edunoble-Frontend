@@ -46,37 +46,25 @@ export default function Header() {
             <div className="col-auto">
               <div className="header-right d-flex items-center">
 
-                {/* Contact Info - Desktop only */}
-                <div className="d-flex items-center x-gap-10 mr-25 xl:d-none">
+                {/* Contact Icon Buttons */}
+                <div style={{ display: "flex", alignItems: "center", gap: "20px", marginRight: "20px" }}>
                   <a
                     href="tel:8878868600"
-                    className="d-flex items-center text-white text-13 fw-500"
-                    style={{
-                      textDecoration: "none",
-                      background: "rgba(255,255,255,0.12)",
-                      padding: "5px 12px",
-                      borderRadius: "20px",
-                      gap: "5px",
-                      whiteSpace: "nowrap",
-                    }}
+                    title="Call us: 8878868600"
+                    style={{ color: "#fff", fontSize: "18px", lineHeight: 1, textDecoration: "none", transition: "color 0.2s ease" }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = "#22C55E"}
+                    onMouseLeave={(e) => e.currentTarget.style.color = "#fff"}
                   >
-                    <i className="icon icon-phone text-12" />
-                    <span>8878868600</span>
+                    <i className="fa fa-phone" />
                   </a>
                   <a
                     href="mailto:edunoble.learning@gmail.com"
-                    className="d-flex items-center text-white text-13 fw-500"
-                    style={{
-                      textDecoration: "none",
-                      background: "rgba(255,255,255,0.12)",
-                      padding: "5px 12px",
-                      borderRadius: "20px",
-                      gap: "5px",
-                      whiteSpace: "nowrap",
-                    }}
+                    title="Email: edunoble.learning@gmail.com"
+                    style={{ color: "#fff", fontSize: "18px", lineHeight: 1, textDecoration: "none", transition: "color 0.2s ease" }}
+                    onMouseEnter={(e) => e.currentTarget.style.color = "#22C55E"}
+                    onMouseLeave={(e) => e.currentTarget.style.color = "#fff"}
                   >
-                    <i className="icon icon-mail text-12" />
-                    <span>edunoble.learning@gmail.com</span>
+                    <i className="fa fa-envelope" />
                   </a>
                 </div>
 
