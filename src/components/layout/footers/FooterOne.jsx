@@ -14,10 +14,12 @@ export default function FooterOne() {
         <div className="footer-header">
           <div className="row y-gap-20 justify-between items-center">
             <div className="col-auto">
-              <Link to="/" style={{ display: "flex", flexDirection: "column", alignItems: "center", textDecoration: "none" }}>
-                <img src={appLogo} style={{ height: "40px", width: "auto", maxWidth: "160px" }} alt="Edunoble logo" />
-                <span style={{ fontSize: "10px", fontWeight: 600, color: "#00e5a0", letterSpacing: "0.5px", marginTop: "2px", lineHeight: 1 }}>✦ AI Powered</span>
-              </Link>
+              <div style={{ textAlign: "center" }}>
+                <Link to="/">
+                  <img src={appLogo} style={{ height: "40px", width: "auto", maxWidth: "160px", display: "block" }} alt="Edunoble logo" />
+                </Link>
+                <span style={{ display: "block", fontSize: "10px", fontWeight: 600, color: "#00e5a0", letterSpacing: "0.5px", marginTop: "2px", lineHeight: 1 }}>✦ AI Powered</span>
+              </div>
             </div>
             <div className="col-auto">
               <div className="footer-header-socials">

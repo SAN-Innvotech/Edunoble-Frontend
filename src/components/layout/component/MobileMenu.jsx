@@ -43,38 +43,19 @@ export default function MobileMenu({ setActiveMobileMenu, activeMobileMenu }) {
     >
       <div className="header-menu__content">
 
-        {/* Logo + AI Powered */}
-        <div style={{ padding: "20px 20px 12px", borderBottom: "1px solid rgba(255,255,255,0.1)", display: "flex", justifyContent: "center" }}>
-          <Link to="/" onClick={() => setActiveMobileMenu(false)}
-            style={{ display: "flex", flexDirection: "column", alignItems: "center", textDecoration: "none" }}>
-            <img src={appLogo} alt="logo" style={{ height: "36px", width: "auto", maxWidth: "120px" }} />
-            <span style={{ fontSize: "10px", fontWeight: 600, color: "#00e5a0", letterSpacing: "0.5px", marginTop: "2px", lineHeight: 1 }}>✦ AI Powered</span>
-          </Link>
-        </div>
-
         <div className="mobile-bg js-mobile-bg"></div>
-
-        {/* <div className="d-none xl:d-flex items-center px-20 py-20 border-bottom-light">
-          <Link
-            to="/login"
-            className={`text-dark-1 ${
-              pathname == "/login" ? "activeMenu" : "inActiveMenu"
-            } `}
-          >
-            Log in
-          </Link>
-          <Link
-            to="/signup"
-            className={`text-dark-1 ml-30 ${
-              pathname == "/signup" ? "activeMenu" : "inActiveMenu"
-            } `}
-          >
-            Sign Up
-          </Link>
-        </div> */}
 
         {showMenu && activeMobileMenu && (
           <div className="mobileMenu text-dark-1">
+
+            {/* Logo + AI Powered — only renders when mobile menu is open */}
+            <div style={{ padding: "16px 20px 12px", borderBottom: "1px solid rgba(255,255,255,0.1)", display: "flex", flexDirection: "column", alignItems: "center", marginBottom: "8px" }}>
+              <Link to="/" onClick={() => setActiveMobileMenu(false)}>
+                <img src={appLogo} alt="logo" style={{ height: "36px", width: "auto", maxWidth: "120px", display: "block" }} />
+              </Link>
+              <span style={{ fontSize: "10px", fontWeight: 600, color: "#00e5a0", letterSpacing: "0.5px", marginTop: "2px", lineHeight: 1 }}>✦ AI Powered</span>
+            </div>
+
             {/* Home Link */}
             <div className="submenuOne">
               <Link
