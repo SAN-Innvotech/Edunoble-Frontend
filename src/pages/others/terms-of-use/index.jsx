@@ -5,8 +5,8 @@ import Preloader from "@/components/common/Preloader";
 import MetaComponent from "@/components/common/MetaComponent";
 
 const metadata = {
-  title: "Terms of Use || Edunoble",
-  description: "Terms of Use for Edunoble - Understand the rules and regulations governing the use of our platform.",
+  title: "Terms of Use || EduNoble",
+  description: "Terms of Use for EduNoble - Understand the rules and regulations governing the use of our platform.",
 };
 
 const Section = ({ title, children }) => (
@@ -43,13 +43,13 @@ export default function TermsOfUsePage() {
               <div className="col-lg-10 col-xl-8">
 
                 <p style={{ color: "#555", lineHeight: "1.8", fontSize: "15px", marginBottom: "32px" }}>
-                  Welcome to <strong>Edunoble</strong>. By accessing or using our website and services, you agree to be
+                  Welcome to <strong>EduNoble</strong>. By accessing or using our website and services, you agree to be
                   bound by these Terms of Use. Please read them carefully before using our platform.
                 </p>
 
                 <Section title="1. Acceptance of Terms">
                   <p>
-                    By accessing and using the Edunoble platform, you confirm that you have read, understood, and agreed
+                    By accessing and using the EduNoble platform, you confirm that you have read, understood, and agreed
                     to these Terms of Use. If you do not agree to these terms, please do not use our services.
                   </p>
                 </Section>
@@ -66,14 +66,14 @@ export default function TermsOfUsePage() {
                 <Section title="3. Intellectual Property">
                   <p>
                     All content on this website — including study materials, sample papers, text, images, and graphics —
-                    is the intellectual property of Edunoble and is protected by applicable copyright laws. Unauthorised
+                    is the intellectual property of EduNoble and is protected by applicable copyright laws. Unauthorised
                     reproduction or distribution is strictly prohibited.
                   </p>
                 </Section>
 
                 <Section title="4. Educational Content Disclaimer">
                   <p>
-                    Edunoble provides educational resources for informational and practice purposes only. While we strive
+                    EduNoble provides educational resources for informational and practice purposes only. While we strive
                     for accuracy, we do not guarantee that all content is complete, up-to-date, or error-free. Results
                     may vary based on individual effort and circumstances.
                   </p>
@@ -90,7 +90,7 @@ export default function TermsOfUsePage() {
 
                 <Section title="6. Limitation of Liability">
                   <p>
-                    Edunoble shall not be liable for any indirect, incidental, or consequential damages arising out of
+                    EduNoble shall not be liable for any indirect, incidental, or consequential damages arising out of
                     your use of, or inability to use, our services. Our total liability, in any event, shall not exceed
                     the amount you paid for the service in question.
                   </p>
@@ -99,7 +99,7 @@ export default function TermsOfUsePage() {
                 <Section title="7. Termination">
                   <p>
                     We reserve the right to suspend or terminate your access to our services at any time, without notice,
-                    if we believe you have violated these Terms of Use or engaged in any conduct harmful to Edunoble or
+                    if we believe you have violated these Terms of Use or engaged in any conduct harmful to EduNoble or
                     other users.
                   </p>
                 </Section>
@@ -121,7 +121,7 @@ export default function TermsOfUsePage() {
                 <Section title="10. Contact Us">
                   <p>
                     For questions or concerns regarding these Terms, please reach out:<br />
-                    <strong>Email:</strong> <a href="mailto:edunoble.learning@gmail.com" style={{ color: "#22C55E" }}>edunoble.learning@gmail.com</a><br />
+                    <strong>Email:</strong> <a href="mailto:EduNoble.learning@gmail.com" style={{ color: "#22C55E" }}>EduNoble.learning@gmail.com</a><br />
                     <strong>Phone:</strong> <a href="tel:8878868600" style={{ color: "#22C55E" }}>8878868600</a>
                   </p>
                 </Section>

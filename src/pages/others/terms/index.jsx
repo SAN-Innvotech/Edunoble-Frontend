@@ -9,9 +9,9 @@ import MetaComponent from "@/components/common/MetaComponent";
 
 const metadata = {
   title:
-    "Terms || Edunoble - Professional LMS Online Education Course ReactJS Template",
+    "Terms || EduNoble - Empowered with personalized career guidance.",
   description:
-    "Elevate your e-learning content with Edunoble, the most impressive LMS template for online courses, education and LMS platforms.",
+    "Where Learning Meets Direction Offline & Online academic mastery for ambitious minds.",
 };
 export default function TermsPage() {
   return (

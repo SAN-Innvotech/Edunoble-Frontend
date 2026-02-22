@@ -11,7 +11,7 @@ export default function MapComponent() {
         allowFullScreen=""
         aria-hidden="false"
         tabIndex="0"
-        title="Edunoble Location - Nipania, Indore"
+        title="EduNoble Location - Nipania, Indore"
       ></iframe>
     </div>
   );
