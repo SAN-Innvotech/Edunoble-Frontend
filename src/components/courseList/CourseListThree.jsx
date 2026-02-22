@@ -266,26 +266,6 @@ export default function CourseListThree() {
 
   return (
     <>
-      <section className="page-header -type-1" style={{ marginTop: "60px" }}>
-        <div className="container">
-          <div className="page-header__content">
-            <div className="row">
-              <div className="col-auto">
-                <div>
-                  <h1 className="page-header__title">Sample Papers</h1>
-                </div>
-
-                <div>
-                  <p className="page-header__text">
-                    Explore sample papers curated for Grade 8th, 9th, 10th, 11th and 12th.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <section className="layout-pt-md layout-pb-lg">
         <div className="container">
           <div className="accordion js-accordion">

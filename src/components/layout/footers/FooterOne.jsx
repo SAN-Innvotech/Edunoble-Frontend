@@ -14,8 +14,9 @@ export default function FooterOne() {
         <div className="footer-header">
           <div className="row y-gap-20 justify-between items-center">
             <div className="col-auto">
-              <Link to="/">
+              <Link to="/" style={{ display: "flex", flexDirection: "column", alignItems: "center", textDecoration: "none" }}>
                 <img src={appLogo} style={{ height: "40px", width: "auto", maxWidth: "160px" }} alt="Edunoble logo" />
+                <span style={{ fontSize: "10px", fontWeight: 600, color: "#00e5a0", letterSpacing: "0.5px", marginTop: "2px", lineHeight: 1 }}>✦ AI Powered</span>
               </Link>
             </div>
             <div className="col-auto">

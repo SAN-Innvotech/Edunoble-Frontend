@@ -6,8 +6,10 @@ import { Link } from "react-router-dom";
 
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useContextElement } from "@/context/Context";
 
 export default function MobileMenu({ setActiveMobileMenu, activeMobileMenu }) {
+  const { appLogo } = useContextElement();
   const [showMenu, setShowMenu] = useState(false);
   const [menuNesting, setMenuNesting] = useState([]);
   const [menuItem, setMenuItem] = useState("");
@@ -40,6 +42,16 @@ export default function MobileMenu({ setActiveMobileMenu, activeMobileMenu }) {
       }`}
     >
       <div className="header-menu__content">
+
+        {/* Logo + AI Powered */}
+        <div style={{ padding: "20px 20px 12px", borderBottom: "1px solid rgba(255,255,255,0.1)", display: "flex", justifyContent: "center" }}>
+          <Link to="/" onClick={() => setActiveMobileMenu(false)}
+            style={{ display: "flex", flexDirection: "column", alignItems: "center", textDecoration: "none" }}>
+            <img src={appLogo} alt="logo" style={{ height: "36px", width: "auto", maxWidth: "120px" }} />
+            <span style={{ fontSize: "10px", fontWeight: 600, color: "#00e5a0", letterSpacing: "0.5px", marginTop: "2px", lineHeight: 1 }}>✦ AI Powered</span>
+          </Link>
+        </div>
+
         <div className="mobile-bg js-mobile-bg"></div>
 
         {/* <div className="d-none xl:d-flex items-center px-20 py-20 border-bottom-light">

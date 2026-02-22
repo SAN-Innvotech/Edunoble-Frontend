@@ -5,9 +5,9 @@ export default function StatsSection({ statistics }) {
   const displayCounters = statistics || defaultCounters;
 
   return (
-    <section className="layout-pt-lg layout-pb-lg bg-purple-1">
+    <section className="bg-purple-1" style={{ padding: "50px 0" }}>
       <div className="container">
-        <div className="row y-gap-30 counter__row justify-center">
+        <div className="row y-gap-30 justify-center">
           {displayCounters
             .filter((elm) => !(elm.label || elm.title || "").toLowerCase().includes("classes covered"))
             .sort((a, b) => (a.order || 0) - (b.order || 0))
