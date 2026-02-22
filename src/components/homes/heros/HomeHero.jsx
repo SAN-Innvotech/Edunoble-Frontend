@@ -194,58 +194,62 @@ const HomeHero = ({ heroData }) => {
               data-aos="fade-up"
               data-aos-delay="700"
             >
-              {/* gridTemplateColumns flipped: small col left, big col right. Gap reduced to shorten right image */}
+              {/* Left col: el2 (top) + el3 (bottom) stacked | Right col: el1 tall */}
               <div className="masthead-image" style={{ gridTemplateColumns: "0.4fr 0.6fr", gap: "20px" }}>
 
-                {/* el2 → top LEFT — js-mouse-move on wrapper so image+overlay move together */}
-                <div className="masthead-image__el2" style={{ gridColumn: "1", gridRow: "1" }}>
-                  <div
-                    className="js-mouse-move"
-                    data-move="70"
-                    style={{ position: "relative", display: "inline-block", lineHeight: 0 }}
-                  >
-                    <img
-                      src={pictureUrl2 || "/assets/img/masthead/2.png"}
-                      style={{ objectFit: "cover", display: "block" }}
-                      alt="image"
-                    />
-                    <div style={{
-                      position: "absolute", bottom: 0, left: 0, right: 0,
-                      background: "rgba(10, 10, 40, 0.65)",
-                      backdropFilter: "blur(4px)",
-                      color: "#fff", padding: "8px 14px",
-                      fontSize: "13px", fontWeight: 500, lineHeight: "1.4",
-                      borderRadius: "0 0 6px 6px",
-                      whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-                    }}>
-                      {studentReview?.name || "Concept depth over rote learning"}
-                    </div>
+                {/* el2 → top LEFT, full-width */}
+                <div
+                  className="masthead-image__el2 js-mouse-move"
+                  data-move="70"
+                  style={{
+                    gridColumn: "1", gridRow: "1",
+                    position: "relative", lineHeight: 0,
+                    display: "block", width: "100%",
+                  }}
+                >
+                  <img
+                    src={pictureUrl2 || "/assets/img/masthead/2.png"}
+                    style={{ objectFit: "cover", display: "block", width: "100%" }}
+                    alt="image"
+                  />
+                  <div style={{
+                    position: "absolute", bottom: 0, left: 0, right: 0,
+                    background: "rgba(10, 10, 40, 0.65)",
+                    backdropFilter: "blur(4px)",
+                    color: "#fff", padding: "8px 14px",
+                    fontSize: "13px", fontWeight: 500, lineHeight: "1.4",
+                    borderRadius: "0 0 6px 6px",
+                    textAlign: "center",
+                  }}>
+                    {studentReview?.name || "Concept depth over rote learning"}
                   </div>
                 </div>
 
-                {/* el3 → bottom LEFT */}
-                <div className="masthead-image__el3" style={{ gridColumn: "1", gridRow: "2" }}>
-                  <div
-                    className="js-mouse-move"
-                    data-move="40"
-                    style={{ position: "relative", display: "inline-block", lineHeight: 0 }}
-                  >
-                    <img
-                      src={pictureUrl3 || "/assets/img/masthead/3.png"}
-                      style={{ objectFit: "cover", display: "block" }}
-                      alt="image"
-                    />
-                    <div style={{
-                      position: "absolute", bottom: 0, left: 0, right: 0,
-                      background: "rgba(10, 10, 40, 0.65)",
-                      backdropFilter: "blur(4px)",
-                      color: "#fff", padding: "8px 14px",
-                      fontSize: "13px", fontWeight: 500, lineHeight: "1.4",
-                      borderRadius: "0 0 6px 6px",
-                      whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
-                    }}>
-                      Structured preparation systems
-                    </div>
+                {/* el3 → bottom LEFT, full-width */}
+                <div
+                  className="masthead-image__el3 js-mouse-move"
+                  data-move="40"
+                  style={{
+                    gridColumn: "1", gridRow: "2",
+                    position: "relative", lineHeight: 0,
+                    display: "block", width: "100%",
+                  }}
+                >
+                  <img
+                    src={pictureUrl3 || "/assets/img/masthead/3.png"}
+                    style={{ objectFit: "cover", display: "block", width: "100%" }}
+                    alt="image"
+                  />
+                  <div style={{
+                    position: "absolute", bottom: 0, left: 0, right: 0,
+                    background: "rgba(10, 10, 40, 0.65)",
+                    backdropFilter: "blur(4px)",
+                    color: "#fff", padding: "8px 14px",
+                    fontSize: "13px", fontWeight: 500, lineHeight: "1.4",
+                    borderRadius: "0 0 6px 6px",
+                    textAlign: "center",
+                  }}>
+                    Structured preparation systems
                   </div>
                 </div>
 
@@ -273,7 +277,7 @@ const HomeHero = ({ heroData }) => {
                     color: "#fff", padding: "8px 14px",
                     fontSize: "13px", fontWeight: 500,
                     borderRadius: "0 0 6px 6px",
-                    whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                    textAlign: "center",
                   }}>
                     Integrated career guidance
                   </div>

@@ -115,8 +115,8 @@ export default function HomePage1() {
           description={homepageData.studentsSay?.description}
           statistics={homepageData.statistics}
         />
-        <FeaturesOne featuresData={homepageData.features} />
-        <WhyCourse processData={homepageData.process} />
+        {/* <FeaturesOne featuresData={homepageData.features} /> */}
+        {/* <WhyCourse processData={homepageData.process} /> */}
         {/* <Instructors /> */}
         {/* <GetApp /> */}
         {/* <Blog /> */}

@@ -2,6 +2,7 @@ import PageLinks from "@/components/common/PageLinks";
 import Preloader from "@/components/common/Preloader";
 import CourseListThree from "@/components/courseList/CourseListThree";
 import StatsSection from "@/components/common/StatsSection";
+import WhyCourse from "@/components/homes/WhyCourse";
 import FooterOne from "@/components/layout/footers/FooterOne";
 import Header from "@/components/layout/headers/Header";
 import React from "react";
@@ -27,6 +28,7 @@ export default function CourseListPage3() {
         {/* <PageLinks /> */}
         <CourseListThree />
         <StatsSection statistics={homepageData?.statistics} />
+        <WhyCourse processData={homepageData?.process} />
         <FooterOne />
       </div>
     </div>
