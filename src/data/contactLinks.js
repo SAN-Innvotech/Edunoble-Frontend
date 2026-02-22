@@ -2,7 +2,7 @@ export const contactData = [
   {
     id: 1,
     icon: "/assets/img/contact-1/1.svg",
-    address: "EduNoble Learning, Nipaniya, Indore (M.P.)",
+    address: "EduNoble Learning, Geeta Bhawan, Indore (M.P.)",
   },
   {
     id: 2,

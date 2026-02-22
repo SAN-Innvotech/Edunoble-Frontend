@@ -137,7 +137,7 @@ export default function ContactOne() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Name..."
+                    placeholder="Enter Your Name"
                   />
                 </div>
                 <div className="col-md-6">
@@ -150,7 +150,7 @@ export default function ContactOne() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Email..."
+                    placeholder="Enter Your Email"
                   />
                 </div>
                 <div className="col-md-6">
@@ -162,7 +162,7 @@ export default function ContactOne() {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="Phone..."
+                    placeholder="Enter Your Phone"
                   />
                 </div>
                 <div className="col-md-6">
@@ -175,7 +175,7 @@ export default function ContactOne() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    placeholder="Subject..."
+                    placeholder="Enter Your Subject"
                   />
                 </div>
                 <div className="col-12">
@@ -187,7 +187,7 @@ export default function ContactOne() {
                     name="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Message..."
+                    placeholder="Enter Your Message"
                     rows="8"
                   ></textarea>
                 </div>

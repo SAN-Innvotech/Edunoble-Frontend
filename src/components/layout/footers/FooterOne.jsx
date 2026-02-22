@@ -48,7 +48,7 @@ export default function FooterOne() {
                   { label: "Resources",  to: "/resources" },
                   { label: "About Us",   to: "/about" },
                   { label: "Vision",     to: "/vision" },
-                  { label: "Contact Us", to: "/contact" },
+                  { label: "Contact", to: "/contact" },
                 ].map((item) => (
                   <li key={item.to} style={{ marginBottom: "12px" }}>
                     <Link
@@ -102,6 +102,16 @@ export default function FooterOne() {
                   >
                     <i className="fa fa-phone" style={{ fontSize: "13px", flexShrink: 0 }} />
                     <span>8878868600</span>
+                  </a>
+                </li>
+                <li style={{ marginBottom: "16px" }}>
+                  <a
+                    href="tel:8878868600"
+                    className="text-white opac-70"
+                    style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "10px" }}
+                  >
+                    <i className="fa fa-phone" style={{ fontSize: "13px", flexShrink: 0 }} />
+                    <span>8878868699</span>
                   </a>
                 </li>
                 <li>

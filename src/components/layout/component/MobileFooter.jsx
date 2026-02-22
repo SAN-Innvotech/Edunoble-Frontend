@@ -12,7 +12,7 @@ export default function MobileFooter() {
         <div className="lh-2 mt-10">
           <div>
             Sample Papers for Class 8 to 12
-            <br /> EduNoble Learning, Nipaniya, Indore (M.P.)
+            <br /> EduNoble Learning, Geeta Bhawan, Indore (M.P.)
           </div>
           <div>edunoble.learning@gmail.com</div>
         </div>
