@@ -18,8 +18,13 @@ export default function AboutPage() {
       <Preloader />
 
       <Header />
-      <div className="content-wrapper js-content-wrapper overflow-hidden" style={{ marginTop: "60px" }}>
-        <AboutDynamic />
+      <div
+        className="content-wrapper js-content-wrapper overflow-hidden"
+        style={{ marginTop: "60px", display: "flex", flexDirection: "column", minHeight: "calc(100vh - 60px)" }}
+      >
+        <div style={{ flex: 1 }}>
+          <AboutDynamic />
+        </div>
         <FooterOne />
       </div>
     </div>

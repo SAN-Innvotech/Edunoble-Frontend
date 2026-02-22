@@ -86,6 +86,10 @@ import EventListPage2 from "./pages/events/event-list-2";
 import CourseSinglePage6 from "./pages/courseSingle/courses-single-6/page";
 import ScrollTopBehaviour from "./components/common/ScrollTopBehaviour";
 import NotFoundPage from "./pages/not-found";
+import PrivacyPolicyPage from "./pages/others/privacy-policy";
+import TermsOfUsePage from "./pages/others/terms-of-use";
+import CookiePolicyPage from "./pages/others/cookie-policy";
+import CookieConsent from "./components/common/CookieConsent";
 
 function App() {
   useEffect(() => {
@@ -213,6 +217,10 @@ function App() {
               <Route path="vision" element={<VisionPage />} />
 
               <Route path="contact-1" element={<ContactPage1 />} />
+
+              <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="terms-of-use"   element={<TermsOfUsePage />} />
+              <Route path="cookie-policy"  element={<CookiePolicyPage />} />
               {/* <Route path="contact-2" element={<ContactPage2 />} /> */}
 
               {/* <Route path="shop-cart" element={<ShopCartPage />} /> */}
@@ -232,6 +240,7 @@ function App() {
             </Route>
           </Routes>
           <ScrollTopBehaviour />
+          <CookieConsent />
         </BrowserRouter>
       </Context>
     </>

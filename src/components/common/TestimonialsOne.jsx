@@ -152,7 +152,7 @@ export default function TestimonialsOne({ heading, description, statistics }) {
             .map((elm, i) => (
             <div
               key={elm._id || elm.id || i}
-              className="col-lg-3 col-sm-6"
+              className="col-lg-4 col-sm-4"
               data-aos="fade-left"
               data-aos-duration={(i + 1) * 350}
             >

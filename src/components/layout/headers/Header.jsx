@@ -23,7 +23,7 @@ export default function Header() {
               <div className="header-left">
                 <div className="header__logo">
                   <Link to="/">
-                    <img src={appLogo} width={50} alt="logo" />
+                    <img src={appLogo} alt="logo" style={{ height: "40px", width: "auto", maxWidth: "130px" }} />
                   </Link>
                 </div>
 
