@@ -194,32 +194,11 @@ const HomeHero = ({ heroData }) => {
               data-aos="fade-up"
               data-aos-delay="700"
             >
-              <div className="masthead-image">
-                <div className="masthead-image__el1">
-                  <img
-                    className="js-mouse-move"
-                    data-move="40"
-                    style={{ objectFit: "cover" }}
-                    src={pictureUrl1 || "/assets/img/masthead/1.png"}
-                    alt="image"
-                  />
-                  <div
-                    data-move="30"
-                    className="lg:d-none img-el -w-250 px-20 py-20 d-flex items-center bg-white rounded-8 js-mouse-move"
-                  >
-                    <div className="size-50 d-flex justify-center items-center bg-red-2 rounded-full">
-                      <img src={"/assets/img/masthead/1.svg"} alt="icon" />
-                    </div>
-                    <div className="ml-20">
-                      <div className="text-orange-1 text-16 fw-500 lh-1">
-                        {samplePaperCount || "1000+"}
-                      </div>
-                      {/* <div className="mt-3">Sample Papers</div> */}
-                    </div>
-                  </div>
-                </div>
+              {/* gridTemplateColumns flipped: small col left, big col right */}
+              <div className="masthead-image" style={{ gridTemplateColumns: "0.4fr 0.6fr" }}>
 
-                <div className="masthead-image__el2">
+                {/* el2 → top LEFT (was top-right) */}
+                <div className="masthead-image__el2" style={{ gridColumn: "1", gridRow: "1" }}>
                   <img
                     className="js-mouse-move"
                     data-move="70"
@@ -236,19 +215,12 @@ const HomeHero = ({ heroData }) => {
                       <div className="text-dark-1 text-16 fw-500 lh-1">
                         {studentReview?.name || "Ali Tufan"}
                       </div>
-                      {/* <div className="mt-3">{studentReview?.class || "Class 12th Student"}</div> */}
-                      {/* <div className="d-flex x-gap-5 mt-3">
-                        {starts.map((start, index) => (
-                          <div key={index}>
-                            <div className={start}></div>
-                          </div>
-                        ))}
-                      </div> */}
                     </div>
                   </div>
                 </div>
 
-                <div className="masthead-image__el3">
+                {/* el3 → bottom LEFT (was bottom-right) */}
+                <div className="masthead-image__el3" style={{ gridColumn: "1", gridRow: "2" }}>
                   <img
                     className="js-mouse-move"
                     data-move="40"
@@ -273,10 +245,34 @@ const HomeHero = ({ heroData }) => {
                       <div className="text-purple-1 text-16 fw-500 lh-1">
                         Structured preparation systems
                       </div>
-                      {/* <div className="mt-3">You’re ready to start practicing</div> */}
                     </div>
                   </div>
                 </div>
+
+                {/* el1 → RIGHT column, spans 2 rows (was left big image) */}
+                <div className="masthead-image__el1" style={{ gridColumn: "2", gridRow: "1 / span 2", paddingTop: "0" }}>
+                  <img
+                    className="js-mouse-move"
+                    data-move="40"
+                    style={{ objectFit: "cover" }}
+                    src={pictureUrl1 || "/assets/img/masthead/1.png"}
+                    alt="image"
+                  />
+                  <div
+                    data-move="30"
+                    className="lg:d-none img-el -w-250 px-20 py-20 d-flex items-center bg-white rounded-8 js-mouse-move"
+                  >
+                    <div className="size-50 d-flex justify-center items-center bg-red-2 rounded-full">
+                      <img src={"/assets/img/masthead/1.svg"} alt="icon" />
+                    </div>
+                    <div className="ml-20">
+                      <div className="text-orange-1 text-16 fw-500 lh-1">
+                        {samplePaperCount || "1000+"}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
