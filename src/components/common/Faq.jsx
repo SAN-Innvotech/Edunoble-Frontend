@@ -59,7 +59,7 @@ export default function Faq() {
               </h2>
 
               <p className="sectionTitle__text ">
-                Find answers to common questions about our sample papers for Class 10, 11, and 12
+                
               </p>
             </div>
 
