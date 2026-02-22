@@ -21,8 +21,7 @@ export default function NotFound() {
                 Oops! Page Not Found
               </h2>
               <div className="mt-10">
-                The page you're looking for doesn't exist. Don't worry! 
-                <br /> Browse our sample papers for Class 10, 11, and 12 or return to the homepage.
+                The page you're looking for doesn't exist. Don't worry!
               </div>
               <Link to="/" className="button -md -purple-1 text-white mt-20">
                 Go Back To Homepage

@@ -5,9 +5,9 @@ import MetaComponent from "@/components/common/MetaComponent";
 
 const metadata = {
   title:
-    "Edunoble - Sample Papers for Class 8, 9, 10, 11 & 12 | Free Practice Papers",
+    "EduNoble - Where Learning Meets Direction Offline & Online academic mastery for ambitious minds",
   description:
-    "Access free sample papers for Class 8, 9, 10, 11, and 12 students. Practice with CBSE, ICSE, and State Board sample papers to excel in your board exams. Secure online viewing environment.",
+    "Empowered with personalized career guidance..",
 };
 
 export default function index() {
