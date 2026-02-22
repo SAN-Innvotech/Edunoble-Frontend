@@ -121,7 +121,7 @@ const HomeHero = ({ heroData }) => {
         </div>
 
         <div className="container">
-          <div className="row y-gap-30 justify-between items-end">
+          <div className="row y-gap-30 justify-between items-start">
             <div className="col-xl-6 col-lg-6 col-sm-10">
               <div
                 className="masthead__content"
@@ -147,22 +147,24 @@ const HomeHero = ({ heroData }) => {
                   className="masthead__buttons row x-gap-10 y-gap-10"
                 >
                   <div className="col-12 col-sm-auto">
-                    <Link
-                      data-barba
-                      to="/contact-1"
+                    <a
+                      href="#courses-section"
                       className="button -md -green-1 text-dark-1"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById("courses-section")?.scrollIntoView({ behavior: "smooth" });
+                      }}
                     >
-                      Contact Us
-                    </Link>
+                      Explore Courses
+                    </a>
                   </div>
                   <div className="col-12 col-sm-auto">
-                    <Link
-                      data-barba
-                      to="/papers"
+                    <a
+                      href="tel:8878868600"
                       className="button -md -outline-green-1 text-green-1"
                     >
-                      Resources
-                    </Link>
+                      Career Counseling
+                    </a>
                   </div>
                 </div>
                 <div

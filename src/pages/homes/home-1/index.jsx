@@ -104,10 +104,12 @@ export default function HomePage1() {
           heading={homepageData.mostViewedPapers?.heading}
           description={homepageData.mostViewedPapers?.description}
         /> */}
-        <CoursesOffered
-          heading={homepageData.featuredPapers?.heading}
-          description={homepageData.featuredPapers?.description}
-        />
+        <div id="courses-section">
+          <CoursesOffered
+            heading={homepageData.featuredPapers?.heading}
+            description={homepageData.featuredPapers?.description}
+          />
+        </div>
         <TestimonialsOne 
           heading={homepageData.studentsSay?.heading}
           description={homepageData.studentsSay?.description}
