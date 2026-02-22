@@ -4,6 +4,11 @@ export const contactData = [
     icon: "/assets/img/contact-1/1.svg",
     address: "EduNoble Learning, Geeta Bhawan, Indore (M.P.)",
   },
+    {
+    id: 1,
+    icon: "/assets/img/contact-1/1.svg",
+    address: "EduNoble Learning, Nipaniya, Indore (M.P.)",
+  },
   {
     id: 2,
     icon: "/assets/img/contact-1/2.svg",
