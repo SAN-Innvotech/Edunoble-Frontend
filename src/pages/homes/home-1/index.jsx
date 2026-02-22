@@ -3,7 +3,6 @@ import Header from "@/components/layout/headers/Header";
 // import MobileMenu from "@/components/layout/component/MobileMenu";
 import React, { useEffect } from "react";
 import { useHomepageData } from "@/hooks/useHomepageData";
-import { useContextElement } from "@/context/Context";
 
 import HomeHero from "@/components/homes/heros/HomeHero";
 
@@ -31,14 +30,13 @@ const metadata = {
 
 export default function HomePage1() {
   const { homepageData, loading, error } = useHomepageData();
-  const { setAppLogo } = useContextElement();
-
-  // Update logo when homepage data loads
-  useEffect(() => {
-    if (homepageData?.hero?.logo) {
-      setAppLogo(homepageData.hero.logo);
-    }
-  }, [homepageData, setAppLogo]);
+  // Logo is managed locally (white-text version) — not overridden from CMS
+  // const { setAppLogo } = useContextElement();
+  // useEffect(() => {
+  //   if (homepageData?.hero?.logo) {
+  //     setAppLogo(homepageData.hero.logo);
+  //   }
+  // }, [homepageData, setAppLogo]);
 
   // Show error state if API fails
   if (error) {
