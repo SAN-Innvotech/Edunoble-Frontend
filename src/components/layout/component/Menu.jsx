@@ -468,6 +468,18 @@ export default function Menu({ allClasses, headerPosition }) {
             <li>
               <Link
                 data-barba
+                to="/testimonials"
+                className={
+                  pathname == "/testimonials" ? "activeMenu" : "inActiveMenuTwo"
+                }
+              >
+                Testimonials
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                data-barba
                 to="/contact"
                 className={
                   pathname == "/contact" ? "activeMenu" : "inActiveMenuTwo"

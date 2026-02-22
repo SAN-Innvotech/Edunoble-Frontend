@@ -115,6 +115,19 @@ export default function MobileMenu({ setActiveMobileMenu, activeMobileMenu }) {
               </Link>
             </div>
 
+            {/* Testimonials Link */}
+            <div className="submenuOne">
+              <Link
+                to="/testimonials"
+                className={
+                  pathname == "/testimonials" ? "activeMenu link" : "link inActiveMenu"
+                }
+                onClick={() => setActiveMobileMenu(false)}
+              >
+                Testimonials
+              </Link>
+            </div>
+
             {/* Contact Link */}
             <div className="submenuOne">
               <Link

@@ -68,6 +68,7 @@ import AboutPage1 from "./pages/about/about-1";
 import AboutPage2 from "./pages/about/about-2";
 import AboutPage from "./pages/about/about";
 import VisionPage from "./pages/about/vision";
+import TestimonialsPage from "./pages/testimonials";
 import ContactPage1 from "./pages/contacts/contact-1";
 import ContactPage2 from "./pages/contacts/contact-2";
 import ShopCartPage from "./pages/cartPages/shop-cart";
@@ -215,6 +216,7 @@ function App() {
               {/* <Route path="about-2" element={<AboutPage2 />} /> */}
               <Route path="about" element={<AboutPage />} />
               <Route path="vision" element={<VisionPage />} />
+              <Route path="testimonials" element={<TestimonialsPage />} />
 
               <Route path="contact" element={<ContactPage1 />} />
 

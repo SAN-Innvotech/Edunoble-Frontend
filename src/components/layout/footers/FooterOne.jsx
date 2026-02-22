@@ -44,11 +44,12 @@ export default function FooterOne() {
               </div>
               <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 {[
-                  { label: "Home",       to: "/" },
-                  { label: "Resources",  to: "/resources" },
-                  { label: "About Us",   to: "/about" },
-                  { label: "Vision",     to: "/vision" },
-                  { label: "Contact", to: "/contact" },
+                  { label: "Home",         to: "/" },
+                  { label: "Resources",    to: "/resources" },
+                  { label: "About Us",     to: "/about" },
+                  { label: "Vision",       to: "/vision" },
+                  { label: "Testimonials", to: "/testimonials" },
+                  { label: "Contact",      to: "/contact" },
                 ].map((item) => (
                   <li key={item.to} style={{ marginBottom: "12px" }}>
                     <Link
