@@ -80,10 +80,9 @@ export default function ContactOne() {
         <div className="container">
           <div className="row y-gap-50 justify-between">
             <div className="col-lg-4">
-              <h3 className="text-24 fw-500">Get In Touch With Us</h3>
+              <h3 className="text-24 fw-500">Get in Touch</h3>
               <p className="mt-25">
-                Have questions about our sample papers for Class 10, 11, or 12? 
-                We're here to help! Reach out to us for any queries, feedback, or support.
+                We're here to help and answer any question you might have. We look forward to hear from you.
               </p>
 
               <div className="y-gap-30 pt-60 lg:pt-40">
