@@ -194,82 +194,88 @@ const HomeHero = ({ heroData }) => {
               data-aos="fade-up"
               data-aos-delay="700"
             >
-              {/* gridTemplateColumns flipped: small col left, big col right */}
-              <div className="masthead-image" style={{ gridTemplateColumns: "0.4fr 0.6fr" }}>
+              {/* gridTemplateColumns flipped: small col left, big col right. Gap reduced to shorten right image */}
+              <div className="masthead-image" style={{ gridTemplateColumns: "0.4fr 0.6fr", gap: "20px" }}>
 
-                {/* el2 → top LEFT (was top-right) */}
+                {/* el2 → top LEFT — js-mouse-move on wrapper so image+overlay move together */}
                 <div className="masthead-image__el2" style={{ gridColumn: "1", gridRow: "1" }}>
-                  <img
+                  <div
                     className="js-mouse-move"
                     data-move="70"
-                    src={pictureUrl2 || "/assets/img/masthead/2.png"}
-                    style={{ objectFit: "cover" }}
-                    alt="image"
-                  />
-                  <div
-                    data-move="60"
-                    className="lg:d-none img-el -w-260 px-20 py-20 d-flex items-center bg-white rounded-8 js-mouse-move"
+                    style={{ position: "relative", display: "inline-block", lineHeight: 0 }}
                   >
-                    <img src={studentReview?.imageUrl || "/assets/img/masthead/4.png"} alt="student review" style={{ width: "50px", height: "50px", borderRadius: "50%", objectFit: "cover" }} />
-                    <div className="ml-20">
-                      <div className="text-dark-1 text-16 fw-500 lh-1">
-                        {studentReview?.name || "Ali Tufan"}
-                      </div>
+                    <img
+                      src={pictureUrl2 || "/assets/img/masthead/2.png"}
+                      style={{ objectFit: "cover", display: "block" }}
+                      alt="image"
+                    />
+                    <div style={{
+                      position: "absolute", bottom: 0, left: 0, right: 0,
+                      background: "rgba(10, 10, 40, 0.65)",
+                      backdropFilter: "blur(4px)",
+                      color: "#fff", padding: "8px 14px",
+                      fontSize: "13px", fontWeight: 500, lineHeight: "1.4",
+                      borderRadius: "0 0 6px 6px",
+                      whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                    }}>
+                      {studentReview?.name || "Concept depth over rote learning"}
                     </div>
                   </div>
                 </div>
 
-                {/* el3 → bottom LEFT (was bottom-right) */}
+                {/* el3 → bottom LEFT */}
                 <div className="masthead-image__el3" style={{ gridColumn: "1", gridRow: "2" }}>
-                  <img
+                  <div
                     className="js-mouse-move"
                     data-move="40"
-                    src={pictureUrl3 || "/assets/img/masthead/3.png"}
-                    style={{ objectFit: "cover" }}
-                    alt="image"
-                  />
-                  <div
-                    data-move="30"
-                    className="shadow-4 img-el -w-260 px-30 py-20 d-flex items-center bg-white rounded-8 js-mouse-move"
+                    style={{ position: "relative", display: "inline-block", lineHeight: 0 }}
                   >
-                    <div className="img-el__side">
-                      <div className="size-50 d-flex justify-center items-center bg-purple-1 rounded-full">
-                        <img
-                          style={{ objectFit: "cover" }}
-                          src={"/assets/img/masthead/2.svg"}
-                          alt="icon"
-                        />
-                      </div>
-                    </div>
-                    <div className="">
-                      <div className="text-purple-1 text-16 fw-500 lh-1">
-                        Structured preparation systems
-                      </div>
+                    <img
+                      src={pictureUrl3 || "/assets/img/masthead/3.png"}
+                      style={{ objectFit: "cover", display: "block" }}
+                      alt="image"
+                    />
+                    <div style={{
+                      position: "absolute", bottom: 0, left: 0, right: 0,
+                      background: "rgba(10, 10, 40, 0.65)",
+                      backdropFilter: "blur(4px)",
+                      color: "#fff", padding: "8px 14px",
+                      fontSize: "13px", fontWeight: 500, lineHeight: "1.4",
+                      borderRadius: "0 0 6px 6px",
+                      whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                    }}>
+                      Structured preparation systems
                     </div>
                   </div>
                 </div>
 
-                {/* el1 → RIGHT column, spans 2 rows (was left big image) */}
-                <div className="masthead-image__el1" style={{ gridColumn: "2", gridRow: "1 / span 2", paddingTop: "0" }}>
+                {/* el1 → RIGHT column, spans 2 rows */}
+                <div
+                  className="masthead-image__el1 js-mouse-move"
+                  data-move="40"
+                  style={{
+                    gridColumn: "2", gridRow: "1 / span 2",
+                    paddingTop: "0", position: "relative",
+                    alignSelf: "stretch",
+                  }}
+                >
                   <img
-                    className="js-mouse-move"
-                    data-move="40"
-                    style={{ objectFit: "cover" }}
+                    style={{ objectFit: "cover", width: "100%", height: "100%", display: "block" }}
                     src={pictureUrl1 || "/assets/img/masthead/1.png"}
                     alt="image"
                   />
-                  <div
-                    data-move="30"
-                    className="lg:d-none img-el -w-250 px-20 py-20 d-flex items-center bg-white rounded-8 js-mouse-move"
-                  >
-                    <div className="size-50 d-flex justify-center items-center bg-red-2 rounded-full">
-                      <img src={"/assets/img/masthead/1.svg"} alt="icon" />
-                    </div>
-                    <div className="ml-20">
-                      <div className="text-orange-1 text-16 fw-500 lh-1">
-                        {samplePaperCount || "1000+"}
-                      </div>
-                    </div>
+                  <div style={{
+                    position: "absolute",
+                    top: "auto",
+                    left: 0, right: 0, bottom: 0,
+                    background: "rgba(10, 10, 40, 0.65)",
+                    backdropFilter: "blur(4px)",
+                    color: "#fff", padding: "8px 14px",
+                    fontSize: "13px", fontWeight: 500,
+                    borderRadius: "0 0 6px 6px",
+                    whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
+                  }}>
+                    Integrated career guidance
                   </div>
                 </div>
 
