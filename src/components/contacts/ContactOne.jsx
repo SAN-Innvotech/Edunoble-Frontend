@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { contactData } from "@/data/contactLinks";
 import { getApiUrl } from "@/config/api";
 
-// import MapComponent from "./Map";
+import MapComponent from "./Map";
 
 export default function ContactOne() {
   const [formData, setFormData] = useState({
@@ -73,9 +73,9 @@ export default function ContactOne() {
 
   return (
     <>
-      {/* <section className="">
+      <section className="">
         <MapComponent />
-      </section> */}
+      </section>
       <section className="layout-pt-md layout-pb-lg mt-100" style={{marginTop: '100px'}}>
         <div className="container">
           <div className="row y-gap-50 justify-between">
