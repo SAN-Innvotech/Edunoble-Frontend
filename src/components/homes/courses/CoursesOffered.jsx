@@ -131,7 +131,7 @@ export default function CoursesOffered({ heading, description }) {
           {boards.map((board) => (
             <div key={board} onClick={() => handleBoardChange(board)}>
               <button
-                className={`tabs__button px-15 py-8 rounded-8 js-tabs-button ${selectedBoard === board ? "tabActive" : ""}`}
+                className={`tabs__button px-15 py-8 rounded-8 js-tabs-button fw-600 ${selectedBoard === board ? "tabActive" : ""}`}
                 type="button"
               >
                 {board}
@@ -145,7 +145,7 @@ export default function CoursesOffered({ heading, description }) {
           {grades.map((grade) => (
             <div key={grade} onClick={() => handleGradeChange(grade)}>
               <button
-                className={`tabs__button px-15 py-8 rounded-8 js-tabs-button ${selectedGrade === grade ? "tabActive" : ""}`}
+                className={`tabs__button px-15 py-8 rounded-8 js-tabs-button fw-600 ${selectedGrade === grade ? "tabActive" : ""}`}
                 type="button"
               >
                 {grade}
@@ -159,7 +159,7 @@ export default function CoursesOffered({ heading, description }) {
           {subjects.map((subject) => (
             <div key={subject} onClick={() => handleSubjectChange(subject)}>
               <button
-                className={`tabs__button px-15 py-8 rounded-8 js-tabs-button ${selectedSubject === subject ? "tabActive" : ""}`}
+                className={`tabs__button px-15 py-8 rounded-8 js-tabs-button fw-600 ${selectedSubject === subject ? "tabActive" : ""}`}
                 type="button"
               >
                 {subject}
