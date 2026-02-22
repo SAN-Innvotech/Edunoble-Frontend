@@ -3,7 +3,7 @@ export default function MapComponent() {
   return (
     <div style={{ height: "450px", width: "100%" }}>
       <iframe
-        src="https://maps.google.com/maps?q=22.7617374,75.9273187&z=15&output=embed"
+        src="https://maps.google.com/maps?q=22.7182218,75.8846607&z=17&output=embed"
         width="100%"
         height="450px"
         frameBorder="0"
