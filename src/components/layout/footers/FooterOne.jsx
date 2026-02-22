@@ -45,10 +45,10 @@ export default function FooterOne() {
               <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                 {[
                   { label: "Home",       to: "/" },
-                  { label: "Resources",  to: "/papers" },
+                  { label: "Resources",  to: "/resources" },
                   { label: "About Us",   to: "/about" },
                   { label: "Vision",     to: "/vision" },
-                  { label: "Contact Us", to: "/contact-1" },
+                  { label: "Contact Us", to: "/contact" },
                 ].map((item) => (
                   <li key={item.to} style={{ marginBottom: "12px" }}>
                     <Link
@@ -77,7 +77,7 @@ export default function FooterOne() {
                 ].map((item) => (
                   <li key={item} style={{ marginBottom: "12px" }}>
                     <Link
-                      to="/papers"
+                      to="/resources"
                       className="text-white opac-70"
                       style={{ textDecoration: "none" }}
                     >
@@ -126,7 +126,7 @@ export default function FooterOne() {
                 Have a question or want to learn more about our programs? We'd love to hear from you.
               </p>
               <Link
-                to="/contact-1"
+                to="/contact"
                 className="button -md -green-1 text-dark-1"
               >
                 Contact Us

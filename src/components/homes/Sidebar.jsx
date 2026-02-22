@@ -129,7 +129,7 @@ export default function Sidebar() {
 
             <div className="">
               <Link
-                to="/contact-1"
+                to="/contact"
                 className="d-flex items-center justify-between py-15 px-20 rounded-16 text-16 lh-1 fw-500 -base-sidebar-menu-hover"
               >
                 Contact

@@ -129,7 +129,7 @@ const CategoriesHomeOne = ({ heading, description }) => {
                   return (
                     <SwiperSlide key={item.id}>
                       <Link
-                        to={`/papers?class=${encodeURIComponent(classNumber)}&subject=${encodeURIComponent(item.subject)}`}
+                        to={`/resources?class=${encodeURIComponent(classNumber)}&subject=${encodeURIComponent(item.subject)}`}
                         data-aos="fade-left"
                         data-aos-duration={(i + 1) * 350}
                         className="featureCard -type-1 -featureCard-hover linkCustomTwo"

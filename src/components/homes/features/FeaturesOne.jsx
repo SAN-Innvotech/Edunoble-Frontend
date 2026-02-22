@@ -58,7 +58,7 @@ export default function LearnNewSkill({ featuresData }) {
 
               <div className="d-inline-block mt-30">
                 <Link
-                  to="/papers"
+                  to="/resources"
                   className="button -md -purple-1 text-white"
                 >
                   {ctaButtonText}

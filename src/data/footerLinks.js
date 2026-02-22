@@ -7,7 +7,7 @@ export const footerLinks = [
       { href: "/instructor-become", label: "Careers" },
       { href: "/blog-list-1", label: "Press" },
       { href: "#", label: "Leadership" },
-      { href: "/contact-1", label: "Contact Us" },
+      { href: "/contact", label: "Contact Us" },
     ],
   },
   {
@@ -39,7 +39,7 @@ export const footerLinks = [
       { href: "/terms", label: "Documentation" },
       { href: "/help-center", label: "FAQs" },
       { href: "/dashboard", label: "Dashboard" },
-      { href: "/contact-1", label: "Contact" },
+      { href: "/contact", label: "Contact" },
     ],
   },
 ];

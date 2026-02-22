@@ -93,9 +93,9 @@ export default function Menu({ allClasses, headerPosition }) {
             <li>
               <Link
                 data-barba
-                to="/papers"
+                to="/resources"
                 className={
-                  pathname == "/papers" ? "activeMenu" : "inActiveMenuTwo"
+                  pathname == "/resources" ? "activeMenu" : "inActiveMenuTwo"
                 }
               >
                 Resources
@@ -468,9 +468,9 @@ export default function Menu({ allClasses, headerPosition }) {
             <li>
               <Link
                 data-barba
-                to="/contact-1"
+                to="/contact"
                 className={
-                  pathname == "/contact-1" ? "activeMenu" : "inActiveMenuTwo"
+                  pathname == "/contact" ? "activeMenu" : "inActiveMenuTwo"
                 }
               >
                 Contact

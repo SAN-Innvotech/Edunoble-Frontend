@@ -18,7 +18,7 @@ export default function CourseListThree() {
   
   // Initialize filters from URL parameters
   const getInitialFilters = () => {
-    const classParam = searchParams.get("class");
+    const classParam = searchParams.get("grade");
     const subjectParam = searchParams.get("subject");
     return {
       class: classParam ? [extractClassNumber(classParam)] : [],
@@ -277,7 +277,7 @@ export default function CourseListThree() {
 
                 <div>
                   <p className="page-header__text">
-                    Explore sample papers curated for Class 8th, 9th, 10th, 11th and 12th.
+                    Explore sample papers curated for Grade 8th, 9th, 10th, 11th and 12th.
                   </p>
                 </div>
               </div>
@@ -414,7 +414,7 @@ export default function CourseListThree() {
                     {/* Class Filter */}
                     <div className="col-xl-3 col-lg-4 col-sm-6">
                       <div className="sidebar__item">
-                        <h5 className="sidebar__title">Class</h5>
+                        <h5 className="sidebar__title">Grade</h5>
                         <div className="sidebar-checkbox">
                           <div
                             className="sidebar-checkbox__item cursor"
@@ -452,7 +452,7 @@ export default function CourseListThree() {
                                   </div>
                                 </div>
                                 <div className="sidebar-checkbox__title">
-                                  Class {cls.name}
+                                  Grade {cls.name}
                                 </div>
                                 <div className="sidebar-checkbox__count">
                                   ({cls.count})

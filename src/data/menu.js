@@ -131,7 +131,7 @@ export const menuList = [
       {
         title: "Contact",
         links: [
-          { href: "/contact-1", label: "Contact 1" },
+          { href: "/contact", label: "Contact" },
           { href: "/contact-2", label: "Contact 2" },
         ],
       },

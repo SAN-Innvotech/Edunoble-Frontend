@@ -79,9 +79,9 @@ export default function MobileMenu({ setActiveMobileMenu, activeMobileMenu }) {
             {/* Papers Link */}
             <div className="submenuOne">
               <Link
-                to="/papers"
+                to="/resources"
                 className={
-                  pathname == "/papers" ? "activeMenu link" : "link inActiveMenu"
+                  pathname == "/resources" ? "activeMenu link" : "link inActiveMenu"
                 }
                 onClick={() => setActiveMobileMenu(false)}
               >
@@ -118,9 +118,9 @@ export default function MobileMenu({ setActiveMobileMenu, activeMobileMenu }) {
             {/* Contact Link */}
             <div className="submenuOne">
               <Link
-                to="/contact-1"
+                to="/contact"
                 className={
-                  pathname == "/contact-1" ? "activeMenu link" : "link inActiveMenu"
+                  pathname == "/contact" ? "activeMenu link" : "link inActiveMenu"
                 }
                 onClick={() => setActiveMobileMenu(false)}
               >

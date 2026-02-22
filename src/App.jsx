@@ -121,7 +121,7 @@ function App() {
 
               {/* <Route path="courses-list-1" element={<CourseListPage1 />} /> */}
               {/* <Route path="courses-list-2" element={<CourseListPage2 />} /> */}
-              <Route path="papers" element={<CourseListPage3 />} />
+              <Route path="resources" element={<CourseListPage3 />} />
               {/* <Route path="courses-list-4" element={<CourseListPage4 />} /> */}
               {/* <Route path="courses-list-5" element={<CourseListPage5 />} /> */}
               {/* <Route path="courses-list-6" element={<CourseListPage6 />} /> */}
@@ -216,7 +216,7 @@ function App() {
               <Route path="about" element={<AboutPage />} />
               <Route path="vision" element={<VisionPage />} />
 
-              <Route path="contact-1" element={<ContactPage1 />} />
+              <Route path="contact" element={<ContactPage1 />} />
 
               <Route path="privacy-policy" element={<PrivacyPolicyPage />} />
               <Route path="terms-of-use"   element={<TermsOfUsePage />} />
