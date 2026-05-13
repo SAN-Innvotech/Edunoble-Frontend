@@ -23,7 +23,7 @@ export default function RelatedBlogs() {
             <div key={i} className="col-lg-3 col-md-6">
               <div className="blogCard -type-1">
                 <div className="blogCard__image">
-                  <img src={elm.imageSrc} alt="image" />
+                  <img src={elm.imageSrc} alt="image" loading="lazy" />
                 </div>
                 <div className="blogCard__content mt-20">
                   <div className="blogCard__category">

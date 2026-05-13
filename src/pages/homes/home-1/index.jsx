@@ -16,6 +16,7 @@ import Instructors from "@/components/common/Instructors";
 import GetApp from "@/components/homes/getApp/GetApp";
 import Blog from "@/components/homes/blogs/Blog";
 import Join from "@/components/homes/join/Join";
+import FaqsSection from "@/components/homes/faqs/FaqsSection";
 import FooterOne from "@/components/layout/footers/FooterOne";
 import Preloader from "@/components/common/Preloader";
 
@@ -121,6 +122,7 @@ export default function HomePage1() {
         {/* <GetApp /> */}
         {/* <Blog /> */}
         {/* <Join /> */}
+        <FaqsSection />
         <FooterOne />
       </div>
     </>

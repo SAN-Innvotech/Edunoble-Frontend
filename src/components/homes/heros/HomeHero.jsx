@@ -169,6 +169,37 @@ const HomeHero = ({ heroData }) => {
                 </div>
                 <div
                   data-aos="fade-up"
+                  data-aos-duration="250"
+                  style={{ marginTop: "20px" }}
+                >
+                  <Link
+                    to="/contact"
+                    style={{
+                      display: "inline-block",
+                      background: "#22C55E",
+                      color: "#fff",
+                      padding: "16px 32px",
+                      borderRadius: "8px",
+                      fontWeight: 700,
+                      fontSize: "16px",
+                      textDecoration: "none",
+                      boxShadow: "0 4px 14px rgba(34, 197, 94, 0.35)",
+                      transition: "background 0.2s ease, transform 0.2s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = "#16A34A";
+                      e.currentTarget.style.transform = "translateY(-1px)";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = "#22C55E";
+                      e.currentTarget.style.transform = "translateY(0)";
+                    }}
+                  >
+                    Book a Free Demo Class →
+                  </Link>
+                </div>
+                <div
+                  data-aos="fade-up"
                   data-aos-duration="300"
                   className="masthead-info row y-gap-15 sm:d-none"
                 >

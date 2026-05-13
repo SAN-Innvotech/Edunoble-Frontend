@@ -121,6 +121,7 @@ export default function BlogDetails({ id }) {
                         src="/assets/img/blog/blog-single/1.png"
                         alt="image"
                         className="w-1/1 initial-img rounded-8"
+                        loading="lazy"
                       />
                     </div>
                     <div className="col-sm-6">
@@ -128,6 +129,7 @@ export default function BlogDetails({ id }) {
                         src="/assets/img/blog/blog-single/2.png"
                         alt="image"
                         className="w-1/1 initial-img rounded-8"
+                        loading="lazy"
                       />
                     </div>
                   </div>

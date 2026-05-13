@@ -705,7 +705,7 @@ export default function CourseListFour() {
                   <div className="coursesCard -type-1 ">
                     <div className="relative">
                       <div className="coursesCard__image overflow-hidden rounded-8">
-                        <img className="w-1/1" src={elm.imageSrc} alt="image" />
+                        <img className="w-1/1" src={elm.imageSrc} alt="image" loading="lazy" />
                         <div className="coursesCard__image_overlay rounded-8"></div>
                       </div>
                       <div className="d-flex justify-between py-10 px-10 absolute-full-center z-3">
@@ -756,6 +756,7 @@ export default function CourseListFour() {
                             <img
                               src="/assets/img/coursesCards/icons/1.svg"
                               alt="icon"
+                              loading="lazy"
                             />
                           </div>
                           <div className="text-14 lh-1">
@@ -768,6 +769,7 @@ export default function CourseListFour() {
                             <img
                               src="/assets/img/coursesCards/icons/2.svg"
                               alt="icon"
+                              loading="lazy"
                             />
                           </div>
                           <div className="text-14 lh-1">{`${Math.floor(
@@ -780,6 +782,7 @@ export default function CourseListFour() {
                             <img
                               src="/assets/img/coursesCards/icons/3.svg"
                               alt="icon"
+                              loading="lazy"
                             />
                           </div>
                           <div className="text-14 lh-1">{elm.level}</div>
@@ -788,7 +791,7 @@ export default function CourseListFour() {
 
                       <div className="coursesCard-footer">
                         <div className="coursesCard-footer__author">
-                          <img src={elm.authorImageSrc} alt="image" />
+                          <img src={elm.authorImageSrc} alt="image" loading="lazy" />
                           <div>{elm.authorName}</div>
                         </div>
 

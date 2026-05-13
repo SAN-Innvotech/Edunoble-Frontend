@@ -13,6 +13,7 @@ const metadata = {
   title: "Sample Papers | EduNoble - Practice for Class 10, 11 & 12 Board Exams",
   description:
     "Browse and practice with free sample papers for Class 10, 11, and 12 students. CBSE, ICSE, and State Board sample papers available in a secure online viewing environment.",
+  canonical: "https://www.edunoble.in/resources",
 };
 
 export default function CourseListPage3() {

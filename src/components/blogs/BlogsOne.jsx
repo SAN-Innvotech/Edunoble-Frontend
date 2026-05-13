@@ -65,6 +65,7 @@ export default function BlogsOne() {
                             className="w-1/1 rounded-8"
                             src={elm.imageSrc}
                             alt="image"
+                            loading="lazy"
                           />
                         </div>
                         <div className="blogCard__content mt-20">

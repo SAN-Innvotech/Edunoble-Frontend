@@ -103,6 +103,7 @@ export default function VisionDynamic() {
                     <img
                       src={mainImg}
                       alt={item.title}
+                      loading="lazy"
                       style={{
                         gridColumn: "1",
                         gridRow: "1 / 3",
@@ -115,6 +116,7 @@ export default function VisionDynamic() {
                     <img
                       src={topImg}
                       alt=""
+                      loading="lazy"
                       style={{
                         gridColumn: "2",
                         gridRow: "1",
@@ -127,6 +129,7 @@ export default function VisionDynamic() {
                     <img
                       src={bottomImg}
                       alt=""
+                      loading="lazy"
                       style={{
                         gridColumn: "2",
                         gridRow: "2",

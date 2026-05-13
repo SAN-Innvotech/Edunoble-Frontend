@@ -7,6 +7,7 @@ import MetaComponent from "@/components/common/MetaComponent";
 const metadata = {
   title: "Cookie Policy || Edunoble",
   description: "Cookie Policy for Edunoble - Learn how we use cookies and similar technologies.",
+  canonical: "https://www.edunoble.in/cookie-policy",
 };
 
 const Section = ({ title, children }) => (
