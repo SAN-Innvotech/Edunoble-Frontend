@@ -6,24 +6,46 @@ import SearchToggle from "../component/SearchToggle";
 import Menu from "../component/Menu";
 import { Link } from "react-router-dom";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MobileMenu from "../component/MobileMenu";
 import { useContextElement } from "@/context/Context";
 
 export default function Header() {
   const [activeMobileMenu, setActiveMobileMenu] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { appLogo } = useContextElement();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const stickyStyle = {
+    position: "sticky",
+    top: 0,
+    zIndex: 1000,
+    backgroundColor: "var(--color-dark-1, #140342)",
+    boxShadow: isScrolled ? "0 2px 12px rgba(0,0,0,0.15)" : "none",
+    transition: "box-shadow 0.2s ease",
+  };
 
   return (
     <>
-      <header className="header -type-1 ">
+      <header
+        className={`header -type-1 ${isScrolled ? "header--scrolled" : ""}`}
+        style={stickyStyle}
+      >
         <div className="header__container">
           <div className="row justify-between items-center">
             <div className="col-auto">
               <div className="header-left">
                 <div className="header__logo" style={{ textAlign: "center" }}>
                   <Link to="/">
-                    <img src={appLogo} alt="logo" style={{ height: "40px", width: "auto", maxWidth: "130px", display: "block" }} />
+                    <img src={appLogo} alt="EduNoble - Where Learning Meets Direction" style={{ height: "40px", width: "auto", maxWidth: "130px", display: "block" }} />
                   </Link>
                   <span style={{ display: "block", fontSize: "10px", fontWeight: 600, color: "#00e5a0", letterSpacing: "0.5px", marginTop: "2px", lineHeight: 1 }}>✦ AI Powered</span>
                 </div>

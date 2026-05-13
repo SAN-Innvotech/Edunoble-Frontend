@@ -38,6 +38,7 @@ export default function BlogsTwo() {
                           className="w-1/1 rounded-8"
                           src={elm.imageSrc}
                           alt="image"
+                          loading="lazy"
                         />
                       </div>
                       <div className="blogCard__content mt-20">
@@ -123,7 +124,7 @@ export default function BlogsTwo() {
                         className="sidebar-recent d-flex items-center"
                       >
                         <div className="sidebar-recent__image mr-15">
-                          <img src={elm.imageSrc} alt="image" />
+                          <img src={elm.imageSrc} alt="image" loading="lazy" />
                         </div>
 
                         <div className="sidebar-recent__content">

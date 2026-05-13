@@ -11,6 +11,7 @@ const metadata = {
   title: "Contact Us | EduNoble - We'd Love to Hear From You",
   description:
     "Get in touch with EduNoble. Have questions about our sample papers, need support, or want to share feedback? Reach out and we'll get back to you.",
+  canonical: "https://www.edunoble.in/contact",
 };
 
 export default function ContactPage1() {

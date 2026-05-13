@@ -1476,6 +1476,7 @@ export default function CourseListOne() {
                               className="w-1/1"
                               src={elm.imageSrc}
                               alt="image"
+                              loading="lazy"
                             />
                             <div className="coursesCard__image_overlay rounded-8"></div>
                           </div>
@@ -1530,6 +1531,7 @@ export default function CourseListOne() {
                                 <img
                                   src="/assets/img/coursesCards/icons/1.svg"
                                   alt="icon"
+                                  loading="lazy"
                                 />
                               </div>
                               <div className="text-14 lh-1">
@@ -1542,6 +1544,7 @@ export default function CourseListOne() {
                                 <img
                                   src="/assets/img/coursesCards/icons/2.svg"
                                   alt="icon"
+                                  loading="lazy"
                                 />
                               </div>
                               <div className="text-14 lh-1">{`${Math.floor(
@@ -1554,6 +1557,7 @@ export default function CourseListOne() {
                                 <img
                                   src="/assets/img/coursesCards/icons/3.svg"
                                   alt="icon"
+                                  loading="lazy"
                                 />
                               </div>
                               <div className="text-14 lh-1">{elm.level}</div>
@@ -1562,7 +1566,7 @@ export default function CourseListOne() {
 
                           <div className="coursesCard-footer">
                             <div className="coursesCard-footer__author">
-                              <img src={elm.authorImageSrc} alt="image" />
+                              <img src={elm.authorImageSrc} alt="image" loading="lazy" />
                               <div>{elm.authorName}</div>
                             </div>
 
@@ -1596,6 +1600,7 @@ export default function CourseListOne() {
                                   className="mr-8"
                                   src="/assets/img/coursesCards/icons/1.svg"
                                   alt="icon"
+                                  loading="lazy"
                                 />
                                 <div className="text-14 lh-1">
                                   {elm.lessonCount} lesson
@@ -1609,6 +1614,7 @@ export default function CourseListOne() {
                                   className="mr-8"
                                   src="/assets/img/coursesCards/icons/2.svg"
                                   alt="icon"
+                                  loading="lazy"
                                 />
                                 <div className="text-14 lh-1">{`${Math.floor(
                                   elm.duration / 60,
@@ -1622,6 +1628,7 @@ export default function CourseListOne() {
                                   className="mr-8"
                                   src="/assets/img/coursesCards/icons/3.svg"
                                   alt="icon"
+                                  loading="lazy"
                                 />
                                 <div className="text-14 lh-1">{elm.level}</div>
                               </div>

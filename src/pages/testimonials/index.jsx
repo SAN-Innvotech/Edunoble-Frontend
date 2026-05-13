@@ -10,11 +10,13 @@ const metadata = {
   title: "Testimonials | EduNoble - What Students & Teachers Say",
   description:
     "Read what students, parents, and teachers say about EduNoble's sample papers. Real experiences from Grade 10, 11 and 12 learners preparing smarter for board exams.",
+  canonical: "https://www.edunoble.in/testimonials",
 };
 
 export default function TestimonialsPage() {
   const { homepageData } = useHomepageData();
   const [testimonials, setTestimonials] = useState([]);
+  const [rawTestimonials, setRawTestimonials] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -24,16 +26,17 @@ export default function TestimonialsPage() {
         if (!response.ok) throw new Error("Failed to fetch");
         const result = await response.json();
         if (result.isSuccess && result.data) {
-          const mapped = result.data
+          const filtered = result.data
             .filter((item) => item.isActive !== false)
-            .sort((a, b) => (a.order || 0) - (b.order || 0))
-            .map((item) => ({
-              id: item._id,
-              name: item.authorName,
-              position: item.authorDetails,
-              comment: item.heading,
-              description: item.quote,
-            }));
+            .sort((a, b) => (a.order || 0) - (b.order || 0));
+          const mapped = filtered.map((item) => ({
+            id: item._id,
+            name: item.authorName,
+            position: item.authorDetails,
+            comment: item.heading,
+            description: item.quote,
+          }));
+          setRawTestimonials(filtered);
           setTestimonials(mapped);
         }
       } catch (err) {
@@ -44,6 +47,37 @@ export default function TestimonialsPage() {
     };
     fetchTestimonials();
   }, []);
+
+  // Inject Review JSON-LD once testimonials are loaded
+  useEffect(() => {
+    if (!rawTestimonials || rawTestimonials.length === 0) return;
+
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "EduNoble",
+      "url": "https://www.edunoble.in",
+      "review": rawTestimonials.map((t) => ({
+        "@type": "Review",
+        "reviewBody": t.quote,
+        "author": { "@type": "Person", "name": t.authorName },
+        "itemReviewed": { "@type": "EducationalOrganization", "name": "EduNoble" },
+      })),
+    };
+
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.id = "testimonials-jsonld";
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+
+    return () => {
+      const existing = document.getElementById("testimonials-jsonld");
+      if (existing && existing.parentNode) {
+        existing.parentNode.removeChild(existing);
+      }
+    };
+  }, [rawTestimonials]);
 
   const heading = homepageData?.studentsSay?.heading || "From Confusion to Clarity";
   const description =

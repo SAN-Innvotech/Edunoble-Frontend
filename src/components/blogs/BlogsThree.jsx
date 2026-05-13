@@ -40,6 +40,7 @@ export default function BlogsThree() {
                           className="rounded-8"
                           src={elm.imageSrc}
                           alt="image"
+                          loading="lazy"
                         />
                       </div>
                     </div>

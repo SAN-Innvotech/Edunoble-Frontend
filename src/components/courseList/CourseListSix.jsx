@@ -1424,6 +1424,7 @@ export default function CourseListSix() {
                             className="w-1/1 rounded-8"
                             src={elm.imageSrc}
                             alt="image"
+                            loading="lazy"
                           />
                           <div className="coursesCard__image_overlay rounded-8"></div>
                         </div>
@@ -1455,7 +1456,7 @@ export default function CourseListSix() {
                         <div className="row x-gap-10 y-gap-10 items-center pt-10">
                           <div className="col-auto">
                             <div className="d-flex items-center">
-                              <img src={elm.authorImageSrc} alt="image" />
+                              <img src={elm.authorImageSrc} alt="image" loading="lazy" />
                               <div className="ml-10">{elm.authorName}</div>
                             </div>
                           </div>
@@ -1466,6 +1467,7 @@ export default function CourseListSix() {
                                 className="mr-8"
                                 src="/assets/img/coursesCards/icons/1.svg"
                                 alt="icon"
+                                loading="lazy"
                               />
                               <div className="text-14 lh-1">
                                 {elm.lessonCount} lesson
@@ -1479,6 +1481,7 @@ export default function CourseListSix() {
                                 className="mr-8"
                                 src="/assets/img/coursesCards/icons/2.svg"
                                 alt="icon"
+                                loading="lazy"
                               />
                               <div className="text-14 lh-1">{`${Math.floor(
                                 elm.duration / 60,
@@ -1492,6 +1495,7 @@ export default function CourseListSix() {
                                 className="mr-8"
                                 src="/assets/img/coursesCards/icons/3.svg"
                                 alt="icon"
+                                loading="lazy"
                               />
                               <div className="text-14 lh-1">{elm.level}</div>
                             </div>

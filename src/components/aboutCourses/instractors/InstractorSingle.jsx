@@ -50,6 +50,7 @@ export default function InstractorSingle({ id }) {
                       "/assets/img/Instructors-single/1.png"
                     }
                     alt="image"
+                    loading="lazy"
                   />
                 </div>
 
@@ -185,6 +186,7 @@ export default function InstractorSingle({ id }) {
                                   className="w-1/1"
                                   src={elm.imageSrc}
                                   alt="image"
+                                  loading="lazy"
                                 />
                                 <div className="coursesCard__image_overlay rounded-top-8"></div>
                               </div>
@@ -238,6 +240,7 @@ export default function InstractorSingle({ id }) {
                                     <img
                                       src="/assets/img/coursesCards/icons/1.svg"
                                       alt="icon"
+                                      loading="lazy"
                                     />
                                   </div>
                                   <div className="text-14 lh-1">
@@ -250,6 +253,7 @@ export default function InstractorSingle({ id }) {
                                     <img
                                       src="/assets/img/coursesCards/icons/2.svg"
                                       alt="icon"
+                                      loading="lazy"
                                     />
                                   </div>
                                   <div className="text-14 lh-1">{`${Math.floor(
@@ -262,6 +266,7 @@ export default function InstractorSingle({ id }) {
                                     <img
                                       src="/assets/img/coursesCards/icons/3.svg"
                                       alt="icon"
+                                      loading="lazy"
                                     />
                                   </div>
                                   <div className="text-14 lh-1">
@@ -272,7 +277,7 @@ export default function InstractorSingle({ id }) {
 
                               <div className="coursesCard-footer">
                                 <div className="coursesCard-footer__author">
-                                  <img src={elm.authorImageSrc} alt="image" />
+                                  <img src={elm.authorImageSrc} alt="image" loading="lazy" />
                                   <div>Ali Tufa{elm.authorName}</div>
                                 </div>
 

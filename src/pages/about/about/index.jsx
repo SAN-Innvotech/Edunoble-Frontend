@@ -9,6 +9,7 @@ const metadata = {
   title: "About Us | EduNoble - Who We Are & Our Mission",
   description:
     "Learn more about EduNoble - a leading educational platform providing high-quality sample papers and study materials for students across various boards.",
+  canonical: "https://www.edunoble.in/about",
 };
 
 export default function AboutPage() {

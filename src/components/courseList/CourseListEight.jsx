@@ -771,6 +771,7 @@ export default function CourseListEight() {
                         className="w-1/1 rounded-8"
                         src={elm.imageSrc}
                         alt="image"
+                        loading="lazy"
                       />
                     </div>
 
@@ -800,6 +801,7 @@ export default function CourseListEight() {
                             <img
                               src="/assets/img/coursesCards/icons/1.svg"
                               alt="icon"
+                              loading="lazy"
                             />
                           </div>
                           <div className="text-14 lh-1 text-light-1">
@@ -812,6 +814,7 @@ export default function CourseListEight() {
                             <img
                               src="/assets/img/coursesCards/icons/2.svg"
                               alt="icon"
+                              loading="lazy"
                             />
                           </div>
                           <div className="text-14 lh-1 text-light-1">{`${Math.floor(
@@ -824,6 +827,7 @@ export default function CourseListEight() {
                             <img
                               src="/assets/img/coursesCards/icons/3.svg"
                               alt="icon"
+                              loading="lazy"
                             />
                           </div>
                           <div className="text-14 lh-1 text-light-1">
@@ -834,7 +838,7 @@ export default function CourseListEight() {
 
                       <div className="d-flex justify-between items-center pt-10 border-top-light">
                         <div className="d-flex items-center">
-                          <img src={elm.authorImageSrc} alt="image" />
+                          <img src={elm.authorImageSrc} alt="image" loading="lazy" />
                           <div className="text-light-1 ml-10">
                             {elm.authorName}
                           </div>

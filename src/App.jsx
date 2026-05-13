@@ -91,6 +91,8 @@ import PrivacyPolicyPage from "./pages/others/privacy-policy";
 import TermsOfUsePage from "./pages/others/terms-of-use";
 import CookiePolicyPage from "./pages/others/cookie-policy";
 import CookieConsent from "./components/common/CookieConsent";
+import WhatsAppButton from "./components/common/WhatsAppButton";
+import LeadCaptureModal from "./components/common/LeadCaptureModal";
 
 function App() {
   useEffect(() => {
@@ -243,6 +245,8 @@ function App() {
           </Routes>
           <ScrollTopBehaviour />
           <CookieConsent />
+          <WhatsAppButton />
+          <LeadCaptureModal />
         </BrowserRouter>
       </Context>
     </>

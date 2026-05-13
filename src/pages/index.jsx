@@ -8,6 +8,7 @@ const metadata = {
     "EduNoble - Where Learning Meets Direction Offline & Online academic mastery for ambitious minds",
   description:
     "Empowered with personalized career guidance..",
+  canonical: "https://www.edunoble.in/",
 };
 
 export default function index() {

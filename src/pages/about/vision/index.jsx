@@ -9,6 +9,7 @@ const metadata = {
   title: "Our Vision | EduNoble - Empowering Student Excellence",
   description:
     "Discover EduNoble's vision — empowering every student to achieve academic excellence through smart, structured practice with high-quality sample papers.",
+  canonical: "https://www.edunoble.in/vision",
 };
 
 export default function VisionPage() {

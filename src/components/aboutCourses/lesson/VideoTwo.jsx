@@ -10,6 +10,7 @@ export default function VideoTwo() {
           className="w-1/1 rounded-16"
           src="/assets/img/lesson-single/1.png"
           alt="image"
+          loading="lazy"
         />
         <div className="absolute-full-center d-flex justify-center items-center">
           <span
