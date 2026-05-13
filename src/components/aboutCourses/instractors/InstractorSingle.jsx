@@ -49,7 +49,7 @@ export default function InstractorSingle({ id }) {
                       pageItem.imageSrc ||
                       "/assets/img/Instructors-single/1.png"
                     }
-                    alt="image"
+                    alt={`${pageItem.name} - EduNoble instructor`}
                     loading="lazy"
                   />
                 </div>
@@ -185,7 +185,7 @@ export default function InstractorSingle({ id }) {
                                 <img
                                   className="w-1/1"
                                   src={elm.imageSrc}
-                                  alt="image"
+                                  alt={elm.title || "EduNoble course thumbnail"}
                                   loading="lazy"
                                 />
                                 <div className="coursesCard__image_overlay rounded-top-8"></div>
@@ -277,7 +277,7 @@ export default function InstractorSingle({ id }) {
 
                               <div className="coursesCard-footer">
                                 <div className="coursesCard-footer__author">
-                                  <img src={elm.authorImageSrc} alt="image" loading="lazy" />
+                                  <img src={elm.authorImageSrc} alt={`${elm.authorName || "Author"} - EduNoble instructor`} loading="lazy" />
                                   <div>Ali Tufa{elm.authorName}</div>
                                 </div>
 

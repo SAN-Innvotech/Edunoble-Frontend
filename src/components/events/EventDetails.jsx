@@ -150,7 +150,7 @@ export default function EventDetails({ id }) {
                   {instractorsNine.slice(0, 4).map((elm, i) => (
                     <div key={i} className="col-lg-3 col-md-6">
                       <div className="text-center">
-                        <img src={elm.image} alt="image" />
+                        <img src={elm.image} alt={`${elm.name || "Speaker"} - EduNoble speaker`} />
                         <h5 className="text-17 fw-500 mt-20">
                           <Link
                             className="linkCustom"

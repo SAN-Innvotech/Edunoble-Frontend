@@ -14,6 +14,7 @@ const metadata = {
   description:
     "Browse and practice with free sample papers for Class 10, 11, and 12 students. CBSE, ICSE, and State Board sample papers available in a secure online viewing environment.",
   canonical: "https://www.edunoble.in/resources",
+  ogImage: "https://www.edunoble.in/og/resources.png",
 };
 
 export default function CourseListPage3() {

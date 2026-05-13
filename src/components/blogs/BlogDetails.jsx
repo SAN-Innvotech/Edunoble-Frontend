@@ -119,7 +119,7 @@ export default function BlogDetails({ id }) {
                     <div className="col-sm-6">
                       <img
                         src="/assets/img/blog/blog-single/1.png"
-                        alt="image"
+                        alt="EduNoble blog illustration"
                         className="w-1/1 initial-img rounded-8"
                         loading="lazy"
                       />
@@ -127,7 +127,7 @@ export default function BlogDetails({ id }) {
                     <div className="col-sm-6">
                       <img
                         src="/assets/img/blog/blog-single/2.png"
-                        alt="image"
+                        alt="EduNoble blog illustration"
                         className="w-1/1 initial-img rounded-8"
                         loading="lazy"
                       />

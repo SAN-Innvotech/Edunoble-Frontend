@@ -39,7 +39,7 @@ export default function BlogsThree() {
                         <img
                           className="rounded-8"
                           src={elm.imageSrc}
-                          alt="image"
+                          alt={elm.title || "EduNoble blog post"}
                           loading="lazy"
                         />
                       </div>

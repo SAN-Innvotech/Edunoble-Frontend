@@ -218,7 +218,7 @@ export default function Instractors() {
                 <div key={i} className="col-lg-3 col-md-6">
                   <div className="teamCard -type-1">
                     <div className="teamCard__image">
-                      <img src={elm.image} alt="image" loading="lazy" />
+                      <img src={elm.image} alt={`${elm.name} - EduNoble instructor`} loading="lazy" />
                     </div>
                     <div className="teamCard__content">
                       <h4 className="teamCard__title">

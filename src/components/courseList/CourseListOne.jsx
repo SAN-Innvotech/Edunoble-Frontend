@@ -1475,7 +1475,7 @@ export default function CourseListOne() {
                             <img
                               className="w-1/1"
                               src={elm.imageSrc}
-                              alt="image"
+                              alt={elm.title || "EduNoble course thumbnail"}
                               loading="lazy"
                             />
                             <div className="coursesCard__image_overlay rounded-8"></div>
@@ -1566,7 +1566,7 @@ export default function CourseListOne() {
 
                           <div className="coursesCard-footer">
                             <div className="coursesCard-footer__author">
-                              <img src={elm.authorImageSrc} alt="image" loading="lazy" />
+                              <img src={elm.authorImageSrc} alt={`${elm.authorName || "Author"} - EduNoble instructor`} loading="lazy" />
                               <div>{elm.authorName}</div>
                             </div>
 

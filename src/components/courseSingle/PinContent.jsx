@@ -36,7 +36,7 @@ export default function PinContent({ pageItem }) {
           className="bg-white shadow-2 rounded-8 border-light py-10 px-10"
         >
           <div className="relative">
-            <img className="w-1/1" src={pageItem.imageSrc} alt="image" />
+            <img className="w-1/1" src={pageItem.imageSrc} alt={pageItem.title || "EduNoble course preview"} />
             <div className="absolute-full-center d-flex justify-center items-center">
               <div
                 onClick={() => setIsOpen(true)}

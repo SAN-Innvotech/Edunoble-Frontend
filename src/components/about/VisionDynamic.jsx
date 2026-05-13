@@ -115,7 +115,7 @@ export default function VisionDynamic() {
                     />
                     <img
                       src={topImg}
-                      alt=""
+                      alt={`${item.title} - EduNoble`}
                       loading="lazy"
                       style={{
                         gridColumn: "2",
@@ -128,7 +128,7 @@ export default function VisionDynamic() {
                     />
                     <img
                       src={bottomImg}
-                      alt=""
+                      alt={`EduNoble ${item.title} illustration`}
                       loading="lazy"
                       style={{
                         gridColumn: "2",
@@ -169,6 +169,35 @@ export default function VisionDynamic() {
             </div>
           );
         })}
+
+        {/* Contextual cross-references to related EduNoble pages */}
+        <div
+          style={{
+            marginTop: "80px",
+            paddingTop: "40px",
+            borderTop: "1px solid #eee",
+            textAlign: "center",
+            color: "#555",
+            fontSize: "15px",
+            lineHeight: 1.85,
+          }}
+        >
+          <h3
+            style={{
+              fontSize: "18px",
+              fontWeight: 600,
+              color: "#1a1050",
+              marginBottom: "12px",
+            }}
+          >
+            Discover more about EduNoble
+          </h3>
+          <p style={{ margin: 0 }}>
+            Read more <Link to="/about" style={{ color: "#6c3fc5", fontWeight: 500 }}>about who we are</Link>,{" "}
+            see <Link to="/testimonials" style={{ color: "#6c3fc5", fontWeight: 500 }}>what our students say</Link>,{" "}
+            or <Link to="/contact" style={{ color: "#6c3fc5", fontWeight: 500 }}>reach out to our team</Link>.
+          </p>
+        </div>
       </div>
     </section>
   );

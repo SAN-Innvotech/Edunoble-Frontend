@@ -397,7 +397,7 @@ export default function InatractorsTwo() {
                     <div key={i} className="col-lg-4 col-md-6">
                       <div className="teamCard -type-1 px-10 py-10 rounded-8 border-light">
                         <div className="teamCard__image">
-                          <img src={elm.image} alt="image" loading="lazy" />
+                          <img src={elm.image} alt={`${elm.name} - EduNoble instructor`} loading="lazy" />
                         </div>
                         <div className="teamCard__content mt-10 px-10 pb-5">
                           <h4 className="teamCard__title">

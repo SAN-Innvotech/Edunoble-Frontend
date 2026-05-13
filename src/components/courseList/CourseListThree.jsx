@@ -1,6 +1,6 @@
 import { samplePaperSortingOptions } from "@/data/courses";
 import React, { useState, useEffect, useCallback } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import PaginationTwo from "../common/PaginationTwo";
 import SamplePaperCard from "../homes/courseCards/SamplePaperCard";
 import { getApiUrl } from "@/config/api";
@@ -705,6 +705,16 @@ export default function CourseListThree() {
               </div>
             </>
           )}
+
+          {/* Contextual cross-references to related EduNoble pages */}
+          <div className="text-center pt-60 mt-40 border-top-light">
+            <h5 className="text-16 fw-500 mb-10">See also</h5>
+            <p className="text-14 lh-18">
+              Learn more <Link to="/about" className="text-purple-1 fw-500">about EduNoble</Link>,{" "}
+              hear from <Link to="/testimonials" className="text-purple-1 fw-500">our students and parents</Link>,{" "}
+              or <Link to="/contact" className="text-purple-1 fw-500">contact our team</Link> for help.
+            </p>
+          </div>
         </div>
       </section>
     </>

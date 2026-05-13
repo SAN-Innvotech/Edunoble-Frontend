@@ -10,6 +10,7 @@ const metadata = {
   description:
     "Discover EduNoble's vision — empowering every student to achieve academic excellence through smart, structured practice with high-quality sample papers.",
   canonical: "https://www.edunoble.in/vision",
+  ogImage: "https://www.edunoble.in/og/vision.png",
 };
 
 export default function VisionPage() {

@@ -818,7 +818,7 @@ export default function CourseListTwo() {
                             <img
                               className="w-1/1"
                               src={elm.imageSrc}
-                              alt="image"
+                              alt={elm.title || "EduNoble course thumbnail"}
                             />
                             <div className="coursesCard__image_overlay rounded-8"></div>
                           </div>
@@ -905,7 +905,7 @@ export default function CourseListTwo() {
 
                           <div className="coursesCard-footer">
                             <div className="coursesCard-footer__author">
-                              <img src={elm.authorImageSrc} alt="image" />
+                              <img src={elm.authorImageSrc} alt={`${elm.authorName || "Author"} - EduNoble instructor`} />
                               <div>{elm.authorName}</div>
                             </div>
 

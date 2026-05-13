@@ -47,7 +47,7 @@ export default function HeroNine() {
         <img
           style={{ width: "100%" }}
           src="/assets/img/home-9/hero/bg.png"
-          alt="image"
+          alt="EduNoble homepage hero background"
         />
       </div>
 
@@ -186,7 +186,7 @@ export default function HeroNine() {
                   data-move="20"
                   className="js-mouse-move"
                   src="/assets/img/home-9/hero/1.png"
-                  alt="image"
+                  alt="EduNoble students learning"
                 />
               </div>
 

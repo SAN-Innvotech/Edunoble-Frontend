@@ -11,7 +11,7 @@ export default function Instractor() {
             <img
               className="object-cover"
               src="/assets/img/misc/verified/1.png"
-              alt="image"
+              alt="Floyd Miles - EduNoble instructor"
             />
           </div>
 

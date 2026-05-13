@@ -64,7 +64,7 @@ export default function BlogsOne() {
                           <img
                             className="w-1/1 rounded-8"
                             src={elm.imageSrc}
-                            alt="image"
+                            alt={elm.title || "EduNoble blog post"}
                             loading="lazy"
                           />
                         </div>

@@ -14,7 +14,7 @@ export default function FooterFour() {
           <div className="row y-gap-20 justify-between items-center">
             <div className="col-auto">
               <div className="footer-header__logo">
-                <img src="/assets/img/general/logo-dark.svg" alt="logo" />
+                <img src="/assets/img/general/logo-dark.svg" alt="EduNoble - Where Learning Meets Direction" />
               </div>
             </div>
             <div className="col-auto">

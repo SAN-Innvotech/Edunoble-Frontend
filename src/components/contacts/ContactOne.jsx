@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 import { contactData } from "@/data/contactLinks";
 import { getApiUrl } from "@/config/api";
@@ -98,6 +99,16 @@ export default function ContactOne() {
                     </div>
                   </div>
                 ))}
+              </div>
+
+              {/* Contextual cross-references to related EduNoble pages */}
+              <div className="pt-40 mt-30 border-top-light">
+                <h5 className="text-16 fw-500 mb-10">See also</h5>
+                <p className="text-14 lh-18">
+                  Learn more <Link to="/about" className="text-purple-1 fw-500">about EduNoble</Link>,{" "}
+                  read <Link to="/testimonials" className="text-purple-1 fw-500">student testimonials</Link>,{" "}
+                  or browse our <Link to="/resources" className="text-purple-1 fw-500">sample paper resources</Link>.
+                </p>
               </div>
             </div>
 

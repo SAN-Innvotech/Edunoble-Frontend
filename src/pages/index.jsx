@@ -9,6 +9,7 @@ const metadata = {
   description:
     "Empowered with personalized career guidance..",
   canonical: "https://www.edunoble.in/",
+  ogImage: "https://www.edunoble.in/og/home.png",
 };
 
 export default function index() {

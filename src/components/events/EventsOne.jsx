@@ -63,7 +63,7 @@ export default function EventsOne() {
                     <div key={i} className="col-lg-4 col-md-6">
                       <div className="eventCard -type-1">
                         <div className="eventCard__img">
-                          <img src={elm.imgSrc} alt="image" />
+                          <img src={elm.imgSrc} alt={elm.title || "EduNoble event"} />
                         </div>
 
                         <div className="eventCard__bg bg-white">

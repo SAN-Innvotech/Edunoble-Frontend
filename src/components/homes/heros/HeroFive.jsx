@@ -48,7 +48,7 @@ export default function HeroFive() {
             data-aos-delay="750"
           >
             <div className="masthead__image">
-              <img src="/assets/img/home-5/masthead/bg.svg" alt="image" />
+              <img src="/assets/img/home-5/masthead/bg.svg" alt="EduNoble homepage hero illustration" />
             </div>
           </div>
         </div>

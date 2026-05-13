@@ -60,7 +60,7 @@ export default function HeroEight() {
 
           <div className="col-lg-6 " data-aos="fade-up" data-aos-delay="750">
             <div className="masthead__image">
-              <img src="/assets/img/home-8/hero/image.png" alt="image" />
+              <img src="/assets/img/home-8/hero/image.png" alt="EduNoble students learning" />
             </div>
           </div>
         </div>
