@@ -147,9 +147,17 @@ const HomeHero = ({ heroData }) => {
                   className="masthead__buttons row x-gap-10 y-gap-10"
                 >
                   <div className="col-12 col-sm-auto">
+                    <Link
+                      to="/contact"
+                      className="button -md -green-1 text-dark-1"
+                    >
+                      Book a Free Demo Class
+                    </Link>
+                  </div>
+                  <div className="col-12 col-sm-auto">
                     <a
                       href="#courses-section"
-                      className="button -md -green-1 text-dark-1"
+                      className="button -md -outline-green-1 text-green-1"
                       onClick={(e) => {
                         e.preventDefault();
                         document.getElementById("courses-section")?.scrollIntoView({ behavior: "smooth" });
@@ -166,37 +174,6 @@ const HomeHero = ({ heroData }) => {
                       Career Counseling
                     </a>
                   </div>
-                </div>
-                <div
-                  data-aos="fade-up"
-                  data-aos-duration="250"
-                  style={{ marginTop: "20px" }}
-                >
-                  <Link
-                    to="/contact"
-                    style={{
-                      display: "inline-block",
-                      background: "#22C55E",
-                      color: "#fff",
-                      padding: "16px 32px",
-                      borderRadius: "8px",
-                      fontWeight: 700,
-                      fontSize: "16px",
-                      textDecoration: "none",
-                      boxShadow: "0 4px 14px rgba(34, 197, 94, 0.35)",
-                      transition: "background 0.2s ease, transform 0.2s ease",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = "#16A34A";
-                      e.currentTarget.style.transform = "translateY(-1px)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = "#22C55E";
-                      e.currentTarget.style.transform = "translateY(0)";
-                    }}
-                  >
-                    Book a Free Demo Class →
-                  </Link>
                 </div>
                 <div
                   data-aos="fade-up"
