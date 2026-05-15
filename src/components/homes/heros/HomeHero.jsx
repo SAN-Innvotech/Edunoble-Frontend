@@ -144,36 +144,39 @@ const HomeHero = ({ heroData }) => {
                 <div
                   data-aos="fade-up"
                   data-aos-duration="200"
-                  className="masthead__buttons row x-gap-10 y-gap-10"
+                  className="masthead__buttons"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "12px",
+                    maxWidth: "320px",
+                  }}
                 >
-                  <div className="col-12 col-sm-auto">
-                    <Link
-                      to="/contact"
-                      className="button -md -green-1 text-dark-1"
-                    >
-                      Book a Free Demo Class
-                    </Link>
-                  </div>
-                  <div className="col-12 col-sm-auto">
-                    <a
-                      href="#courses-section"
-                      className="button -md -outline-green-1 text-green-1"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        document.getElementById("courses-section")?.scrollIntoView({ behavior: "smooth" });
-                      }}
-                    >
-                      Explore Courses
-                    </a>
-                  </div>
-                  <div className="col-12 col-sm-auto">
-                    <a
-                      href="tel:8878868600"
-                      className="button -md -outline-green-1 text-green-1"
-                    >
-                      Career Counseling
-                    </a>
-                  </div>
+                  <Link
+                    to="/contact"
+                    className="button -md -green-1 text-dark-1"
+                    style={{ width: "100%" }}
+                  >
+                    Book a Free Demo Class
+                  </Link>
+                  <a
+                    href="#courses-section"
+                    className="button -md -outline-green-1 text-green-1"
+                    style={{ width: "100%" }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      document.getElementById("courses-section")?.scrollIntoView({ behavior: "smooth" });
+                    }}
+                  >
+                    Explore Courses
+                  </a>
+                  <a
+                    href="tel:8878868600"
+                    className="button -md -outline-green-1 text-green-1"
+                    style={{ width: "100%" }}
+                  >
+                    Career Counseling
+                  </a>
                 </div>
                 <div
                   data-aos="fade-up"
