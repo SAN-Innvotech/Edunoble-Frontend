@@ -105,6 +105,42 @@ export default function Menu({ allClasses, headerPosition }) {
             <li>
               <Link
                 data-barba
+                to="/courses"
+                className={
+                  pathname.startsWith("/courses") ? "activeMenu" : "inActiveMenuTwo"
+                }
+              >
+                Courses
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                data-barba
+                to="/blog"
+                className={
+                  pathname.startsWith("/blog") ? "activeMenu" : "inActiveMenuTwo"
+                }
+              >
+                Blog
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                data-barba
+                to="/results"
+                className={
+                  pathname == "/results" ? "activeMenu" : "inActiveMenuTwo"
+                }
+              >
+                Results
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                data-barba
                 to="/about"
                 className={
                   pathname == "/about" ? "activeMenu" : "inActiveMenuTwo"

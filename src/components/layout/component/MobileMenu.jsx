@@ -82,6 +82,45 @@ export default function MobileMenu({ setActiveMobileMenu, activeMobileMenu }) {
               </Link>
             </div>
 
+            {/* Courses Link */}
+            <div className="submenuOne">
+              <Link
+                to="/courses"
+                className={
+                  pathname.startsWith("/courses") ? "activeMenu link" : "link inActiveMenu"
+                }
+                onClick={() => setActiveMobileMenu(false)}
+              >
+                Courses
+              </Link>
+            </div>
+
+            {/* Blog Link */}
+            <div className="submenuOne">
+              <Link
+                to="/blog"
+                className={
+                  pathname.startsWith("/blog") ? "activeMenu link" : "link inActiveMenu"
+                }
+                onClick={() => setActiveMobileMenu(false)}
+              >
+                Blog
+              </Link>
+            </div>
+
+            {/* Results Link */}
+            <div className="submenuOne">
+              <Link
+                to="/results"
+                className={
+                  pathname == "/results" ? "activeMenu link" : "link inActiveMenu"
+                }
+                onClick={() => setActiveMobileMenu(false)}
+              >
+                Results
+              </Link>
+            </div>
+
             {/* About Link */}
             <div className="submenuOne">
               <Link
