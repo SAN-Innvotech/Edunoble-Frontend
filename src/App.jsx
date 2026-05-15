@@ -93,6 +93,11 @@ import CookiePolicyPage from "./pages/others/cookie-policy";
 import CookieConsent from "./components/common/CookieConsent";
 import WhatsAppButton from "./components/common/WhatsAppButton";
 import LeadCaptureModal from "./components/common/LeadCaptureModal";
+import CoursesListPage from "./pages/courses/courses-list";
+import CourseDetailPage from "./pages/courses/course-detail";
+import BlogListPage from "./pages/blog/blog-list";
+import BlogDetailPage from "./pages/blog/blog-detail";
+import ResultsPage from "./pages/results";
 
 function App() {
   useEffect(() => {
@@ -125,6 +130,11 @@ function App() {
               {/* <Route path="courses-list-1" element={<CourseListPage1 />} /> */}
               {/* <Route path="courses-list-2" element={<CourseListPage2 />} /> */}
               <Route path="resources" element={<CourseListPage3 />} />
+              <Route path="courses" element={<CoursesListPage />} />
+              <Route path="courses/:slug" element={<CourseDetailPage />} />
+              <Route path="blog" element={<BlogListPage />} />
+              <Route path="blog/:slug" element={<BlogDetailPage />} />
+              <Route path="results" element={<ResultsPage />} />
               {/* <Route path="courses-list-4" element={<CourseListPage4 />} /> */}
               {/* <Route path="courses-list-5" element={<CourseListPage5 />} /> */}
               {/* <Route path="courses-list-6" element={<CourseListPage6 />} /> */}
