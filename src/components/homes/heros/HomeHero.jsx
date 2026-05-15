@@ -145,14 +145,14 @@ const HomeHero = ({ heroData }) => {
                   data-aos="fade-up"
                   data-aos-duration="200"
                   className="masthead__buttons"
-                  style={{ maxWidth: "400px" }}
+                  style={{ maxWidth: "500px" }}
                 >
                   <div className="row x-gap-10 y-gap-10">
                     <div className="col-12">
                       <Link
                         to="/contact"
                         className="button -md -green-1 text-dark-1"
-                        style={{ width: "100%" }}
+                        style={{ width: "100%", whiteSpace: "nowrap" }}
                       >
                         Book a Free Demo Class
                       </Link>
@@ -161,7 +161,7 @@ const HomeHero = ({ heroData }) => {
                       <a
                         href="#courses-section"
                         className="button -md -outline-green-1 text-green-1"
-                        style={{ width: "100%" }}
+                        style={{ width: "100%", whiteSpace: "nowrap" }}
                         onClick={(e) => {
                           e.preventDefault();
                           document.getElementById("courses-section")?.scrollIntoView({ behavior: "smooth" });
@@ -174,7 +174,7 @@ const HomeHero = ({ heroData }) => {
                       <a
                         href="tel:8878868600"
                         className="button -md -outline-green-1 text-green-1"
-                        style={{ width: "100%" }}
+                        style={{ width: "100%", whiteSpace: "nowrap" }}
                       >
                         Career Counseling
                       </a>
