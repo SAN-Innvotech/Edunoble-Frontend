@@ -100,14 +100,14 @@ export default function HeroFour() {
                 <div className="masthead-image__shape xl:d-none">
                   <img
                     src="/assets/img/home-4/masthead/shape.svg"
-                    alt="image"
+                    alt="EduNoble decorative shape"
                   />
                 </div>
                 <img
                   data-move="20"
                   className="js-mouse-move"
                   src="/assets/img/home-4/masthead/1.png"
-                  alt="image"
+                  alt="EduNoble students learning"
                 />
               </div>
 

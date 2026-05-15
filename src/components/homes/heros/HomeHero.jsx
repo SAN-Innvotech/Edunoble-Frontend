@@ -117,7 +117,7 @@ const HomeHero = ({ heroData }) => {
     <>
       <section className="masthead -type-1 js-mouse-move-container">
         <div className="masthead__bg">
-          <img src={"/assets/img/home-1/hero/bg.png"} alt="image" />
+          <img src={"/assets/img/home-1/hero/bg.png"} alt="EduNoble homepage hero background" />
         </div>
 
         <div className="container">
@@ -241,7 +241,7 @@ const HomeHero = ({ heroData }) => {
                   <img
                     src={pictureUrl2 || "/assets/img/masthead/2.png"}
                     style={{ objectFit: "cover", display: "block", width: "100%" }}
-                    alt="image"
+                    alt="EduNoble students learning"
                   />
                   <div style={{
                     position: "absolute", bottom: 0, left: 0, right: 0,
@@ -269,7 +269,7 @@ const HomeHero = ({ heroData }) => {
                   <img
                     src={pictureUrl3 || "/assets/img/masthead/3.png"}
                     style={{ objectFit: "cover", display: "block", width: "100%" }}
-                    alt="image"
+                    alt="Structured preparation systems at EduNoble"
                   />
                   <div style={{
                     position: "absolute", bottom: 0, left: 0, right: 0,
@@ -297,7 +297,7 @@ const HomeHero = ({ heroData }) => {
                   <img
                     style={{ objectFit: "cover", width: "100%", height: "100%", display: "block" }}
                     src={pictureUrl1 || "/assets/img/masthead/1.png"}
-                    alt="image"
+                    alt="EduNoble integrated career guidance"
                   />
                   <div style={{
                     position: "absolute",

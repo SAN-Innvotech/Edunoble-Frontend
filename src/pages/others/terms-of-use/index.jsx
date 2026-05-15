@@ -8,6 +8,7 @@ const metadata = {
   title: "Terms of Use || EduNoble",
   description: "Terms of Use for EduNoble - Understand the rules and regulations governing the use of our platform.",
   canonical: "https://www.edunoble.in/terms-of-use",
+  ogImage: "https://www.edunoble.in/og/default.png",
 };
 
 const Section = ({ title, children }) => (

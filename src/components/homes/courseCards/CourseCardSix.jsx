@@ -12,7 +12,7 @@ export default function CourseCardSix({ data, index }) {
     <div className="col-lg-6">
       <div className="coursesCard -type-4 d-flex sm:d-block items-center border-light rounded-8 px-10 py-10">
         <div className="coursesCard__image max-w-250 rounded-8">
-          <img className="w-1/1 rounded-8" src={data.imageSrc} alt="image" />
+          <img className="w-1/1 rounded-8" src={data.imageSrc} alt={data.title || "EduNoble course thumbnail"} />
         </div>
 
         <div className="coursesCard__content pl-20 sm:pl-10 pr-10">
@@ -62,7 +62,7 @@ export default function CourseCardSix({ data, index }) {
 
           <div className="d-flex justify-between items-center pt-10 border-top-light">
             <div className="d-flex items-center">
-              <img src={data.authorImageSrc} alt="image" />
+              <img src={data.authorImageSrc} alt={`${data.authorName || "Author"} - EduNoble instructor`} />
               <div className="text-light-1 ml-10">{data.authorName}</div>
             </div>
 

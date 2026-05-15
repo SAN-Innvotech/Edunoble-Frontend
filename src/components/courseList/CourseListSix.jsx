@@ -1423,7 +1423,7 @@ export default function CourseListSix() {
                           <img
                             className="w-1/1 rounded-8"
                             src={elm.imageSrc}
-                            alt="image"
+                            alt={elm.title || "EduNoble course thumbnail"}
                             loading="lazy"
                           />
                           <div className="coursesCard__image_overlay rounded-8"></div>
@@ -1456,7 +1456,7 @@ export default function CourseListSix() {
                         <div className="row x-gap-10 y-gap-10 items-center pt-10">
                           <div className="col-auto">
                             <div className="d-flex items-center">
-                              <img src={elm.authorImageSrc} alt="image" loading="lazy" />
+                              <img src={elm.authorImageSrc} alt={`${elm.authorName || "Author"} - EduNoble instructor`} loading="lazy" />
                               <div className="ml-10">{elm.authorName}</div>
                             </div>
                           </div>

@@ -8,6 +8,7 @@ const metadata = {
   title: "Privacy Policy || Edunoble",
   description: "Privacy Policy for Edunoble - Learn how we collect, use and protect your personal information.",
   canonical: "https://www.edunoble.in/privacy-policy",
+  ogImage: "https://www.edunoble.in/og/default.png",
 };
 
 const Section = ({ title, children }) => (

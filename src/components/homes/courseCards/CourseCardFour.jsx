@@ -19,7 +19,7 @@ export default function CourceCardFour({ data, index }) {
                 style={{ height: "100%", width: "100%" }}
                 className="w-1/1"
                 src={data.imageSrc}
-                alt="image"
+                alt={data.title || "EduNoble course thumbnail"}
               />
               <div className="coursesCard__image_overlay rounded-8"></div>
             </div>
@@ -91,7 +91,7 @@ export default function CourceCardFour({ data, index }) {
 
             <div className="coursesCard-footer">
               <div className="coursesCard-footer__author">
-                <img src={data.authorImageSrc} alt="image" />
+                <img src={data.authorImageSrc} alt={`${data.authorName || "Author"} - EduNoble instructor`} />
                 <div>{data.authorName}</div>
               </div>
 

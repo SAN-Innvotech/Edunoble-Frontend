@@ -126,7 +126,7 @@ export default function EventsTwo() {
                           className="sidebar-recent d-flex items-center"
                         >
                           <div className="sidebar-recent__image mr-15">
-                            <img src={elm.imgSrc} alt="image" />
+                            <img src={elm.imgSrc} alt={elm.title || "EduNoble event"} />
                           </div>
 
                           <div className="sidebar-recent__content">
@@ -232,7 +232,7 @@ export default function EventsTwo() {
                         <img
                           className="w-1/1 rounded-top-8"
                           src={elm.imgSrc}
-                          alt="image"
+                          alt={elm.title || "EduNoble event"}
                         />
                       </div>
 

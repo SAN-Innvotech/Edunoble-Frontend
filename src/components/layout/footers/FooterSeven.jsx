@@ -34,7 +34,7 @@ export default function FooterSeven() {
 
           <div className="col-xl-4 col-lg-5 col-md-6">
             <div className="footer-header__logo">
-              <img src="/assets/img/general/logo-dark.svg" alt="logo" />
+              <img src="/assets/img/general/logo-dark.svg" alt="EduNoble - Where Learning Meets Direction" />
             </div>
 
             <div className="d-flex justify-between mt-30">
@@ -71,10 +71,10 @@ export default function FooterSeven() {
               </div>
               <div className="d-flex mt-15">
                 <a href="#">
-                  <img src="/assets/img/footer/apps-2/1.png" alt="image" />
+                  <img src="/assets/img/footer/apps-2/1.png" alt="Download EduNoble on the App Store" />
                 </a>
                 <a href="#" className="ml-10">
-                  <img src="/assets/img/footer/apps-2/2.png" alt="image" />
+                  <img src="/assets/img/footer/apps-2/2.png" alt="Get EduNoble on Google Play" />
                 </a>
               </div>
             </div>

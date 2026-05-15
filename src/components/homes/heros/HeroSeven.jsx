@@ -74,7 +74,7 @@ export default function HeroSeven() {
 
             <div className="col-lg-7" data-aos="fade-up" data-aos-delay="750">
               <div className="masthead__image relative">
-                <img src="/assets/img/home-7/hero/image.png" alt="image" />
+                <img src="/assets/img/home-7/hero/image.png" alt="EduNoble students learning" />
                 <div
                   onClick={() => setIsOpen(true)}
                   className="absolute-full-center d-flex justify-center items-center cursor"

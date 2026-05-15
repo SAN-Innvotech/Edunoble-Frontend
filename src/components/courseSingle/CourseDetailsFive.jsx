@@ -112,7 +112,7 @@ export default function CourseDetailsFive({ id }) {
                     <img
                       className="w-1/1"
                       src={pageItem.imageSrc}
-                      alt="image"
+                      alt={pageItem.title || "EduNoble course preview"}
                     />
                     <div className="absolute-full-center d-flex justify-center items-center">
                       <div

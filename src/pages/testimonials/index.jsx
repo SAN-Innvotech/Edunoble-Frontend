@@ -11,7 +11,57 @@ const metadata = {
   description:
     "Read what students, parents, and teachers say about EduNoble's sample papers. Real experiences from Grade 10, 11 and 12 learners preparing smarter for board exams.",
   canonical: "https://www.edunoble.in/testimonials",
+  ogImage: "https://www.edunoble.in/og/testimonials.png",
 };
+
+// Deterministic color from name for fallback avatar
+function colorFromName(name) {
+  const palette = ["#6c3fc5", "#00b894", "#0984e3", "#e17055", "#fdcb6e", "#a29bfe", "#fd79a8", "#00cec9"];
+  if (!name) return palette[0];
+  let hash = 0;
+  for (let i = 0; i < name.length; i++) hash = (hash * 31 + name.charCodeAt(i)) | 0;
+  return palette[Math.abs(hash) % palette.length];
+}
+
+function DefaultAvatar({ name, size = 64 }) {
+  const initial = (name || "?").trim().charAt(0).toUpperCase();
+  return (
+    <div
+      aria-hidden="true"
+      style={{
+        width: size,
+        height: size,
+        borderRadius: "50%",
+        background: colorFromName(name),
+        color: "#ffffff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontWeight: 700,
+        fontSize: Math.round(size * 0.42),
+        flexShrink: 0,
+      }}
+    >
+      {initial}
+    </div>
+  );
+}
+
+function Stars({ count }) {
+  const filled = Math.max(0, Math.min(5, Math.round(count || 0)));
+  if (!filled) return null;
+  return (
+    <div
+      role="img"
+      aria-label={`${filled} out of 5 stars`}
+      style={{ display: "inline-flex", gap: "2px", lineHeight: 1, fontSize: "18px" }}
+    >
+      {[1, 2, 3, 4, 5].map((n) => (
+        <span key={n} style={{ color: n <= filled ? "#FFC107" : "#E0E0E0" }}>★</span>
+      ))}
+    </div>
+  );
+}
 
 export default function TestimonialsPage() {
   const { homepageData } = useHomepageData();
@@ -35,6 +85,8 @@ export default function TestimonialsPage() {
             position: item.authorDetails,
             comment: item.heading,
             description: item.quote,
+            photoUrl: item.photoUrl || null,
+            rating: typeof item.rating === "number" ? item.rating : null,
           }));
           setRawTestimonials(filtered);
           setTestimonials(mapped);
@@ -52,16 +104,42 @@ export default function TestimonialsPage() {
   useEffect(() => {
     if (!rawTestimonials || rawTestimonials.length === 0) return;
 
+    const rated = rawTestimonials.filter(
+      (t) => typeof t.rating === "number" && t.rating > 0
+    );
+    const aggregateRating = rated.length
+      ? {
+          "@type": "AggregateRating",
+          "ratingValue": (
+            rated.reduce((sum, t) => sum + t.rating, 0) / rated.length
+          ).toFixed(1),
+          "reviewCount": rated.length,
+          "bestRating": 5,
+          "worstRating": 1,
+        }
+      : null;
+
     const schema = {
       "@context": "https://schema.org",
       "@type": "EducationalOrganization",
       "name": "EduNoble",
       "url": "https://www.edunoble.in",
+      ...(aggregateRating ? { aggregateRating } : {}),
       "review": rawTestimonials.map((t) => ({
         "@type": "Review",
         "reviewBody": t.quote,
         "author": { "@type": "Person", "name": t.authorName },
         "itemReviewed": { "@type": "EducationalOrganization", "name": "EduNoble" },
+        ...(typeof t.rating === "number" && t.rating > 0
+          ? {
+              "reviewRating": {
+                "@type": "Rating",
+                "ratingValue": t.rating,
+                "bestRating": 5,
+                "worstRating": 1,
+              },
+            }
+          : {}),
       })),
     };
 
@@ -160,6 +238,9 @@ export default function TestimonialsPage() {
                       e.currentTarget.style.borderColor = "#e8e8f0";
                     }}
                   >
+                    {/* Star rating (only if testimonial has a rating) */}
+                    {t.rating ? <Stars count={t.rating} /> : null}
+
                     {/* Headline */}
                     <h4 style={{ color: "#1a1050", fontSize: "17px", fontWeight: 600, margin: 0 }}>
                       {t.comment}
@@ -182,10 +263,40 @@ export default function TestimonialsPage() {
                     {/* Divider */}
                     <div style={{ height: "1px", background: "#eee" }} />
 
-                    {/* Author */}
-                    <div>
-                      <div style={{ color: "#1a1050", fontWeight: 600, fontSize: "15px" }}>{t.name}</div>
-                      <div style={{ color: "#6c3fc5", fontSize: "13px", marginTop: "4px" }}>{t.position}</div>
+                    {/* Author with photo */}
+                    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+                      {t.photoUrl ? (
+                        <>
+                          <img
+                            src={t.photoUrl}
+                            alt={`${t.name} - EduNoble student`}
+                            loading="lazy"
+                            onError={(e) => {
+                              e.currentTarget.style.display = "none";
+                              if (e.currentTarget.nextSibling) {
+                                e.currentTarget.nextSibling.style.display = "flex";
+                              }
+                            }}
+                            style={{
+                              width: 64,
+                              height: 64,
+                              borderRadius: "50%",
+                              objectFit: "cover",
+                              flexShrink: 0,
+                              display: "block",
+                            }}
+                          />
+                          <div style={{ display: "none" }}>
+                            <DefaultAvatar name={t.name} size={64} />
+                          </div>
+                        </>
+                      ) : (
+                        <DefaultAvatar name={t.name} size={64} />
+                      )}
+                      <div>
+                        <div style={{ color: "#1a1050", fontWeight: 600, fontSize: "15px" }}>{t.name}</div>
+                        <div style={{ color: "#6c3fc5", fontSize: "13px", marginTop: "4px" }}>{t.position}</div>
+                      </div>
                     </div>
                   </div>
                 ))}

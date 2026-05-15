@@ -15,7 +15,7 @@ export default function CourseCardTwo({ data, index }) {
         <div className="coursesCard -type-1 -hover-shadow border-light rounded-8">
           <div className="relative">
             <div className="coursesCard__image overflow-hidden rounded-top-8">
-              <img className="w-1/1" src={data.imageSrc} alt="image" />
+              <img className="w-1/1" src={data.imageSrc} alt={data.title || "EduNoble course thumbnail"} />
               <div className="coursesCard__image_overlay rounded-top-8"></div>
             </div>
             {data.popular && (
@@ -85,7 +85,7 @@ export default function CourseCardTwo({ data, index }) {
 
             <div className="coursesCard-footer">
               <div className="coursesCard-footer__author">
-                <img src={data.authorImageSrc} alt="image" />
+                <img src={data.authorImageSrc} alt={`${data.authorName || "Author"} - EduNoble instructor`} />
                 <div>{data.authorName || "Ali Tufan"}</div>
               </div>
 

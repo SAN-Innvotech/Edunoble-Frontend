@@ -43,7 +43,7 @@ export default function HeroSix() {
           <img
             style={{ width: "100%", height: "100%" }}
             src="/assets/img/home-6/hero/bg.png"
-            alt="image"
+            alt="EduNoble homepage hero background"
           />
         </div>
 
@@ -104,7 +104,7 @@ export default function HeroSix() {
                     className="js-mouse-move"
                     data-move="40"
                     src="/assets/img/home-6/hero/2.png"
-                    alt="image"
+                    alt="EduNoble students learning online"
                   />
                 </div>
                 <div className="-img-2">
@@ -112,7 +112,7 @@ export default function HeroSix() {
                     className="js-mouse-move"
                     data-move="40"
                     src="/assets/img/home-6/hero/1.png"
-                    alt="image"
+                    alt="EduNoble online education"
                   />
                 </div>
                 <div className="-img-3">
@@ -120,7 +120,7 @@ export default function HeroSix() {
                     className="js-mouse-move"
                     data-move="40"
                     src="/assets/img/home-6/hero/3.png"
-                    alt="image"
+                    alt="EduNoble student preparing for exams"
                   />
                 </div>
 

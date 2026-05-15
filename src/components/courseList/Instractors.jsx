@@ -76,7 +76,7 @@ export default function Instractors() {
                           <img
                             className="fit-cover size-180 rounded-full"
                             src={elm.imageSrc}
-                            alt="image"
+                            alt={`${elm.name || "Instructor"} - EduNoble`}
                           />
                           <div className="teamCard__socials rounded-full">
                             <div className="d-flex x-gap-20 y-gap-10 justify-center items-center h-100">

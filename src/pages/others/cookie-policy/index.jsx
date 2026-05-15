@@ -8,6 +8,7 @@ const metadata = {
   title: "Cookie Policy || Edunoble",
   description: "Cookie Policy for Edunoble - Learn how we use cookies and similar technologies.",
   canonical: "https://www.edunoble.in/cookie-policy",
+  ogImage: "https://www.edunoble.in/og/default.png",
 };
 
 const Section = ({ title, children }) => (

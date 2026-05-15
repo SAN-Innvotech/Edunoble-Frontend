@@ -197,7 +197,7 @@ export default function CourseDetailsSix({ id }) {
 
               <div className="col-xl-5 col-lg-6">
                 <div className="relative">
-                  <img className="w-1/1" src={pageItem.imageSrc} alt="image" />
+                  <img className="w-1/1" src={pageItem.imageSrc} alt={pageItem.title || "EduNoble course preview"} />
                   <div className="absolute-full-center d-flex justify-center items-center">
                     <div
                       onClick={() => setIsOpen(true)}

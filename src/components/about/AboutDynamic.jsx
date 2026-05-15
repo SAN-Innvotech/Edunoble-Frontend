@@ -78,6 +78,8 @@ export default function AboutDynamic() {
   return (
     <section style={{ background: "#ffffff", padding: "80px 0 100px" }}>
       <div className="container">
+        {/* See also: cross-links to related EduNoble pages */}
+        {/* (rendered after content map below) */}
         {content.map((item, index) => {
           const isLast = index === content.length - 1;
           const isImageLeft = index % 2 === 0;
@@ -118,7 +120,7 @@ export default function AboutDynamic() {
                     {/* Top-right smaller */}
                     <img
                       src={topImg}
-                      alt=""
+                      alt={`${item.title} - EduNoble`}
                       loading="lazy"
                       style={{
                         gridColumn: "2",
@@ -132,7 +134,7 @@ export default function AboutDynamic() {
                     {/* Bottom-right smaller */}
                     <img
                       src={bottomImg}
-                      alt=""
+                      alt={`EduNoble ${item.title} illustration`}
                       loading="lazy"
                       style={{
                         gridColumn: "2",
@@ -173,6 +175,35 @@ export default function AboutDynamic() {
             </div>
           );
         })}
+
+        {/* Contextual cross-references to related EduNoble pages */}
+        <div
+          style={{
+            marginTop: "80px",
+            paddingTop: "40px",
+            borderTop: "1px solid #eee",
+            textAlign: "center",
+            color: "#555",
+            fontSize: "15px",
+            lineHeight: 1.85,
+          }}
+        >
+          <h3
+            style={{
+              fontSize: "18px",
+              fontWeight: 600,
+              color: "#1a1050",
+              marginBottom: "12px",
+            }}
+          >
+            Explore more about EduNoble
+          </h3>
+          <p style={{ margin: 0 }}>
+            Learn about <Link to="/vision" style={{ color: "#6c3fc5", fontWeight: 500 }}>our vision and mission</Link>,{" "}
+            hear from <Link to="/testimonials" style={{ color: "#6c3fc5", fontWeight: 500 }}>our students and parents</Link>,{" "}
+            or <Link to="/contact" style={{ color: "#6c3fc5", fontWeight: 500 }}>get in touch with us</Link>.
+          </p>
+        </div>
       </div>
     </section>
   );

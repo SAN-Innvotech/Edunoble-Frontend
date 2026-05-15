@@ -705,7 +705,7 @@ export default function CourseListFour() {
                   <div className="coursesCard -type-1 ">
                     <div className="relative">
                       <div className="coursesCard__image overflow-hidden rounded-8">
-                        <img className="w-1/1" src={elm.imageSrc} alt="image" loading="lazy" />
+                        <img className="w-1/1" src={elm.imageSrc} alt={elm.title || "EduNoble course thumbnail"} loading="lazy" />
                         <div className="coursesCard__image_overlay rounded-8"></div>
                       </div>
                       <div className="d-flex justify-between py-10 px-10 absolute-full-center z-3">
@@ -791,7 +791,7 @@ export default function CourseListFour() {
 
                       <div className="coursesCard-footer">
                         <div className="coursesCard-footer__author">
-                          <img src={elm.authorImageSrc} alt="image" loading="lazy" />
+                          <img src={elm.authorImageSrc} alt={`${elm.authorName || "Author"} - EduNoble instructor`} loading="lazy" />
                           <div>{elm.authorName}</div>
                         </div>
 
