@@ -46,7 +46,7 @@ export default function CourseListPage3() {
                 letterSpacing: "-0.5px",
               }}
             >
-              Sample Papers
+              Sample Papers for Class 8-12
             </h1>
             <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "17px", maxWidth: "560px", margin: "0 auto" }}>
               Explore sample papers curated for Grade 8th, 9th, 10th, 11th and 12th.
