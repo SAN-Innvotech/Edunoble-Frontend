@@ -41,7 +41,7 @@ export default function AboutPage() {
                 letterSpacing: "-0.5px",
               }}
             >
-              About EduNoble
+              About EduNoble — Academic Coaching & Career Guidance
             </h1>
             <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "17px", maxWidth: "560px", margin: "0 auto" }}>
               Learn who we are and what drives our mission to help every student excel in their board exams.

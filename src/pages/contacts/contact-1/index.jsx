@@ -44,7 +44,7 @@ export default function ContactPage1() {
                 letterSpacing: "-0.5px",
               }}
             >
-              Get in Touch
+              Contact EduNoble — Coaching in Indore
             </h1>
             <p style={{ color: "rgba(255,255,255,0.75)", fontSize: "17px", maxWidth: "560px", margin: "0 auto" }}>
               Have a question or feedback? We'd love to hear from you and help in any way we can.
