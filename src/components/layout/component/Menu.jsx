@@ -145,6 +145,7 @@ export default function Menu({ allClasses, headerPosition }) {
                 className={
                   pathname == "/about" ? "activeMenu" : "inActiveMenuTwo"
                 }
+                style={{ whiteSpace: "nowrap" }}
               >
                 About Us
               </Link>
