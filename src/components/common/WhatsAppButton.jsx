@@ -1,4 +1,5 @@
 import React from "react";
+import { trackEvent } from "@/utils/analytics";
 
 export default function WhatsAppButton() {
   const phone = "918878868600";
@@ -31,6 +32,7 @@ export default function WhatsAppButton() {
       }}
       onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.08)")}
       onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+      onClick={() => trackEvent("contact", { method: "whatsapp" })}
     >
       {/* Inline SVG WhatsApp icon — repo lacks free-brands-svg-icons and no FA brands CSS is loaded */}
       <svg

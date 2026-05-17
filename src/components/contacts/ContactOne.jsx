@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import { contactData } from "@/data/contactLinks";
 import { getApiUrl } from "@/config/api";
+import { trackEvent } from "@/utils/analytics";
 
 import MapComponent from "./Map";
 
@@ -54,6 +55,7 @@ export default function ContactOne() {
 
       const data = await response.json();
       setSuccess(true);
+      trackEvent("generate_lead", { method: "contact_form" });
       // Reset form after successful submission
       setFormData({
         name: "",

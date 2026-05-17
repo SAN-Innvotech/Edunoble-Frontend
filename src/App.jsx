@@ -86,6 +86,7 @@ import UIElementsPage from "./pages/others/ui-elements";
 import EventListPage2 from "./pages/events/event-list-2";
 import CourseSinglePage6 from "./pages/courseSingle/courses-single-6/page";
 import ScrollTopBehaviour from "./components/common/ScrollTopBehaviour";
+import AnalyticsListener from "./components/common/AnalyticsListener";
 import NotFoundPage from "./pages/not-found";
 import PrivacyPolicyPage from "./pages/others/privacy-policy";
 import TermsOfUsePage from "./pages/others/terms-of-use";
@@ -254,6 +255,7 @@ function App() {
             </Route>
           </Routes>
           <ScrollTopBehaviour />
+          <AnalyticsListener />
           <CookieConsent />
           <WhatsAppButton />
           <LeadCaptureModal />

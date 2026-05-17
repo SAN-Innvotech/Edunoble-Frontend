@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { getApiUrl } from "@/config/api";
+import { trackEvent } from "@/utils/analytics";
 
 const SESSION_KEY = "edunoble_lead_shown";
 const TRIGGER_DELAY_MS = 30000;
@@ -348,6 +349,7 @@ const LeadCaptureModal = () => {
         throw new Error(message);
       }
       setSubmitted(true);
+      trackEvent("generate_lead", { method: "lead_modal" });
       markShown();
     } catch (err) {
       setError(err?.message || "Unable to submit right now. Please try again.");

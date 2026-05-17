@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import MobileMenu from "../component/MobileMenu";
 import { useContextElement } from "@/context/Context";
+import { trackEvent } from "@/utils/analytics";
 
 export default function Header() {
   const [activeMobileMenu, setActiveMobileMenu] = useState(false);
@@ -77,6 +78,7 @@ export default function Header() {
                     style={{ color: "#fff", fontSize: "18px", lineHeight: 1, textDecoration: "none", transition: "color 0.2s ease" }}
                     onMouseEnter={(e) => e.currentTarget.style.color = "#22C55E"}
                     onMouseLeave={(e) => e.currentTarget.style.color = "#fff"}
+                    onClick={() => trackEvent("contact", { method: "phone" })}
                   >
                     <i className="fa fa-phone" />
                   </a>
