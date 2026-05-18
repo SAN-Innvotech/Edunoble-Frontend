@@ -93,6 +93,7 @@ import TermsOfUsePage from "./pages/others/terms-of-use";
 import CookiePolicyPage from "./pages/others/cookie-policy";
 import CookieConsent from "./components/common/CookieConsent";
 import WhatsAppButton from "./components/common/WhatsAppButton";
+import ChatBot from "./components/common/ChatBot";
 import LeadCaptureModal from "./components/common/LeadCaptureModal";
 import CoursesListPage from "./pages/courses/courses-list";
 import CourseDetailPage from "./pages/courses/course-detail";
@@ -258,6 +259,7 @@ function App() {
           <AnalyticsListener />
           <CookieConsent />
           <WhatsAppButton />
+          <ChatBot />
           <LeadCaptureModal />
         </BrowserRouter>
       </Context>
