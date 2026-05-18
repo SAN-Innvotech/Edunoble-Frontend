@@ -7,8 +7,8 @@ A single doc that explains how the three Edunoble repos fit together, where each
 ```
 ┌──────────────────┐         ┌──────────────────┐         ┌──────────────────┐
 │  Edunoble-Admin  │ ─CMS──▶ │ Edunoble-Backend │ ◀─API── │Edunoble-Frontend │
-│ (Vercel / main)  │  writes │  (Vercel /       │  reads  │ (Vercel / main)  │
-│ admin.edunoble.in│         │   nik-modif.)    │         │   edunoble.in    │
+│ (Vercel / main)  │  writes │ (Vercel / main)  │  reads  │ (Vercel / main)  │
+│ admin.edunoble.in│         │backbone.edunoble │         │   edunoble.in    │
 └──────────────────┘         └────────┬─────────┘         └──────────────────┘
                                       │
                                 ┌─────┴──────┐
@@ -30,9 +30,9 @@ A single doc that explains how the three Edunoble repos fit together, where each
 |------|---------|---------------|----------------|
 | Edunoble-Frontend | public marketing + sample-paper browser | `main` | `https://edunoble.in` |
 | Edunoble-Admin | staff CMS dashboard | `main` | admin sub-domain (e.g. `https://admin.edunoble.in`) |
-| Edunoble-Backend | Express + Mongoose API | **`nik-modification`** ⚠️ | `https://backbone.edunoble.in` |
+| Edunoble-Backend | Express + Mongoose API | `main` | `https://backbone.edunoble.in` |
 
-> ⚠️ The Backend's deploy branch is `nik-modification`, **not** `main`. The Frontend and Admin both deploy from `main`. This is the easiest thing to get wrong.
+> All three repos deploy from their `main` branch — open a PR into `main`, merge, and Vercel ships it.
 
 ## Data flow
 
@@ -66,17 +66,17 @@ Each Vercel project is wired to one git branch. A push to that branch triggers a
 |------|--------|----------|
 | Frontend | `main` | branch off `main` → PR → merge → ships |
 | Admin | `main` | branch off `main` → PR → merge → ships |
-| Backend | `nik-modification` | branch off `nik-modification` → PR → merge into `nik-modification` → ships |
+| Backend | `main` | branch off `main` → PR → merge → ships |
 
 **Standard feature flow** (run inside the right repo):
 
 ```bash
-git checkout <deploy-branch>        # main for Frontend/Admin, nik-modification for Backend
+git checkout main                   # deploy branch for all three repos
 git pull
 git checkout -b feat/<short-name>
 # ... work ...
 git push -u origin feat/<short-name>
-# open PR against <deploy-branch>, review, merge
+# open PR against main, review, merge
 # Vercel auto-deploys on merge
 ```
 
@@ -84,7 +84,7 @@ git push -u origin feat/<short-name>
 
 - Frontend: `main-backup`, `nik-modification`, `paper`
 - Admin: `develop`, `nik-modification`
-- Backend: any branch other than `nik-modification` that is not actively in rotation
+- Backend: `nik-modification`, `sample` — older branches, no longer used for deploys
 
 ## Shared contract
 
@@ -148,7 +148,6 @@ Swagger for the local API: `http://localhost:8001/apis/api-docs`.
 - **Frontend `App.jsx` is template-heavy** — many commented-out routes (`home-2`…`home-10`, alt course list/single, dashboard, shop checkout, blog detail). Only the routes listed in the Frontend README are live.
 - **"✦ AI Powered" badge** in Frontend Header/Footer/MobileMenu is UI-only. There is no AI feature behind it yet.
 - **Hard-coded API URL** in Frontend & Admin — no `.env` is read. Pointing them at a non-production Backend means editing `src/config/api.js`.
-- **Backend deploys from `nik-modification`**, not `main`. Easy to forget when branching for a backend feature.
 - **Default `JWT_SECRET`** falls back to `"secret123"` in code. Always override in production.
 - **No global state management** in either React app — just `useState` + `Context` for cart/auth.
 - **Image upload is two-step**: upload to `/upload/image` first, then submit the resulting `imageUrl` with the rest of the form.
